@@ -24,7 +24,7 @@
     </select>
 
     <select id="selectUserByUserEmail" parameterType="User">
-        SELECT user_email
+        SELECT *
         FROM users
         WHERE user_email = #{userEmail}
     </select>

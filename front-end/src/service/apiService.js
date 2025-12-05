@@ -52,7 +52,7 @@ api.interceptors.request.use(
   500 : 서버 에러 = 서버 문제
         -> 고객센터 연락 방법 띄우기
  */
-api.interceptors.response.user(
+api.interceptors.response.use(
     response => {
         return response;
     },
@@ -88,10 +88,10 @@ const apiService = {
     // TODO: 로그인 API
     // POST /auth/login
     // body: { username, password }
-    login: async (username, password) => {
+    login: async (userEmail, password) => {
         // TODO: API 호출을 완성하세요
         const res = await api.post('/auth/login', {
-            userName: username,
+            userEmail: userEmail,
             userPassword: password,
         })
 
