@@ -11,7 +11,7 @@ import InstagramUI from "./instagramUI";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        {/*<App />*/}
-        <InstagramUI />
+        <App />
+        {/*<InstagramUI />*/}
     </React.StrictMode>
 );

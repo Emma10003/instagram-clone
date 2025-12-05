@@ -27,20 +27,22 @@ function App() {
         <div>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Navigate to={"/login"} replace />} />
+                    <Route path="/" element={<Navigate to="/login" replace />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/signup" element={<SignupPage />}/>
+                    <Route path="/signup" element={<SignupPage />} />
                     <Route path="/feed"
                            element={
-                        <PrivateRoute>
-                            <FeedPage />
-                        </PrivateRoute>}
+                               <PrivateRoute>
+                                   <FeedPage />
+                               </PrivateRoute>}
                     />
                     <Route path="/upload"
                            element={
-                        <PrivateRoute>
-                            <UploadPage />
-                        </PrivateRoute>}
+                               <PrivateRoute>
+                                   <UploadPage />
+                               </PrivateRoute>
+                           }
+
                     />
                 </Routes>
             </BrowserRouter>

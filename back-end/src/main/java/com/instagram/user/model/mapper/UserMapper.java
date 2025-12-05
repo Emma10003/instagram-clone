@@ -18,9 +18,9 @@ public interface UserMapper {
     // id를 이용한 사용자 조회
     User selectUserById(int userId);
     // 유저 명칭을 이용한 사용자 조회
-    User selectUserByUserName(String userName);
+    String selectUserByUserName(String userName);
     // email을 이용한 사용자 조회
-    User selectUserByUserEmail(String userEmail);
+    String selectUserByUserEmail(String userEmail);
 
     // 비밀번호 확인
     User selectUserByUserPassword(String userPassword);

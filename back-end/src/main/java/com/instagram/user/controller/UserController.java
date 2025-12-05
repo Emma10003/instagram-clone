@@ -17,8 +17,14 @@ public class UserController {
 
     private final UserService userService;
 
+    /**
+     * 회원가입 메서드
+     * @param user
+     */
     @PostMapping("/signup")
     public void signUp(@RequestBody User user) {
         userService.signUp(user);
     }
+
+
 }

@@ -10,16 +10,64 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'http://localhost:9000/api';
 
 // TODO: axios 인스턴스를 생성하세요
+// 이렇게 작성하면 매번 ${API_BASE_URL}을 작성할 필요 X, axios 대신 api로 사용
+const api = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+        'Content-Type' : 'application/json',
+    }
+});
 
 // TODO: 요청 인터셉터를 설정하세요
-// localStorage에서 token을 가져와서 Authorization 헤더에 추가
+// 모든 요청에 JWT 토큰 추가
+// 사용자의 요청을 가로채기 = interceptor
+api.interceptors.request.use(
+    config => {
+        const token = localStorage.getItem('token');
+        if(token) {
+            config.headers.Authrization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+)
 
 // TODO: 응답 인터셉터를 설정하세요
 // 401 에러가 발생하면 localStorage를 비우고 /login으로 이동
+/*
+  401 : 인증 안됨 = 로그인을 안 했거나 토큰이 만료된 경우
+        -> 로그인 페이지로 이동시킴(토큰 만료, 토큰이 임의로 삭제, 잘못된 토큰일 때 = 누군가가 토큰을 임의로 조작)
+        
+  403 : 권한 없음 = 로그인은 했지만, 접근할 권한 부족
+        -> 권한 없습니다 알림 후 이전 페이지 or 메인페이지로 돌려보내기
+        
+  404 :     없음 = 게시물 / 사용자 / 페이지 없음
+        -> 찾을 수 없습니다 알림 후 이전 페이지 or 메인페이지로 돌려보내기
+        
+  500 : 서버 에러 = 서버 문제
+        -> 고객센터 연락 방법 띄우기
+ */
+api.interceptors.response.user(
+    response => {
+        return response;
+    },
+    error => {
+        if(error.response && error.response.status === 401) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href='/login';
+        }
+        return Promise.reject(error);
+    }
+)
 
+
+// 기능2번 과 같은 형태로 함수 활용
 const apiService = {
     // ===== 인증 API =====
 
@@ -28,6 +76,13 @@ const apiService = {
     // body: { username, email, password, fullName }
     signup: async (username, email, password, fullName) => {
         // TODO: API 호출을 완성하세요
+        const response = await api.post('/auth/signup', {
+            userName: username,
+            userEmail: email,
+            userPassword: password,
+            userFullname: fullName,
+        });
+        return response.data;
     },
 
     // TODO: 로그인 API
@@ -35,6 +90,17 @@ const apiService = {
     // body: { username, password }
     login: async (username, password) => {
         // TODO: API 호출을 완성하세요
+        const res = await api.post('/auth/login', {
+            userName: username,
+            userPassword: password,
+        })
+
+        // 토큰과 사용자 정보를 localStorage 저장
+        if(res.data.token) {
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+        }
+        return res.data;
     },
 
     // TODO: 로그아웃 함수
@@ -136,3 +202,26 @@ const apiService = {
 };
 
 export default apiService;
+
+
+
+
+
+/*
+// 기능 내보내기 방법 1
+export const 기능1번 = () => {
+
+}
+
+// // 기능 내보내기 방법 2
+const 기능2번 = {
+    회원가입기능: () => {
+
+    },
+    로그인기능: () => {
+
+    }
+}
+
+export default 기능2번;
+*/

@@ -44,6 +44,25 @@ const SignupPage = () => {
     // 9. finally: loading을 false로 설정
     const handleSignup = async () => {
         // TODO: 함수를 완성하세요
+
+        try {
+            const response = await apiService.signup(username, email, password, fullName);
+            alert("회원가입이 완료되었습니다. 로그인해주세요.");
+            navigate("/login");
+        } catch(error) {
+            let errorMessage = '회원가입에 실패했습니다.';
+
+            if(error.response && error?.message) {
+                errorMessage = error.response.data.message;
+            } else if (error.response?.status === 409) {
+                errorMessage = '이미 사용 중인 사용자 이름 또는 이메일입니다.';
+            } else if (error.response?.status === 400) {
+                errorMessage = '입력 정보를 확인해주세요.';
+            }
+            alert(errorMessage);
+        } finally {
+            setLoading(false);
+        }
     };
 
     // TODO: Enter 키 입력 시 handleSignup 호출하는 함수 작성
@@ -169,6 +188,7 @@ const SignupPage = () => {
                             className="login-input"
                             type="password"
                             value={password}
+                            placeholder="비밀번호"
                             onChange={e => setPassword(e.target.value)}
                             onKeyPress={handleKeyPress}
                             autoComplete="new-password"
@@ -183,7 +203,7 @@ const SignupPage = () => {
                         <button className="login-button"
                                 onClick={handleSignup}
                                 disabled={loading}
-                                style={loading ? {opacity: 0.7, cursor: "not-allowed"} : ""}
+                                style={loading ? {opacity: 0.7, cursor: 'not-allowed'} : {}}
                         >
                             {loading ? "가입 중..." : "가입"}
                         </button>
