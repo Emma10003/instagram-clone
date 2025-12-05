@@ -1,0 +1,556 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    background-color: #fafafa;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #fafafa;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 350px;
+}
+
+.login-card {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    padding: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.login-title {
+    font-size: 2.5rem;
+    font-family: 'Cookie', cursive;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    background-color: #fafafa;
+    margin-bottom: 0.5rem;
+}
+
+.login-input:focus {
+    outline: none;
+    border-color: #a8a8a8;
+}
+
+.login-button {
+    width: 100%;
+    background-color: #0095f6;
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.login-button:hover {
+    background-color: #1877f2;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.divider-line {
+    flex: 1;
+    border-top: 1px solid #dbdbdb;
+}
+
+.divider-text {
+    padding: 0 1rem;
+    color: #8e8e8e;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.facebook-login {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #385185;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.forgot-password {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #00376b;
+    margin-top: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.signup-box {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.signup-link {
+    color: #0095f6;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.header {
+    background-color: white;
+    border-bottom: 1px solid #dbdbdb;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.header-container {
+    max-width: 975px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Cookie', cursive;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.nav-icon:hover {
+    opacity: 0.6;
+}
+
+.feed-container {
+    min-height: 100vh;
+    background-color: #fafafa;
+}
+
+.feed-content {
+    max-width: 630px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.stories-container {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+}
+
+.stories-wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.story-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.story-avatar-wrapper {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.story-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+}
+
+.story-username {
+    font-size: 0.75rem;
+}
+
+.post-card {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+}
+
+.post-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.post-user-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-username {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.post-more-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.post-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.post-content {
+    padding: 0.75rem;
+}
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.post-actions-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.action-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    cursor: pointer;
+}
+
+.like-icon.liked {
+    fill: #ed4956;
+    color: #ed4956;
+}
+
+.post-likes {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.post-caption {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.post-caption-username {
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.post-comments-btn {
+    background: none;
+    border: none;
+    font-size: 0.875rem;
+    color: #8e8e8e;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.post-time {
+    font-size: 0.75rem;
+    color: #8e8e8e;
+}
+
+.comment-input-container {
+    border-top: 1px solid #dbdbdb;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.comment-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.875rem;
+}
+
+.comment-post-btn {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.upload-container {
+    min-height: 100vh;
+    background-color: #fafafa;
+}
+
+.upload-header {
+    background-color: white;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.upload-header-content {
+    max-width: 975px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.upload-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.upload-submit-btn {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.upload-content {
+    max-width: 630px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.upload-card {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.upload-image-area {
+    aspect-ratio: 1 / 1;
+    background-color: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.upload-label {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.upload-icon {
+    width: 6rem;
+    height: 6rem;
+    color: #8e8e8e;
+}
+
+.upload-text {
+    font-size: 1.25rem;
+    color: #262626;
+}
+
+.upload-file-input {
+    display: none;
+}
+
+.upload-select-btn {
+    background-color: #0095f6;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-change-btn {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.upload-caption-area {
+    padding: 1rem;
+    border-top: 1px solid #dbdbdb;
+}
+
+.upload-caption-content {
+    display: flex;
+    gap: 1rem;
+}
+
+.upload-user-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.upload-caption-right {
+    flex: 1;
+}
+
+.upload-username {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.upload-caption-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 0.875rem;
+    resize: none;
+}
+
+.upload-caption-count {
+    font-size: 0.75rem;
+    color: #8e8e8e;
+    text-align: right;
+}
+
+.upload-options {
+    border-top: 1px solid #dbdbdb;
+}
+
+.upload-option-btn {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-option-btn:hover {
+    background-color: #fafafa;
+}
+
+.upload-option-btn + .upload-option-btn {
+    border-top: 1px solid #dbdbdb;
+}
+
+.upload-option-text {
+    font-size: 0.875rem;
+}
+
+.upload-option-arrow {
+    color: #8e8e8e;
+}
+
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 1.25rem;
+    }
+
+    .header-nav {
+        gap: 1rem;
+    }
+}
+
+.stories-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.stories-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.stories-container::-webkit-scrollbar-thumb {
+    background: #dbdbdb;
+    border-radius: 2px;
+}
+
+.stories-container::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+}
