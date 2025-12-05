@@ -8,12 +8,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    user_id SERIAL PRIMARY KEY,
-    user_name VARCHAR(50) UNIQUE NOT NULL,
-    user_email VARCHAR(100) UNIQUE NOT NULL,
-    user_password VARCHAR(255) NOT NULL,
-    user_fullname VARCHAR(100),
-    user_avatar VARCHAR(500),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    /*
+    userId 의 경우 SQL -> null, 호출하여 사용할 때는 형변환 처리하여 많이 사용함.
+    추후 String userId 변경해서 활용해보기.
+     */
+    private String userId;
+    private String userName;
+    private String userEmail;
+    private String userPassword;
+    private String userFullname;
+    private String userAvatar;
+    private String createdAt;
+    private String updatedAt;
 }

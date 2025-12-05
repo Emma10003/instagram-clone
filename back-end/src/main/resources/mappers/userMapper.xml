@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.instagram.user.model.mapper.UserMapper">
+    <select id="selectAllUsers" resultType="User">
+        SELECT *
+        FROM users
+        ORDER BY user_id DESC
+    </select>
+
+    <select id="selectUserById" parameterType="User">
+        SELECT *
+        FROM users
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="selectUserByUserName" parameterType="User">
+        SELECT *
+        FROM users
+        WHERE user_name = #{userName}
+    </select>
+
+    <select id="selectUserByUserEmail" parameterType="User">
+        SELECT *
+        FROM users
+        WHERE user_email = #{userEmail}
+    </select>
+
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO users (user_name, user_email, user_password, user_fullname, user_avatar)
+        VALUES (#{userName}, #{userEmail}, #{userPassword}, #{userFullname}, #{userAvatar})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE users
+        SET user_name = #{userName},
+            user_email = #{userEmail},
+            user_fullname = #{userFullname},
+            user_avatar = #{userAvatar},
+            updated_at = CURRENT_TIME
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="deleteUser" parameterType="User">
+        DELETE
+        FROM users
+        WHERE user_id = #{userId}
+    </delete>
+
+</mapper>
