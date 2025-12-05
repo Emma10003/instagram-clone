@@ -19,6 +19,7 @@ const FeedPage = () => {
     // TODO: stories state를 선언하세요 (초기값: [])
 
     // TODO: loading state를 선언하세요 (초기값: true)
+    const [loading, setLoading] = useState(false);
 
     // TODO: useNavigate를 사용하여 navigate 함수를 가져오세요
 

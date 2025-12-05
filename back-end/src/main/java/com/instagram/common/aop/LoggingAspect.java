@@ -1,6 +1,6 @@
 package com.instagram.common.aop;
 
-import edu.thejoeun.member.model.dto.Member;
+import com.instagram.user.model.dto.User;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -14,26 +14,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Arrays;
-/*
-* @Component @Bean 등록까지 함께 들어있는 어노테이션
-*            개발자가 만든 파일을 스프링부트에서 자체적으로 관리하도록 세팅
-*            Service Mapper Controller 처럼 특정 기능으로 분류지을 수 없는 객체 파일 문서
-* @Aspect 공통 관심사가 작성된 클래스임 명시(AOP 동작용 클래스)
-* @Slf4j  log를 찍을 수 있는 객체를 생성코드 추가 (lombok 회사에서 제공하는 어노테이션)
-* */
-
-/*
-advice : 끼워넣을 코드 (= 기능)
-pointCut :  실제 advice 를 적용할 joinPoint(지점)
-
-PointCut 작성 방법
- execution ( [접근제한자(생략가능)] 리턴타입 클래스명 메서드명 ([파라미터])
-
- 클래스명은 패키지명부터 모두 작성
-
- * : 모든
- // 메서드명(..) 에서 매개변수 .. : 매개변수 0~n 개 (개수 상관 없음)
- */
 
 @Component
 @Aspect
@@ -50,9 +30,9 @@ public class LoggingAspect {
         sb.append(String.format("[%s.%s] 요청 / ip : %s", className, methodName, ip));
 
         if(req.getSession().getAttribute("loginMember") != null) {
-            String memberEmail =
-                    ( (Member)req.getSession().getAttribute("loginMember") ).getMemberEmail();
-            sb.append(String.format(", 요청 회원 : %s", memberEmail));
+            String userEmail =
+                    ( (User)req.getSession().getAttribute("loginMember") ).getUserEmail();
+            sb.append(String.format(", 요청 회원 : %s", userEmail));
         }
         log.info(sb.toString());
     }
