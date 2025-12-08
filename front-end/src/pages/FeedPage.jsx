@@ -15,13 +15,16 @@ import { Heart, MessageCircle, Send, Bookmark, MoreHorizontal, Home, PlusSquare,
 
 const FeedPage = () => {
     // TODO: posts state를 선언하세요 (초기값: [])
+    const [posts, setPosts] = useState([]);
 
     // TODO: stories state를 선언하세요 (초기값: [])
+    const [stories, setStories] = useState([]);
 
     // TODO: loading state를 선언하세요 (초기값: true)
     const [loading, setLoading] = useState(false);
 
     // TODO: useNavigate를 사용하여 navigate 함수를 가져오세요
+    const navigate = useNavigate();
 
     // TODO: useEffect를 사용하여 컴포넌트 마운트 시 loadFeedData 호출
 
@@ -71,6 +74,15 @@ const FeedPage = () => {
                     <div className="header-nav">
                         {/* TODO: 아이콘들을 작성하세요 */}
                         {/* Home, MessageCircle, PlusSquare(onClick: /upload 이동), Film, User(onClick: 로그아웃) */}
+                        <Home className="header-icon"
+                              onClick={() => navigate('/')} />
+                        <MessageCircle className="header-icon" />
+                        <PlusSquare className="header-icon"
+                                    onClick={() => navigate('/upload')} />
+                        <Film className="header-icon" />
+                        <User className="header-icon"
+                              onClick={handleLogout} />
+
                     </div>
                 </div>
             </header>

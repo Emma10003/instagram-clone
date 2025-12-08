@@ -28,13 +28,12 @@ const LoginPage = () => {
     // 5. 실패 시: alert로 에러 메시지 표시
     // 6. finally: loading을 false로 설정
     const handleLogin = async () => {
-        // TODO: 함수를 완성하세요
         try {
-            const res = await apiService.login(username, password);
+            const res = await apiService.login(userEmail, password);
             alert('로그인이 완료되었습니다.');
             navigate("/feed");
         } catch(error) {
-            if(error.res?.status === 401) {
+            if(error.response?.status === 401) {
                 alert("이메일 또는 비밀번호가 올바르지 않습니다.");
             } else {
                 alert("로그인에 실패했습니다. 다시 로그인해주세요.");

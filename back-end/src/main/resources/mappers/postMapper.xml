@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.instagram.post.model.mapper.PostMapper">
+    <!-- 모든 게시물 조회 (최신순) -->
+    <select id="selectAllPosts" resultType="Post">
+        SELECT
+            *,
+            CASE
+                WHEN EXISTS (
+                    SELECT 1 FROM likes
+                    WHERE post_id = pdv.post_id AND user_id = #{currentUserId}
+                )
+                    THEN TRUE
+                ELSE FALSE
+                END AS is_liked
+        FROM post_detail_view pdv
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- 특정 게시물 조회 -->
+    <select id="selectPostById" resultType="Post">
+        SELECT
+            *,
+            CASE
+                WHEN EXISTS (
+                    SELECT 1 FROM likes
+                    WHERE post_id = pdv.post_id AND user_id = #{currentUserId}
+                )
+                    THEN TRUE
+                ELSE FALSE
+                END AS is_liked
+        FROM post_detail_view pdv
+        WHERE post_id = #{postId}
+    </select>
+
+    <!-- 특정 사용자의 게시물 조회 -->
+    <select id="selectPostsByUserId" resultType="Post">
+        SELECT
+            *,
+            CASE
+                WHEN EXISTS (
+                    SELECT 1 FROM likes
+                    WHERE post_id = pdv.post_id AND user_id = #{currentUserId}
+                )
+                    THEN TRUE
+                ELSE FALSE
+                END AS is_liked
+        FROM post_detail_view pdv
+        WHERE user_id = #{userId}
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- 게시물 작성 -->
+    <insert id="insertPost" parameterType="Post" useGeneratedKeys="true" keyProperty="postId" keyColumn="postId">
+        INSERT INTO posts (user_id, post_image, post_caption, post_location)
+        VALUES (#{userId}, #{postImage}, #{postCaption}, #{postLocation})
+    </insert>
+
+    <!-- 게시물 삭제 -->
+    <delete id="deletePost">
+        DELETE FROM posts
+        WHERE post_id = #{postId}
+    </delete>
+
+    <!-- 좋아요 추가 -->
+    <insert id="insertLike">
+        INSERT INTO likes (post_id, user_id)
+        VALUES (#{postId}, #{userId})
+        ON CONFLICT (post_id, user_id) DO NOTHING
+    </insert>
+
+    <!-- 좋아요 취소 -->
+    <delete id="deleteLike">
+        DELETE FROM likes
+        WHERE post_id = #{postId}
+        AND user_id = #{userId}
+    </delete>
+
+</mapper>

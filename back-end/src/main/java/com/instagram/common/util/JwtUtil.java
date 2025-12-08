@@ -43,7 +43,7 @@ public class JwtUtil {
      */
     public String generateToken(int userId, String userEmail) {
         Date now = new Date();  // 현재시간
-        Date validity = new Date(now.getTime() + expirationTime);   // 현지사긴 기준 +24시간 유효기간 설정
+        Date validity = new Date(now.getTime() + expirationTime);   // 현재시간 기준 +24시간 유효기간 설정
 
         return Jwts.builder()
                 .subject(String.valueOf(userId))    // 학번

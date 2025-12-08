@@ -75,7 +75,6 @@ const apiService = {
     // POST /auth/signup
     // body: { username, email, password, fullName }
     signup: async (username, email, password, fullName) => {
-        // TODO: API 호출을 완성하세요
         const response = await api.post('/auth/signup', {
             userName: username,
             userEmail: email,
@@ -89,7 +88,6 @@ const apiService = {
     // POST /auth/login
     // body: { username, password }
     login: async (userEmail, password) => {
-        // TODO: API 호출을 완성하세요
         const res = await api.post('/auth/login', {
             userEmail: userEmail,
             userPassword: password,
@@ -128,6 +126,12 @@ const apiService = {
     // body: { postImage, postCaption, postLocation }
     createPost: async (postImage, postCaption, postLocation) => {
         // TODO: API 호출을 완성하세요
+        const res = await api.post('/posts', {
+            postImage: postImage,
+            postCaption: postCaption,
+            postLocation: postLocation
+        });
+        return res.data;
     },
 
     // TODO: 게시물 삭제
