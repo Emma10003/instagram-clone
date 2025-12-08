@@ -14,9 +14,38 @@ export const FILTER_OPTIONS = [
  * @param filter            적용할 CSS 필터 문자열
  * @returns {Promise<File>} 필터가 적용된 새로운 File 객체
  */
-export const getFilteredFile = (sourceImageFile, filter) => {
+export const getFilteredFile = async (file, filter) => {
     // 필터가 없으면 원본 그대로 반환
-    if(!filter || filter === 'none') {
-        return Promise.resolve(sourceImageFile);
+    if(!filter || filter === 'none') return file;
+
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+
+    try {
+        await img.decode();  // 이미지 로드 대기
+        URL.revokeObjectURL(url);  // 메모리 해제
+
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        const ctx = canvas.getContext('2d');
+        ctx.filter = filter;
+        ctx.drawImage(img, 0, 0);
+
+        // canvas -> file 변환
+        return new Promise(resolve => {
+            canvas.toBlob(blob => {
+                resolve(
+                    new File(
+                        [blob], file.name, {
+                            type: file.type, lastModified: new Date()
+                        })
+                );
+            }, file.type, 0.9);
+        });
+    } catch (err) {
+        console.log("filterService: 에러 발생: {}", err);
+        return file;  // 에러 발생 시 원본 반환
     }
 }

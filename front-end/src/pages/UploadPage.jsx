@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import apiService from '../service/apiService';
 import {ArrowLeft, Image} from 'lucide-react';
+import {FILTER_OPTIONS} from "../service/filterService";
 
 const UploadPage = () => {
 
@@ -18,6 +19,8 @@ const UploadPage = () => {
     const [caption, setCaption] = useState('');
     const [location, setLocation] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const [selectedFilter, setSelectedFilter] = useState('none');
     const navigate = useNavigate();
 
     const user = JSON.parse(localStorage.getItem('user') || {});
@@ -31,6 +34,7 @@ const UploadPage = () => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImagePreview(reader.result);
+                setSelectedFilter('none');  // 이미지 변경 시 필터 초기화
             };
             reader.readAsDataURL(f);
         }
@@ -91,9 +95,29 @@ const UploadPage = () => {
                 <div className="upload-card">
                     <div className="upload-image-area">
                         {imagePreview ? (
-                            <>
+                            <div style={{width:'100%', display:'flex', flexDirection:'column'}}>
                                 <img src={imagePreview}
-                                     className="upload-preview-image"/>
+                                     className="upload-preview-image"
+                                     style={{filter:selectedFilter}}
+                                />
+                                <div className="filter-scroll-container">
+                                    {FILTER_OPTIONS.map((option) => (
+                                        <div key={option.name}
+                                             className={`filter-item ${selectedFilter === option.filter ? 'active' : ''}`}
+                                             onClick={() => setSelectedFilter(option.filter)}
+                                        >
+                                            <span className="filter-name">{option.name}</span>
+                                            <div className="filter-thumnail"
+                                                 style={{
+                                                     backgroundImage:`url(${imagePreview})`,
+                                                     filter: option.filter,
+                                                 }}
+                                            >
+
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                                 <label className="upload-change-btn">
                                     이미지 변경
                                     <input
@@ -103,7 +127,7 @@ const UploadPage = () => {
                                         className="upload-file-input"
                                     />
                                 </label>
-                            </>
+                            </div>
                         ) : (
                             <label className="upload-label">
                                 <Image className="upload-icon" />
