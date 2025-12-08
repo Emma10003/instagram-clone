@@ -28,7 +28,7 @@ api.interceptors.request.use(
     config => {
         const token = localStorage.getItem('token');
         if(token) {
-            config.headers.Authrization = `Bearer ${token}`;
+            config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
     },
@@ -113,6 +113,9 @@ const apiService = {
     // GET /posts
     getPosts: async () => {
         // TODO: API 호출을 완성하세요
+        const res = await api.get('/posts');
+        console.log("✅ 프론트엔드에서 호출 성공: ", res.data);
+        return res.data;
     },
 
     // TODO: 특정 게시물 조회
@@ -125,11 +128,15 @@ const apiService = {
     // POST /posts
     // body: { postImage, postCaption, postLocation }
     createPost: async (postImage, postCaption, postLocation) => {
-        // TODO: API 호출을 완성하세요
-        const res = await api.post('/posts', {
-            postImage: postImage,
-            postCaption: postCaption,
-            postLocation: postLocation
+        const formData = new FormData();
+        formData.append('postImage', postImage);
+        formData.append('postCaption', postCaption);
+        formData.append('postLocation', postLocation);
+
+        const res = await api.post('/posts', formData, {
+            headers: {
+                'Content-Type' : 'multipart/form-data',
+            }
         });
         return res.data;
     },

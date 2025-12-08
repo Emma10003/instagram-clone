@@ -27,6 +27,9 @@ const FeedPage = () => {
     const navigate = useNavigate();
 
     // TODO: useEffect를 사용하여 컴포넌트 마운트 시 loadFeedData 호출
+    useEffect(() => {
+        loadFeedData();
+    }, []);
 
     // TODO: loadFeedData 함수를 작성하세요
     // 1. try-catch 사용
@@ -36,6 +39,16 @@ const FeedPage = () => {
     // 5. finally: loading을 false로 설정
     const loadFeedData = async () => {
         // TODO: 함수를 완성하세요
+        try {
+            const res = await apiService.getPosts();
+            setPosts(res);
+            console.log("⭐loadFeedData: 피드 불러오기 성공")
+        } catch(err) {
+            alert("피드를 불러올 수 없습니다.");
+            console.error("❌ loadFeedData: 피드 불러오기 실패");
+        } finally {
+            setLoading(false);
+        }
     };
 
     // TODO: toggleLike 함수를 작성하세요
@@ -92,6 +105,21 @@ const FeedPage = () => {
                 {/* stories 배열이 있을 때만 표시 */}
                 {/* stories.map으로 각 스토리를 렌더링 */}
 
+                {stories.length > 0 && (
+                    <div className="stories-container">
+                        <div className="stories-wrapper">
+                            {stories.map((story => (
+                                <div key={story.id} className="story-item">
+                                    <div className="story-avatar-wrapper" key={story.id}>
+                                        <img src={story.userAvatar} className="story-avatar" />
+                                    </div>
+                                    <span className="story-username">{story.userName}</span>
+                                </div>
+                            )))}
+                        </div>
+                    </div>
+                )}
+
                 {/* TODO: 게시물 목록 작성 */}
                 {/* posts.map으로 각 게시물을 렌더링 */}
                 {/* 게시물 헤더: 프로필 이미지, 사용자명 */}
@@ -102,6 +130,51 @@ const FeedPage = () => {
                 {/* 댓글 수 */}
                 {/* 작성 시간 */}
                 {/* 댓글 입력창 */}
+                {posts.length > 0 && (
+                    posts.map((post) => (
+                        <article key={post.id} className="post-card">
+                            <div className="post-header">
+                                <div className="post-user-info">
+                                    <img src={post.userAvatar} className="post-user-avatar" />
+                                    <span className="post-username">{post.userName}</span>
+                                </div>
+                                <MoreHorizontal className="post-more-icon" />
+                            </div>
+
+                            <img src={post.postImage} className="post-image" />
+                            <div className="post-content">
+                                <div className="post-actions">
+                                    <div className="post-actions-left">
+                                        <Heart className={`action-icon like-icon ${post.isLiked ? 'liked' : ''}`}
+                                               onClick={() => toggleLike(post.postId, post.isLiked)}
+                                               fill={post.isLiked ? "#ed4956" : "none"}
+                                       />
+                                        <MessageCircle className="action-icon" />
+                                        <Send className="action-icon" />
+                                    </div>
+                                    <Bookmark className="action-icon" />
+                                </div>
+
+                                <div className="post-likes">
+                                    좋아요 {post.likeCount}개
+                                </div>
+
+                                <div className="post-caption">
+                                    <span className="post-caption-username">{post.userName}</span>
+                                    {post.postCaption}
+                                </div>
+                                {post.commentCount > 0 && (
+                                    <button className="post-comments-btn">
+                                        댓글 {post.commentCount}개 모두 보기
+                                    </button>
+                                )}
+                                <div className="post-time">
+                                    {post.createdAt || '방금 전'}
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                )}
 
                 {/* TODO: 게시물이 없을 때 메시지 표시 */}
             </div>

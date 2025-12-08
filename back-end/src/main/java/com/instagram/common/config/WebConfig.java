@@ -10,14 +10,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Value("${file.upload.path}")
+    @Value("${file.profile.upload.path}")
     private String fileUploadPath;
 
-    @Value("${file.product.upload.path}")
-    private String productUploadPath;
+    @Value("${file.story.upload.path}")
+    private String storyUploadPath;
 
-    @Value("${file.board.upload.path}")
-    private String boardUploadPath;
+    @Value("${file.post.upload.path}")
+    private String postUploadPath;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -44,11 +44,11 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/profile_images/**")
                 .addResourceLocations("file:" + fileUploadPath + "/");
 
-        registry.addResourceHandler("/product_images/**")
-                .addResourceLocations("file:" + productUploadPath + "/");
+        registry.addResourceHandler("/story_images/**")
+                .addResourceLocations("file:" + storyUploadPath + "/");
 
-        registry.addResourceHandler("/board_images/**")
-                .addResourceLocations("file:" + boardUploadPath + "/");
+        registry.addResourceHandler("/post_images/**")
+                .addResourceLocations("file:" + postUploadPath + "/");
     }
 }
 

@@ -44,7 +44,7 @@ const UploadPage = () => {
         }
 
         try {
-            await apiService.createPost(imagePreview, caption, location);
+            await apiService.createPost(selectedImage, caption, location);
             alert("게시물이 성공적으로 등록되었습니다.");
             navigate('/feed');
         } catch (err) {
@@ -90,9 +90,6 @@ const UploadPage = () => {
             <div className="upload-content">
                 <div className="upload-card">
                     <div className="upload-image-area">
-                        {/* TODO: imagePreview가 있으면 이미지 표시, 없으면 업로드 UI 표시 */}
-                        {/* FileReader로 변환한 base64 이미지를 img src에 사용 */}
-                        {/* input type="file" accept="image/*" onChange={handleImageChange} */}
                         {imagePreview ? (
                             <>
                                 <img src={imagePreview}
@@ -124,10 +121,8 @@ const UploadPage = () => {
                                 />
                             </label>
                         )}
-
                     </div>
 
-                    {/* TODO: 캡션 입력 영역 작성 */}
                     <div className="upload-caption-area">
                         <div className="upload-caption-content">
                             <img className="upload-user-avatar"

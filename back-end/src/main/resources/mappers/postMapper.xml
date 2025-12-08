@@ -55,7 +55,7 @@
     </select>
 
     <!-- 게시물 작성 -->
-    <insert id="insertPost" parameterType="Post" useGeneratedKeys="true" keyProperty="postId" keyColumn="postId">
+    <insert id="insertPost" parameterType="Post" useGeneratedKeys="true" keyProperty="postId" keyColumn="post_id">
         INSERT INTO posts (user_id, post_image, post_caption, post_location)
         VALUES (#{userId}, #{postImage}, #{postCaption}, #{postLocation})
     </insert>
