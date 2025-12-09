@@ -1,5 +1,6 @@
 package com.instagram.story.model.service;
 
+import com.instagram.common.util.FileUploadService;
 import com.instagram.story.model.dto.Story;
 import com.instagram.story.model.mapper.StoryMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StoryServiceImpl implements StoryService {
     private final StoryMapper storyMapper;
+    private final FileUploadService fileUploadService;
 
     @Override
     public Story createStory(int userId, MultipartFile storyImage) throws IOException {
@@ -24,8 +26,24 @@ public class StoryServiceImpl implements StoryService {
         story.setUserId(userId);
         story.setStoryImage("storyImage - 서버 컴퓨터에 저장될 경로 스토리 파일");
 
-        storyMapper.insertStory(story);
-        return null;
+        try {
+            storyMapper.insertStory(story);
+            log.info("✅ 임시 스토리 생성 완료 - 스토리 ID: {}", story.getStoryId());
+
+            String savedImagePath = fileUploadService.uploadStoryImage(
+                    storyImage,
+                    story.getStoryId(),
+                    "story");
+            log.info("서버 스토리 이미지 업로드 완료: {}", savedImagePath);
+            story.setStoryImage(savedImagePath);
+
+            storyMapper.updateStoryImage(story.getStoryId(), savedImagePath);
+            return story;  // 결과가 null 인지 들어있는지 확인
+        } catch (Exception e) {
+            log.error("❌ Mapper 실행 실패: {}", e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

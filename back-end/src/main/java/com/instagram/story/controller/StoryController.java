@@ -5,6 +5,7 @@ import com.instagram.story.model.dto.Story;
 import com.instagram.story.model.service.StoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,8 +28,9 @@ public class StoryController {
 
     @PostMapping
     public ResponseEntity<?> createStory(@RequestHeader("Authorization") String token,
-                                         @RequestParam("storyImage")MultipartFile storyImage) {
+                                         @RequestPart("storyImage") MultipartFile storyImage) {
         try{
+            log.info("✅ Controller 레이어 도달 완료");
             String jwtToken = token.substring(7);
             int userId = jwtUtil.getUserIdFromToken(jwtToken);
 
@@ -41,6 +44,26 @@ public class StoryController {
             return ResponseEntity.badRequest().body("파일 업로드 실패: " + e.getMessage());
         } catch (Exception e){
             return ResponseEntity.badRequest().body("스토리 생성 실패: " + e.getMessage());
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllStories() {
+        try{
+            List<Story> stories = storyService.getAllStories();
+            return ResponseEntity.ok(stories);
+        } catch(Exception e){
+            return ResponseEntity.badRequest().body("스토리 조회 실패: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> getStoryById(@PathVariable("userId") int userId) {
+        try {
+            Story a = storyService.getStoriesByUserId(userId);
+            return ResponseEntity.ok(a);
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body("스토리 조회 실패: " + e.getMessage());
         }
     }
 

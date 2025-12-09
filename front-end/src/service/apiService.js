@@ -32,8 +32,6 @@ api.interceptors.request.use(
     }
 )
 
-// TODO: 응답 인터셉터를 설정하세요
-// 401 에러가 발생하면 localStorage를 비우고 /login으로 이동
 /*
   401 : 인증 안됨 = 로그인을 안 했거나 토큰이 만료된 경우
         -> 로그인 페이지로 이동시킴(토큰 만료, 토큰이 임의로 삭제, 잘못된 토큰일 때 = 누군가가 토큰을 임의로 조작)
@@ -65,10 +63,6 @@ api.interceptors.response.use(
 // 기능2번 과 같은 형태로 함수 활용
 const apiService = {
     // ===== 인증 API =====
-
-    // TODO: 회원가입 API
-    // POST /auth/signup
-    // body: { username, email, password, fullName }
     signup: async (username, email, password, fullName) => {
         const response = await api.post('/auth/signup', {
             userName: username,
@@ -79,9 +73,6 @@ const apiService = {
         return response.data;
     },
 
-    // TODO: 로그인 API
-    // POST /auth/login
-    // body: { username, password }
     login: async (userEmail, password) => {
         const res = await api.post('/auth/login', {
             userEmail: userEmail,
@@ -103,13 +94,8 @@ const apiService = {
     },
 
     // ===== 게시물 API =====
-
-    // TODO: 모든 게시물 조회
-    // GET /posts
     getPosts: async () => {
-        // TODO: API 호출을 완성하세요
         const res = await api.get('/posts');
-        console.log("✅ 프론트엔드에서 호출 성공: ", res.data);
         return res.data;
     },
 
@@ -117,15 +103,13 @@ const apiService = {
     // GET /posts/:postId
     getPost: async (postId) => {
         // TODO: API 호출을 완성하세요
+        const res = await api.get('/posts/' + postId);
+        return res.data;
     },
 
-    // TODO: 게시물 작성
-    // POST /posts
-    // body: { postImage, postCaption, postLocation }
     createPost: async (postImage, postCaption, postLocation) => {
         const formData = new FormData();
         formData.append('postImage', postImage);
-        console.log("💡 postImage: ", postImage);
         formData.append('postCaption', postCaption);
         formData.append('postLocation', postLocation);
 
@@ -179,18 +163,21 @@ const apiService = {
     },
 
     // ===== 스토리 API =====
-
-    // TODO: 스토리 목록 조회
-    // GET /stories
     getStories: async () => {
-        // TODO: API 호출을 완성하세요
+        const res = await api.get('/stories');
+        return res.data;
     },
 
-    // TODO: 스토리 작성
-    // POST /stories
-    // body: { storyImage }
     createStory: async (storyImage) => {
-        // TODO: API 호출을 완성하세요
+        const formData = new FormData();
+        formData.append('storyImage', storyImage);
+
+        const res = await api.post('/stories', formData, {
+            headers: {
+                'Content-Type' : 'multipart/form-data'
+            }
+        })
+        return res.data;
     },
 
     // ===== 사용자 API =====

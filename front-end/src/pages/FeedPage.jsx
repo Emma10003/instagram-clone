@@ -25,32 +25,45 @@ const FeedPage = () => {
     }, []);
 
     const loadFeedData = async () => {
+        setLoading(true);  // 백엔드에서 데이터 연동하는 동안 로딩 처리
         try {
-            const res = await apiService.getPosts();
-            setPosts(res);
-            console.log("⭐loadFeedData: 피드 불러오기 성공")
+            const postsData = await apiService.getPosts();
+            setPosts(postsData);
         } catch(err) {
             alert("피드를 불러올 수 없습니다.");
-            console.error("❌ loadFeedData: 피드 불러오기 실패");
+        } finally {
+            setLoading(false);
+        }
+
+        try {
+            const storiesData = await apiService.getStories();
+            setStories(storiesData);
+        } catch(err) {
+            alert("스토리를 불러올 수 없습니다.");
+            console.error("❌ 스토리 불러오기 실패");
         } finally {
             setLoading(false);
         }
     };
 
-    // TODO: toggleLike 함수를 작성하세요
-    // 1. postId와 isLiked를 파라미터로 받음
-    // 2. isLiked가 true면 removeLike, false면 addLike 호출
-    // 3. 완료 후 getPosts()를 다시 호출하여 목록 새로고침
-    // 4. catch: 에러 처리
+    const user = JSON.parse(localStorage.getItem('user') || {});
+
     const toggleLike = async (postId, isLiked) => {
-        // TODO: 함수를 완성하세요
+        try {
+            if (isLiked) await apiService.removeLike(postId);
+            else await apiService.addLike(postId);
+
+            const postsData = await apiService.getPosts();
+        } catch(err) {
+            console.error("❌ 좋아요 처리 실패: ", err);
+            alert("좋아요 처리에 실패했습니다.");
+        }
+
     };
 
-    // TODO: handleLogout 함수를 작성하세요
-    // 1. window.confirm으로 로그아웃 확인
-    // 2. 확인하면 apiService.logout() 호출
+
     const handleLogout = () => {
-        // TODO: 함수를 완성하세요
+        if(window.confirm('로그아웃 하시겠습니까?')) apiService.logout();
     };
 
     if (loading) {
@@ -61,6 +74,15 @@ const FeedPage = () => {
                 </div>
             </div>
         );
+    }
+
+    // user.userAvatar 로 가져온 이미지가 엑스박스일 때
+    const avatarImage = user.userAvatar && user.userAvatar.trim() !== ''
+        ? user.userAvatar
+        : '/static/img/default-avatar.jpg'
+
+    const handleAvatarError = (e) => {
+        e.target.src = '/static/img/default-avatar.jpg';
     }
 
     return (
@@ -94,24 +116,28 @@ const FeedPage = () => {
                 {stories.length > 0 && (
                     <div className="stories-container">
                         <div className="stories-wrapper">
-                            {stories.map((story => (
-                                <div key={story.id} className="story-item">
+                            {stories.map((story) => (
+                                <div key={story.storyId} className="story-item">
                                     <div className="story-avatar-wrapper" key={story.id}>
-                                        <img src={story.userAvatar} className="story-avatar" />
+                                        <img src={story.userAvatar}
+                                             className="story-avatar"
+                                             onError={handleAvatarError} />
                                     </div>
                                     <span className="story-username">{story.userName}</span>
                                 </div>
-                            )))}
+                            ))}
                         </div>
                     </div>
                 )}
 
                 {posts.length > 0 && (
                     posts.map((post) => (
-                        <article key={post.id} className="post-card">
+                        <article key={post.postId} className="post-card">
                             <div className="post-header">
                                 <div className="post-user-info">
-                                    <img src={post.userAvatar} className="post-user-avatar" />
+                                    <img src={post.userAvatar}
+                                         className="post-user-avatar"
+                                         onError={handleAvatarError} />
                                     <span className="post-username">{post.userName}</span>
                                 </div>
                                 <MoreHorizontal className="post-more-icon" />

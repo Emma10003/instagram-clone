@@ -6,8 +6,8 @@
 
 <mapper namespace="com.instagram.story.model.mapper.StoryMapper">
     <insert id="insertStory" parameterType="Story" useGeneratedKeys="true" keyProperty="storyId" keyColumn="story_id">
-        INSERT INTO stories (story_id, user_id, story_image, created_at, expires_at)
-        VALUES (#{story_id}, #{userId}, #{storyImage}, CURRENT_TIME, CURRENT_TIME + INTERVAL '24 hours')
+        INSERT INTO stories (user_id, story_image, created_at, expires_at)
+        VALUES (#{userId},#{storyImage},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP + INTERVAL '24 hours')
     </insert>
 
     <select id="selectAllStories" resultType="Story">
@@ -20,6 +20,13 @@
         FROM active_stories_view
         WHERE user_id = #{userId}
     </select>
+
+    <update id="updateStoryImage" parameterType="Story">
+        UPDATE stories
+        SET story_image = #{storyImage}
+        WHERE story_id = #{storyId}
+    </update>
+
 
     <!-- 만료된 스토리는 삭제가 되는 것일까? or 안 보이고 보관처리가 되는 것일까? -->
 </mapper>

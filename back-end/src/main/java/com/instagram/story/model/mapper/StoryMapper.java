@@ -9,6 +9,8 @@ import java.util.List;
 public interface StoryMapper {
     void insertStory(Story story);
 
+    void updateStoryImage(int storyId, String storyImage);
+
     List<Story> selectAllStories();
 
     Story selectStoriesByUserId(int id);
