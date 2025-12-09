@@ -17,35 +17,39 @@ export const FILTER_OPTIONS = [
 export const getFilteredFile = async (file, filter) => {
     // 필터가 없으면 원본 그대로 반환
     if(!filter || filter === 'none') return file;
-
+    return new Promise(resolve => {
     const img = new Image();
     const url = URL.createObjectURL(file);
 
-    try {
-        await img.decode();  // 이미지 로드 대기
-        URL.revokeObjectURL(url);  // 메모리 해제
+    img.onload = async () => {
+        try {
+            await img.decode();  // 이미지 로드 대기
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
 
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.filter = filter;
+            ctx.drawImage(img, 0, 0);
+            URL.revokeObjectURL(url);  // 메모리 해제
 
-        const ctx = canvas.getContext('2d');
-        ctx.filter = filter;
-        ctx.drawImage(img, 0, 0);
+            // canvas -> file 변환
 
-        // canvas -> file 변환
-        return new Promise(resolve => {
-            canvas.toBlob(blob => {
-                resolve(
-                    new File(
-                        [blob], file.name, {
-                            type: file.type, lastModified: new Date()
-                        })
-                );
-            }, file.type, 0.9);
-        });
-    } catch (err) {
-        console.log("filterService: 에러 발생: {}", err);
-        return file;  // 에러 발생 시 원본 반환
+                canvas.toBlob(blob => {
+                    resolve(
+                        new File(
+                            [blob], file.name, {
+                                type: file.type, lastModified: new Date()
+                            })
+                    );
+                }, file.type, 0.9);
+
+                img.src = url;
+
+        } catch (err) {
+            console.log("filterService: 에러 발생: {}", err);
+            return file;  // 에러 발생 시 원본 반환
+        }
     }
+    });
 }

@@ -4,8 +4,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.instagram.story.model.mapper">
+<mapper namespace="com.instagram.story.model.mapper.StoryMapper">
+    <insert id="insertStory" parameterType="Story" useGeneratedKeys="true" keyProperty="storyId" keyColumn="story_id">
+        INSERT INTO stories (story_id, user_id, story_image, created_at, expires_at)
+        VALUES (#{story_id}, #{userId}, #{storyImage}, CURRENT_TIME, CURRENT_TIME + INTERVAL '24 hours')
+    </insert>
 
+    <select id="selectAllStories" resultType="Story">
+        SELECT story_id, user_id, story_image, created_at, user_name, user_avatar
+        FROM active_stories_view
+    </select>
 
+    <select id="selectStoriesByUserId" resultType="Story" parameterType="int">
+        SELECT story_id, user_id, story_image, created_at, user_name, user_avatar
+        FROM active_stories_view
+        WHERE user_id = #{userId}
+    </select>
 
+    <!-- 만료된 스토리는 삭제가 되는 것일까? or 안 보이고 보관처리가 되는 것일까? -->
 </mapper>

@@ -12,8 +12,6 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:9000/api';
 
-// TODO: axios 인스턴스를 생성하세요
-// 이렇게 작성하면 매번 ${API_BASE_URL}을 작성할 필요 X, axios 대신 api로 사용
 const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {
@@ -21,9 +19,6 @@ const api = axios.create({
     }
 });
 
-// TODO: 요청 인터셉터를 설정하세요
-// 모든 요청에 JWT 토큰 추가
-// 사용자의 요청을 가로채기 = interceptor
 api.interceptors.request.use(
     config => {
         const token = localStorage.getItem('token');
@@ -42,13 +37,13 @@ api.interceptors.request.use(
 /*
   401 : 인증 안됨 = 로그인을 안 했거나 토큰이 만료된 경우
         -> 로그인 페이지로 이동시킴(토큰 만료, 토큰이 임의로 삭제, 잘못된 토큰일 때 = 누군가가 토큰을 임의로 조작)
-        
+
   403 : 권한 없음 = 로그인은 했지만, 접근할 권한 부족
         -> 권한 없습니다 알림 후 이전 페이지 or 메인페이지로 돌려보내기
-        
+
   404 :     없음 = 게시물 / 사용자 / 페이지 없음
         -> 찾을 수 없습니다 알림 후 이전 페이지 or 메인페이지로 돌려보내기
-        
+
   500 : 서버 에러 = 서버 문제
         -> 고객센터 연락 방법 띄우기
  */
@@ -130,6 +125,7 @@ const apiService = {
     createPost: async (postImage, postCaption, postLocation) => {
         const formData = new FormData();
         formData.append('postImage', postImage);
+        console.log("💡 postImage: ", postImage);
         formData.append('postCaption', postCaption);
         formData.append('postLocation', postLocation);
 

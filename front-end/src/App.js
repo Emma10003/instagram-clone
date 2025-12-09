@@ -19,6 +19,7 @@ import PrivateRoute from "./provider/PrivateRoute";
 import {Upload} from "lucide-react";
 import SignupPage from "./pages/SignupPage";
 import UploadPage from "./pages/UploadPage";
+import StoryUploadPage from "./pages/StoryUploadPage";
 
 // TODO: 필요한 컴포넌트들을 import 하세요
 
@@ -43,6 +44,13 @@ function App() {
                                </PrivateRoute>
                            }
 
+                    />
+                    <Route path="/story/upload"
+                           element={
+                                <PrivateRoute>
+                                    <StoryUploadPage />
+                                </PrivateRoute>
+                            }
                     />
                 </Routes>
             </BrowserRouter>

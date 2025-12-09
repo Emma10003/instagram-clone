@@ -10,7 +10,7 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import apiService from '../service/apiService';
 import {ArrowLeft, Image} from 'lucide-react';
-import {FILTER_OPTIONS} from "../service/filterService";
+import {FILTER_OPTIONS, getFilteredFile} from "../service/filterService";
 
 const UploadPage = () => {
 
@@ -27,8 +27,8 @@ const UploadPage = () => {
 
     const handleImageChange = (e) => {
         const f = e.target.files[0];
-
         if (f) {
+            console.log("✅ 파일 불러오기 성공");
             setSelectedImage(f);
 
             const reader = new FileReader();
@@ -38,8 +38,8 @@ const UploadPage = () => {
             };
             reader.readAsDataURL(f);
         }
-
     };
+
 
     const handlePost = async () => {
         if (!selectedImage || !caption.trim()) {
@@ -48,20 +48,28 @@ const UploadPage = () => {
         }
 
         try {
-            await apiService.createPost(selectedImage, caption, location);
+            // 1. 필터가 적용된 이미지 파일을 생성한 데이터 변수에 담기
+            const filteredImage = await getFilteredFile(selectedImage, selectedFilter);
+            console.log("✅ filter 성공");
+            // 2. 필터가 적용된 이미지를 서버에 전송
+            await apiService.createPost(filteredImage, caption, location);
+            console.log("✅ 백엔드 fetch 성공");
             alert("게시물이 성공적으로 등록되었습니다.");
             navigate('/feed');
         } catch (err) {
+            console.log("❌ fetch 실패");
             alert("게시물 등록에 실패했습니다.");
         } finally {
             setLoading(true);
         }
     };
 
+
     const handleLocationChange = () => {
         const loc = prompt("위치를 입력하세요.");
         if(loc) setLocation(loc);
     }
+
 
     // user.userAvatar 로 가져온 이미지가 엑스박스일 때
     const avatarImage = user.userAvatar && user.userAvatar.trim() !== ''
