@@ -12,6 +12,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiService from '../service/apiService';
 import { Heart, MessageCircle, Send, Bookmark, MoreHorizontal, Home, PlusSquare, Film, User } from 'lucide-react';
+import Header from "../components/Header";
 
 const FeedPage = () => {
     const [posts, setPosts] = useState([]);
@@ -61,11 +62,6 @@ const FeedPage = () => {
 
     };
 
-
-    const handleLogout = () => {
-        if(window.confirm('로그아웃 하시겠습니까?')) apiService.logout();
-    };
-
     if (loading) {
         return (
             <div className="feed-container">
@@ -81,48 +77,25 @@ const FeedPage = () => {
         ? user.userAvatar
         : '/static/img/default-avatar.jpg'
 
-    const handleAvatarError = (e) => {
-        e.target.src = '/static/img/default-avatar.jpg';
-    }
 
     return (
         <div className="feed-container">
-            <header className="header">
-                <div className="header-container">
-                    <h1 className="header-title">Instagram</h1>
-                    <div className="header-nav">
-                        {/* Home, MessageCircle, PlusSquare(onClick: /upload 이동), Film, User(onClick: 로그아웃) */}
-                        <Home className="header-icon"
-                              onClick={() => navigate('/')} />
-                        <MessageCircle className="header-icon" />
-                        <PlusSquare className="header-icon"
-                                    onClick={() => navigate('/upload')} />
-                        {/* 아이콘 클릭하면 스토리 업로드로 이동 설정 */}
-                        <Film className="header-icon"
-                              onClick={() => navigate('/story/upload')}
-                        />
-                        <User className="header-icon"
-                              onClick={handleLogout} />
-
-                    </div>
-                </div>
-            </header>
-
+            <Header />
             <div className="feed-content">
-                {/* TODO: 스토리 섹션 작성 */}
-                {/* stories 배열이 있을 때만 표시 */}
-                {/* stories.map으로 각 스토리를 렌더링 */}
-
                 {stories.length > 0 && (
                     <div className="stories-container">
                         <div className="stories-wrapper">
                             {stories.map((story) => (
-                                <div key={story.storyId} className="story-item">
-                                    <div className="story-avatar-wrapper" key={story.id}>
-                                        <img src={story.userAvatar}
-                                             className="story-avatar"
-                                             onError={handleAvatarError} />
+                                <div key={story.storyId}
+                                     className="story-item"
+                                     onClick={() => navigate(`/story/detail/${story.storyId}`)}>
+                                    {/* onClick 링크에 ${user.userId} 추가, /${story.storyId} 삭제 */}
+                                    <div className="story-avatar-wrapper"
+                                         key={story.id}>
+                                        <img src={avatarImage}
+                                             className="story-avatar" />
                                     </div>
+
                                     <span className="story-username">{story.userName}</span>
                                 </div>
                             ))}
@@ -135,9 +108,8 @@ const FeedPage = () => {
                         <article key={post.postId} className="post-card">
                             <div className="post-header">
                                 <div className="post-user-info">
-                                    <img src={post.userAvatar}
-                                         className="post-user-avatar"
-                                         onError={handleAvatarError} />
+                                    <img src={avatarImage}
+                                         className="post-user-avatar" />
                                     <span className="post-username">{post.userName}</span>
                                 </div>
                                 <MoreHorizontal className="post-more-icon" />

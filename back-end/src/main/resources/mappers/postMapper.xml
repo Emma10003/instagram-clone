@@ -7,49 +7,22 @@
 <mapper namespace="com.instagram.post.model.mapper.PostMapper">
     <!-- 모든 게시물 조회 (최신순) -->
     <select id="selectAllPosts" resultType="Post">
-        SELECT
-            *,
-            CASE
-                WHEN EXISTS (
-                    SELECT 1 FROM likes
-                    WHERE post_id = pdv.post_id AND user_id = #{currentUserId}
-                )
-                    THEN TRUE
-                ELSE FALSE
-                END AS is_liked
-        FROM post_detail_view pdv
+        SELECT *
+        FROM post_detail_view
         ORDER BY created_at DESC
     </select>
 
     <!-- 특정 게시물 조회 -->
     <select id="selectPostById" resultType="Post">
-        SELECT
-            *,
-            CASE
-                WHEN EXISTS (
-                    SELECT 1 FROM likes
-                    WHERE post_id = pdv.post_id AND user_id = #{currentUserId}
-                )
-                    THEN TRUE
-                ELSE FALSE
-                END AS is_liked
-        FROM post_detail_view pdv
+        SELECT *
+        FROM post_detail_view
         WHERE post_id = #{postId}
     </select>
 
     <!-- 특정 사용자의 게시물 조회 -->
     <select id="selectPostsByUserId" resultType="Post">
-        SELECT
-            *,
-            CASE
-                WHEN EXISTS (
-                    SELECT 1 FROM likes
-                    WHERE post_id = pdv.post_id AND user_id = #{currentUserId}
-                )
-                    THEN TRUE
-                ELSE FALSE
-                END AS is_liked
-        FROM post_detail_view pdv
+        SELECT *
+        FROM post_detail_view
         WHERE user_id = #{userId}
         ORDER BY created_at DESC
     </select>

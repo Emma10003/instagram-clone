@@ -57,12 +57,24 @@ public class StoryController {
         }
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<?> getStoryById(@PathVariable("userId") int userId) {
         try {
             Story a = storyService.getStoriesByUserId(userId);
             return ResponseEntity.ok(a);
         } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("스토리 조회 실패: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("detail/{storyId}")
+    public ResponseEntity<?> getStoryByStoryId(@PathVariable("storyId") int storyId) {
+        try {
+            Story a = storyService.getStoriesByStoryId(storyId);
+            return ResponseEntity.ok(a);
+        } catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.badRequest().body("스토리 조회 실패: " + e.getMessage());
         }
     }

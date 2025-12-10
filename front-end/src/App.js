@@ -20,8 +20,8 @@ import {Upload} from "lucide-react";
 import SignupPage from "./pages/SignupPage";
 import UploadPage from "./pages/UploadPage";
 import StoryUploadPage from "./pages/StoryUploadPage";
-
-// TODO: 필요한 컴포넌트들을 import 하세요
+import MyFeedPage from "./pages/MyFeedPage";
+import StoryDetailPage from "./pages/StoryDetailPage";
 
 function App() {
     return (
@@ -37,6 +37,13 @@ function App() {
                                    <FeedPage />
                                </PrivateRoute>}
                     />
+                    <Route path="/story/detail/:storyId"
+                           element={
+                               <PrivateRoute>
+                                   <StoryDetailPage />
+                               </PrivateRoute>
+                           }
+                    />
                     <Route path="/upload"
                            element={
                                <PrivateRoute>
@@ -50,8 +57,15 @@ function App() {
                                 <PrivateRoute>
                                     <StoryUploadPage />
                                 </PrivateRoute>
-                            }
+                           }
                     />
+                    <Route path="/myfeed"
+                           element={
+                                <PrivateRoute>
+                                   <MyFeedPage />
+                                </PrivateRoute>
+                           }
+                   />
                 </Routes>
             </BrowserRouter>
         </div>

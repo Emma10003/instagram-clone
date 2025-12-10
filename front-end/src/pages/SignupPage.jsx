@@ -14,37 +14,15 @@ import { useNavigate } from 'react-router-dom';
 import apiService from '../service/apiService';
 
 const SignupPage = () => {
-    // TODO: username state를 선언하세요 (user_name)
     const [username, setUsername] = useState('');
-
-    // TODO: email state를 선언하세요 (user_email)
     const [email, setEmail] = useState('');
-
-    // TODO: password state를 선언하세요 (user_password)
     const [password, setPassword] = useState('');
-
-    // TODO: fullName state를 선언하세요 (user_fullname)
     const [fullName, setFullName] = useState('');
-
-    // TODO: loading state를 선언하세요
     const [loading, setLoading] = useState(false);
 
-    // TODO: useNavigate를 사용하여 navigate 함수를 가져오세요
     const navigate = useNavigate();
 
-    // TODO: handleSignup 함수를 작성하세요
-    // 1. 입력값 검증 (모든 필드가 비어있는지 확인)
-    // 2. 이메일 형식 검증 (정규식 사용)
-    // 3. 사용자명 규칙 검증 (영문, 숫자, 밑줄, 마침표만 허용, 3-50자)
-    // 4. 비밀번호 길이 검증 (최소 6자)
-    // 5. loading을 true로 설정
-    // 6. apiService.signup(username, email, password, fullName) 호출
-    // 7. 성공 시: alert로 성공 메시지, /login으로 이동
-    // 8. 실패 시: alert로 에러 메시지 표시 (409: 중복, 400: 잘못된 입력)
-    // 9. finally: loading을 false로 설정
     const handleSignup = async () => {
-        // TODO: 함수를 완성하세요
-
         try {
             const response = await apiService.signup(username, email, password, fullName);
             alert("회원가입이 완료되었습니다. 로그인해주세요.");
@@ -65,7 +43,6 @@ const SignupPage = () => {
         }
     };
 
-    // TODO: Enter 키 입력 시 handleSignup 호출하는 함수 작성
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             handleSignup();
@@ -113,26 +90,6 @@ const SignupPage = () => {
                     </div>
 
                     <div>
-                        {/* TODO: 이메일 입력 input 작성 (user_email - UNIQUE) */}
-                        {/* placeholder: "휴대폰 번호 또는 이메일 주소" */}
-                        {/* type: "email" */}
-                        {/* value: email */}
-                        {/* onChange: setEmail */}
-                        {/* onKeyPress: handleKeyPress */}
-                        {/* autoComplete: "email" */}
-                        {/*
-                            // 매개변수가 1개일 때는 소괄호()를 제거하고 작성 ok
-                            onChange={ e => setEmail(e.target.value)}
-                            // 소괄호를 작성해도 정상적으로 동작 ok
-                            onChange={(e) => setEmail(e.target.value)}
-                            // 하지만 매개변수가 존재하지 않을 때는 매개변수 자리에 빈 소괄호()를 작성해야 한다.
-                            onChange={( ) => setEmail(e.target.value)}
-
-                            // input 에서 change의 경우 input 태그에 이벤트(=변화된행동)가 발생한 상황이기 때문에
-                            // e 를 작성한 후 타겟의 행동에 대한 값을 가져와 input 태그를 실시간으로 change 한다.
-
-                            onKeyPress : Enter 키 눌렀을 때 다음으로 넘어가는 것
-                        */}
                         <input
                             className="login-input"
                             type="email"
@@ -142,14 +99,6 @@ const SignupPage = () => {
                             onKeyPress={handleKeyPress}
                             autoComplete="email"
                         />
-
-                        {/* TODO: 성명 입력 input 작성 (user_fullname) */}
-                        {/* placeholder: "성명" */}
-                        {/* type: "text" */}
-                        {/* value: fullName */}
-                        {/* onChange: setFullName */}
-                        {/* onKeyPress: handleKeyPress */}
-                        {/* autoComplete: "name" */}
                         <input
                             className="login-input"
                             type="text"
@@ -159,14 +108,6 @@ const SignupPage = () => {
                             onKeyPress={handleKeyPress}
                             autoComplete="name"
                         />
-
-                        {/* TODO: 사용자 이름 입력 input 작성 (user_name - UNIQUE) */}
-                        {/* placeholder: "사용자 이름" */}
-                        {/* type: "text" */}
-                        {/* value: username */}
-                        {/* onChange: setUsername */}
-                        {/* onKeyPress: handleKeyPress */}
-                        {/* autoComplete: "username" */}
                         <input
                             className="login-input"
                             type="text"
@@ -176,14 +117,6 @@ const SignupPage = () => {
                             onKeyPress={handleKeyPress}
                             autoComplete="username"
                         />
-
-                        {/* TODO: 비밀번호 입력 input 작성 (user_password) */}
-                        {/* placeholder: "비밀번호" */}
-                        {/* type: "password" */}
-                        {/* value: password */}
-                        {/* onChange: setPassword */}
-                        {/* onKeyPress: handleKeyPress */}
-                        {/* autoComplete: "new-password" */}
                         <input
                             className="login-input"
                             type="password"
@@ -193,13 +126,6 @@ const SignupPage = () => {
                             onKeyPress={handleKeyPress}
                             autoComplete="new-password"
                         />
-
-                        {/* TODO: 가입 버튼 작성 */}
-                        {/* className = login-button */}
-                        {/* onClick: handleSignup */}
-                        {/* disabled: loading */}
-                        {/* 버튼 텍스트: loading이면 "가입 중...", 아니면 "가입" */}
-                        {/* 스타일: loading일 때 opacity 0.7, cursor not-allowed */}
                         <button className="login-button"
                                 onClick={handleSignup}
                                 disabled={loading}

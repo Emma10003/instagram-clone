@@ -23,6 +23,22 @@ public class PostController {
     private final PostService postService;
     private final JwtUtil jwtUtil;
 
+    @GetMapping
+    public ResponseEntity<List<Post>> getAllPosts(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.substring(7);
+        int currentUserId = jwtUtil.getUserIdFromToken(token);
+        List<Post> posts = postService.getAllPosts(currentUserId);
+
+        if(posts.size() > 0) {
+            log.info("✅ PostController: 모든 게시물 불러오기 성공");
+            return ResponseEntity.ok(posts);
+        } else {
+            log.error("❌ PostController: 모든 게시물 불러오기 실패");
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
     @PostMapping
     public ResponseEntity<String> createPost(@RequestPart MultipartFile postImage,
                                              @RequestPart String postCaption,
@@ -47,18 +63,21 @@ public class PostController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<List<?>> getAllPosts(@RequestHeader("Authorization") String authHeader) {
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getPostByUserId(@PathVariable int userId,
+                                             @RequestHeader("Authorization") String authHeader) {
         String token = authHeader.substring(7);
         int currentUserId = jwtUtil.getUserIdFromToken(token);
-        List<Post> result = postService.getAllPosts(currentUserId);
+        List<Post> posts = postService.getPostsByUserId(userId, currentUserId);
 
-        if(result.size() > 0) {
-            log.info("✅ PostController: 모든 게시물 불러오기 성공");
-            return ResponseEntity.ok(result);
+        if(posts.size() > 0) {
+            log.info("✅ PostController: 사용자 게시물 가져오기 성공 - 사용자 ID: {}", userId);
+            return ResponseEntity.ok(posts);
         } else {
-            log.error("❌ PostController: 모든 게시물 불러오기 실패");
+            log.error("❌ PostController: 사용자 게시물 가져오기 실패 - 사용자 ID: {}", userId);
             return ResponseEntity.badRequest().build();
         }
+
     }
+
 }

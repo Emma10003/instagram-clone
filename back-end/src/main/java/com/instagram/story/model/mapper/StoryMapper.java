@@ -15,5 +15,8 @@ public interface StoryMapper {
 
     Story selectStoriesByUserId(int id);
 
+    /*임의로 추가*/
+    Story selectStoriesByStoryId(int id);
+
     // 만료된 스토리 void updateStory(Story story)
 }

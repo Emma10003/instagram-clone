@@ -31,6 +31,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> getPostsByUserId(int userId, int currentUserId) {
+        return postMapper.selectPostsByUserId(userId, currentUserId);
+    }
+
+    @Override
     public boolean createPost(MultipartFile postImage,
                               String postCaption,
                               String postLocation,
@@ -57,10 +62,6 @@ public class PostServiceImpl implements PostService {
         return postMapper.deletePost(postId) > 0;
     }
 
-    @Override
-    public List<Post> getPostsByUserId(int userId, int currentUserId) {
-        return postMapper.selectPostsByUserId(userId, currentUserId);
-    }
 
     @Override
     public boolean addLike(int postId, int userId) {

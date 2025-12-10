@@ -65,4 +65,12 @@ public class StoryServiceImpl implements StoryService {
     public void deleteExpiredStories() {
 
     }
+
+    @Override
+    public Story getStoriesByStoryId(int storyId) {
+        log.info("💡 스토리 아이디로 스토리 조회 - 스토리 ID: {}", storyId);
+        Story story = storyMapper.selectStoriesByStoryId(storyId);
+        log.info("✅ 스토리 조회 완료 - story: {}", story);
+        return story;
+    }
 }
