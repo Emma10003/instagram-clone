@@ -40,7 +40,7 @@
             user_email = #{userEmail},
             user_fullname = #{userFullname},
             user_avatar = #{userAvatar},
-            updated_at = CURRENT_TIME
+            updated_at = CURRENT_TIMESTAMP
         WHERE user_id = #{userId}
     </update>
 

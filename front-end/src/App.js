@@ -10,20 +10,31 @@
 // - 기본 경로(/)는 /login으로 리다이렉트
 // ============================================
 
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {BrowserRouter, Navigate, Routes, Route} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import FeedPage from "./pages/FeedPage";
 import PrivateRoute from "./provider/PrivateRoute";
-import {Upload} from "lucide-react";
+import {Edit, Upload} from "lucide-react";
 import SignupPage from "./pages/SignupPage";
 import UploadPage from "./pages/UploadPage";
 import StoryUploadPage from "./pages/StoryUploadPage";
 import MyFeedPage from "./pages/MyFeedPage";
 import StoryDetailPage from "./pages/StoryDetailPage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 function App() {
+    const [user, setUser] = useState(() => {
+        const savedUser = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+
+        if(savedUser && token) {
+            return JSON.parse(savedUser);
+        }
+        return null;
+    })
+
     return (
         <div>
             <BrowserRouter>
@@ -65,7 +76,14 @@ function App() {
                                    <MyFeedPage />
                                 </PrivateRoute>
                            }
-                   />
+                    />
+                    <Route path="/profile/edit"
+                           element={
+                                <PrivateRoute>
+                                    <EditProfilePage />
+                                </PrivateRoute>
+                           }
+                    />
                 </Routes>
             </BrowserRouter>
         </div>

@@ -38,6 +38,22 @@ public class PostController {
         }
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Post>> getAllPostsByUserId(@PathVariable int userId,
+                                                          @RequestHeader("Authorization") String authHeader) {
+        try {
+            String token = authHeader.substring(7);
+            int currentUserId = jwtUtil.getUserIdFromToken(token);
+            List<Post> posts = postService.getPostsByUserId(userId);
+
+            log.info("✅ PostController: 사용자 게시물 가져오기 성공 - 사용자 ID: {}", userId);
+            return ResponseEntity.ok(posts);
+        } catch (Exception e) {
+            log.error("❌ PostController: 사용자 게시물 가져오기 실패 - 사용자 ID: {}", userId);
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
+    }
 
     @PostMapping
     public ResponseEntity<String> createPost(@RequestPart MultipartFile postImage,
@@ -63,22 +79,36 @@ public class PostController {
         }
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<Post>> getAllPostsByUserId(@PathVariable int userId,
-                                                          @RequestHeader("Authorization") String authHeader) {
+    @PostMapping("/{postId}/like")
+    public ResponseEntity<Boolean> addLike(@PathVariable int postId,
+                                     @RequestHeader("Authorization") String authHeader) {
         try {
             String token = authHeader.substring(7);
             int currentUserId = jwtUtil.getUserIdFromToken(token);
-            List<Post> posts = postService.getPostsByUserId(userId);
-
-            log.info("✅ PostController: 사용자 게시물 가져오기 성공 - 사용자 ID: {}", userId);
-            return ResponseEntity.ok(posts);
-        } catch (Exception e) {
-            log.error("❌ PostController: 사용자 게시물 가져오기 실패 - 사용자 ID: {}", userId);
+            boolean result = postService.addLike(postId, currentUserId);
+            log.info("✅ 좋아요 추가 성공");
+            return ResponseEntity.ok(result);
+        } catch(Exception e) {
+            log.error("❌ 좋아요 추가 실패: {}", e.getMessage());;
             e.printStackTrace();
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(false);
         }
-
     }
 
+    @DeleteMapping("/{postId}/like")
+    public ResponseEntity<Boolean> removeLike(@PathVariable int postId,
+                                        @RequestHeader("Authorization") String authHeader) {
+        log.info("✅ removeLike: Controller 레이어 도달 성공");
+        try {
+            String token = authHeader.substring(7);
+            int currentUserId = jwtUtil.getUserIdFromToken(token);
+            boolean result = postService.removeLike(postId, currentUserId);
+            log.info("✅ 좋아요 취소 성공");
+            return ResponseEntity.ok(result);
+        } catch(Exception e) {
+            log.error("❌ 좋아요 취소 실패: {}", e.getMessage());;
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(false);
+        }
+    }
 }

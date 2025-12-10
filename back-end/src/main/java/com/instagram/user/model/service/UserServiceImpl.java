@@ -1,13 +1,17 @@
 package com.instagram.user.model.service;
 
+import com.instagram.common.util.FileUploadService;
 import com.instagram.user.model.dto.User;
 import com.instagram.user.model.mapper.UserMapper;
+import io.jsonwebtoken.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
+    private final FileUploadService fileUploadService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -47,7 +52,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String userEmail, String userPassword) {
-        // 이메일로 사용자 조회
         User user = userMapper.selectUserByUserEmail(userEmail);
 
         if(user == null) {
@@ -55,12 +59,10 @@ public class UserServiceImpl implements UserService {
             return null;
         }
 
-        // 비밀번호 검증
         if(bCryptPasswordEncoder.matches(userPassword, user.getUserPassword())) {
             log.warn("⚠️ 로그인 실패 - 잘못된 비밀번호: {}", userEmail);
         }
 
-        //비밀번호는 응답에서 제거
         user.setUserPassword(null);
 
         log.info("✅ 로그인 성공 - 이메일: {}", userEmail);
@@ -76,5 +78,43 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUsername(String userName) {
         return null;
+    }
+
+    @Override
+    public User getUserById(int userId) {
+        return userMapper.selectUserById(userId);
+    }
+
+    @Override
+    @Transactional
+    public User updateUser(User user, MultipartFile file) {
+        User existingUser = userMapper.selectUserById(user.getUserId());
+        if(existingUser == null) {
+            throw new RuntimeException("사용자 정보를 찾을 수 없습니다.");
+        }
+
+        if(file != null || !file.isEmpty()) {
+            try {
+                String newAvatarPath = fileUploadService.uploadProfileImage(file);
+                existingUser.setUserAvatar(newAvatarPath);
+                log.info("✅ 프로필 사진 저장 성공");
+            } catch(Exception e) {
+                log.error("❌ 프로필 사진 저장 중 오류 발생: {}", e.getMessage());
+                throw new RuntimeException("이미지 업로드 실패");
+            }
+        }
+        if(user.getUserName() != null)
+            existingUser.setUserName(user.getUserName());
+        if(user.getUserEmail() != null)
+            existingUser.setUserEmail(user.getUserEmail());
+        if(user.getUserPassword() != null)
+            existingUser.setUserPassword(bCryptPasswordEncoder.encode(user.getUserPassword()));
+        if(user.getUserFullname() != null)
+            existingUser.setUserFullname(user.getUserFullname());
+
+        userMapper.updateUser(existingUser);
+
+        existingUser.setUserPassword(null);
+        return existingUser;
     }
 }

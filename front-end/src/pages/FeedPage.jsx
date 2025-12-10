@@ -8,12 +8,14 @@
 // - handleLogout 함수: 확인 후 로그아웃
 // ============================================
 
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiService from '../service/apiService';
 import { Heart, MessageCircle, Send, Bookmark, MoreHorizontal, Home, PlusSquare, Film, User } from 'lucide-react';
 import Header from "../components/Header";
+import {getImageUrl} from "../service/commonService";
 
+/* heart 를 클릭하면 좋아요 수 증가 */
 const FeedPage = () => {
     const [posts, setPosts] = useState([]);
     const [stories, setStories] = useState([]);
@@ -50,14 +52,41 @@ const FeedPage = () => {
     const user = JSON.parse(localStorage.getItem('user') || {});
 
     const toggleLike = async (postId, isLiked) => {
-        try {
-            if (isLiked) await apiService.removeLike(postId);
-            else await apiService.addLike(postId);
+        // 1. 현재 게시물 목록 복사 (원본을 바로 건드리면 안됨)
+        const newPosts = [...posts];
+        // 2. 내가 클릭한 게시물이 몇 번째에 있는지 찾음
+        const targetIndex = newPosts.findIndex(post => post.postId === postId);
+        // 3. 게시물을 찾았다면
+        if(targetIndex !== -1) {
+            // 좋아요 상태를 반대로 뒤집기 (true -> false)
+            newPosts[targetIndex].isLiked = !isLiked;
+            // 숫자 취소/추가
+            if(isLiked) newPosts[targetIndex].likeCount -= 1;
+            else newPosts[targetIndex].likeCount += 1;
+            // 변경된 상태로 화면 업데이트
+            setPosts(newPosts);
+        }
 
+        // 소비자에게 백엔드 속도는 중요하지 않고, 눈 앞에 보여지는 화면의 속도가 우선이므로
+        // 프론트엔드에서 바뀌는 작업을 보인 후, 백엔드 로직을 진행함.
+        // 실패할 경우 likeCount 원상복구 후 소비자에게 전달.
+        try {
+            // 좋아요 누르고 취소가 된다. 하지만 백그라운드에서 작업한 게 바로 보이지 않는 상황.
+            if (isLiked) {
+                await apiService.removeLike(postId);
+            } else {
+                await apiService.addLike(postId);
+            }
+            /*
+            기존에는 백엔드 -> 프론트엔드를 변경했다면
+            수정내용은 프론트엔드 -> 백엔드로 로직 변경
             const postsData = await apiService.getPosts();
+            setPosts(postsData);
+            */
         } catch(err) {
             console.error("❌ 좋아요 처리 실패: ", err);
             alert("좋아요 처리에 실패했습니다.");
+            loadFeedData();  // 다시 원래대로 돌려놓기
         }
 
     };
@@ -72,12 +101,6 @@ const FeedPage = () => {
         );
     }
 
-    // user.userAvatar 로 가져온 이미지가 엑스박스일 때
-    const avatarImage = user.userAvatar && user.userAvatar.trim() !== ''
-        ? user.userAvatar
-        : '/static/img/default-avatar.jpg'
-
-
     return (
         <div className="feed-container">
             <Header />
@@ -88,11 +111,11 @@ const FeedPage = () => {
                             {stories.map((story) => (
                                 <div key={story.storyId}
                                      className="story-item"
-                                     onClick={() => navigate(`/story/detail/${story.storyId}`)}>
+                                     onClick={() => navigate(`/story/detail/${story.userId}`)}>
                                     {/* onClick 링크에 ${user.userId} 추가, /${story.storyId} 삭제 */}
                                     <div className="story-avatar-wrapper"
                                          key={story.id}>
-                                        <img src={avatarImage}
+                                        <img src={getImageUrl(story.userAvatar)}
                                              className="story-avatar" />
                                     </div>
 
@@ -108,7 +131,7 @@ const FeedPage = () => {
                         <article key={post.postId} className="post-card">
                             <div className="post-header">
                                 <div className="post-user-info">
-                                    <img src={avatarImage}
+                                    <img src={getImageUrl(post.userAvatar)}
                                          className="post-user-avatar" />
                                     <span className="post-username">{post.userName}</span>
                                 </div>

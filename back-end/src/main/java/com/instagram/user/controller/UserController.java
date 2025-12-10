@@ -8,10 +8,8 @@ import com.instagram.user.model.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @RestController
@@ -49,7 +47,38 @@ public class UserController {
         log.info("✅ 로그인 성공 - 이메일: {]", user.getUserEmail());
         // ok == 200
         return ResponseEntity.ok(loginResponse);
+    }
 
+    @GetMapping("/profile/edit")
+    public ResponseEntity<User> getUserProfile(@RequestHeader("Authorization") String authHeader){
+        try {
+            String token = authHeader.substring(7);
+            int userId = jwtUtil.getUserIdFromToken(token);
+
+            User u = userService.getUserById(userId);
+            if (u != null) {
+                u.setUserPassword(null);
+            }
+            return ResponseEntity.ok(u);
+        } catch (Exception e) {
+            log.error("❌ 프로필 조회 실패: {}", e.getMessage());
+            return ResponseEntity.status(401).body(null);
+        }
+    }
+
+    @PutMapping("/profile/edit")
+    public ResponseEntity<User> editUserProfile(@RequestHeader("Authorization") String authHeader,
+                                                  @RequestPart("formData") User user,
+                                                  @RequestPart(value = "profileImage", required = false) MultipartFile userAvatar) {
+        try {
+            String token = authHeader.substring(7);
+            int userId = jwtUtil.getUserIdFromToken(token);
+            user.setUserId(userId);
+            User u = userService.updateUser(user, userAvatar);
+            return ResponseEntity.ok(u);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);
+        }
     }
 
 }

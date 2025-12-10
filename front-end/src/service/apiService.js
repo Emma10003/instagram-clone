@@ -9,8 +9,9 @@
 // ============================================
 
 import axios from 'axios';
+import header from "../components/Header";
 
-const API_BASE_URL = 'http://localhost:9000/api';
+export const API_BASE_URL = 'http://localhost:9000/api';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -132,12 +133,16 @@ const apiService = {
     // POST /posts/:postId/like
     addLike: async (postId) => {
         // TODO: API 호출을 완성하세요
+        const res = await api.post(`/posts/${postId}/like`);
+        return res.data;
     },
 
     // TODO: 좋아요 취소
     // DELETE /posts/:postId/like
     removeLike: async (postId) => {
         // TODO: API 호출을 완성하세요
+        const res = await api.delete(`/posts/${postId}/like`);
+        return res.data;
     },
 
     // ===== 댓글 API =====
@@ -169,7 +174,6 @@ const apiService = {
 
     getStory: async(userId) => {
         const res = await api.get(`/stories/user/${userId}`)
-        console.log("res.data: ", res.data);
         return res.data;
     },
 
@@ -197,7 +201,37 @@ const apiService = {
     // GET /users/:userId/posts
     getUserPosts: async (userId) => {
         // TODO: API 호출을 완성하세요
-    }
+    },
+
+    // TODO 2-2: updateProfile 함수 작성
+    // PUT /users/:userId
+    // 파라미터: userId, formData
+    // 헤더: 'Content-Type': 'multipart/form-data'
+    // 성공 시 localStorage의 'user' 업데이트
+    updateProfile: async (userId, formData) => {
+        // TODO: API 호출을 완성하세요
+        // 1. api.put() 호출
+        // 2. res.data가 있으면 localStorage.setItem('user', JSON.stringify(res.data))
+        // 3. res.data 반환
+        try {
+            const res = await api.put(`/auth/profile/edit`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            if(res.data) {
+                localStorage.setItem('user', JSON.stringify(res.data));
+                const token = localStorage.getItem('token');
+                if(token) {
+                    localStorage.setItem('token', token);
+                }
+            }
+            return res.data;
+        } catch (err) {
+            console.error("❌ 프로필 업데이트 실패");
+            return Promise.reject(err);
+        }
+    },
 };
 
 export default apiService;

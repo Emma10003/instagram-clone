@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import { X, MoreHorizontal, Heart, Send } from 'lucide-react';
-import apiService from "../service/apiService";
+import apiService, {API_BASE_URL} from "../service/apiService";
+import {getImageUrl} from "../service/commonService";
 // story의 경우, 상대방의 스토리를 다른 유저가 선택해서 보는 것이 아니라
 // 유저가 올린 스토리를 오래된 순서부터 하나씩 보는 것. 어떤 스토리와 스토리가 얼만큼 있는지
 // 유저 프로필을 클릭하지 않으면 알 수 없다.
@@ -11,24 +12,22 @@ const StoryDetail = () => {
     const {userId} = useParams();
     // List -> {}
     const [storyData, setStoryData] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState('');
 
     // userId -> storyId 로 변경 예정
     useEffect(() => {
         loadStoryData();
-    }, [userId])
+    }, [userId]);
+
 
     const loadStoryData = async () => {
         setLoading(true);
 
         try{
             const data = await apiService.getStory(userId);
-
+            console.log("data: ", data);
             setStoryData(data);
-            // storyData.uploadedAt = Date.now() - storyDetail.created_at;
-
-            console.log("storyData: ", storyData);
         } catch(err) {
             alert("스토리를 불러오는 데 실패했습니다.");
             navigate('/feed');
@@ -39,6 +38,8 @@ const StoryDetail = () => {
     }
 
     useEffect(() => {
+        if(!storyData) return;
+
         const duration = 5000;
         const intervalTime = 50;
 
@@ -56,26 +57,33 @@ const StoryDetail = () => {
         return () => clearInterval(timer);
     }, [navigate]);
 
+    if(loading) return <div>로딩 중...</div>
+
 
     return (
         <div className="story-viewer-container">
             <div
                 className="story-bg-blur"
-                style={{backgroundImage: `url(${storyData.storyImage})`}}
+                style={{backgroundImage: `url(${getImageUrl(storyData.userAvatar)})`}}
             />
 
             <div className="story-content-box">
                 <div className="story-progress-wrapper">
                     <div className="story-progress-bar">
-                        <div className="story-progress-fill" style={{width: `${progress}%`}}></div>
+                        <div className="story-progress-fill"
+                             style={{width: `${progress}%`}}>
+
+                        </div>
                     </div>
                 </div>
 
                 <div className="story-header-info">
                     <div className="story-user">
-                        <img src={storyData.userImage} alt="user" className="story-user-avatar" />
-                        <span className="story-username">{storyData.username}</span>
-                        <span className="story-time">{storyData.uploadedAt}</span>
+                        <img src={getImageUrl(storyData.userAvatar)}
+                             alt="user"
+                             className="story-user-avatar" />
+                        <span className="story-username">{storyData.userName}</span>
+                        <span className="story-time">{storyData.createdAt}</span>
                     </div>
                     <div className="story-header-actions">
                         <MoreHorizontal color="white" className="story-icon"/>
@@ -87,7 +95,7 @@ const StoryDetail = () => {
                     </div>
                 </div>
 
-                <img src={storyData.storyImage} alt="story" className="story-main-image" />
+                <img src={getImageUrl(storyData.storyImage)} alt="story" className="story-main-image" />
 
                 <div className="story-footer">
                     <div className="story-input-container">
