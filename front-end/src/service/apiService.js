@@ -167,6 +167,12 @@ const apiService = {
         return res.data;
     },
 
+    getStory: async(userId) => {
+        const res = await api.get(`/stories/user/${userId}`)
+        console.log("res.data: ", res.data);
+        return res.data;
+    },
+
     createStory: async (storyImage) => {
         const formData = new FormData();
         formData.append('storyImage', storyImage);
@@ -176,13 +182,6 @@ const apiService = {
                 'Content-Type' : 'multipart/form-data'
             }
         })
-        return res.data;
-    },
-
-    // 내가 추가함 (storyId 로 스토리 1개 가져오기)
-    getStory: async(storyId) => {
-        const res = await api.get('/stories/detail/' + storyId)
-        console.log("res.data: ", res.data);
         return res.data;
     },
 

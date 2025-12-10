@@ -37,7 +37,7 @@ function App() {
                                    <FeedPage />
                                </PrivateRoute>}
                     />
-                    <Route path="/story/detail/:storyId"
+                    <Route path="/story/detail/:userId"
                            element={
                                <PrivateRoute>
                                    <StoryDetailPage />

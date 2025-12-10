@@ -57,7 +57,7 @@ public class StoryController {
         }
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<?> getStoryById(@PathVariable("userId") int userId) {
         try {
             Story a = storyService.getStoriesByUserId(userId);
@@ -68,6 +68,8 @@ public class StoryController {
         }
     }
 
+    // 임의로 추가
+    /*
     @GetMapping("detail/{storyId}")
     public ResponseEntity<?> getStoryByStoryId(@PathVariable("storyId") int storyId) {
         try {
@@ -78,5 +80,5 @@ public class StoryController {
             return ResponseEntity.badRequest().body("스토리 조회 실패: " + e.getMessage());
         }
     }
-
+*/
 }

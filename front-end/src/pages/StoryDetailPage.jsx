@@ -2,22 +2,43 @@ import React, { useEffect, useState } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import { X, MoreHorizontal, Heart, Send } from 'lucide-react';
 import apiService from "../service/apiService";
-
+// story의 경우, 상대방의 스토리를 다른 유저가 선택해서 보는 것이 아니라
+// 유저가 올린 스토리를 오래된 순서부터 하나씩 보는 것. 어떤 스토리와 스토리가 얼만큼 있는지
+// 유저 프로필을 클릭하지 않으면 알 수 없다.
 const StoryDetail = () => {
     const navigate = useNavigate();
     const [progress, setProgress] = useState(0);
+    const {userId} = useParams();
+    // List -> {}
+    const [storyData, setStoryData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
 
-    const {storyId} = useParams();
+    // userId -> storyId 로 변경 예정
+    useEffect(() => {
+        loadStoryData();
+    }, [userId])
 
-    const [storyData, setStoryData] = useState({
-        username: '',
-        userImage: '',
-        storyImage: '',
-        uploadedAt: "12시간"
-    });
+    const loadStoryData = async () => {
+        setLoading(true);
+
+        try{
+            const data = await apiService.getStory(userId);
+
+            setStoryData(data);
+            // storyData.uploadedAt = Date.now() - storyDetail.created_at;
+
+            console.log("storyData: ", storyData);
+        } catch(err) {
+            alert("스토리를 불러오는 데 실패했습니다.");
+            navigate('/feed');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     useEffect(() => {
-        loadStoryDetail();
         const duration = 5000;
         const intervalTime = 50;
 
@@ -35,24 +56,6 @@ const StoryDetail = () => {
         return () => clearInterval(timer);
     }, [navigate]);
 
-    const loadStoryDetail = async () => {
-        try{
-            const storyDetail = await apiService.getStory(storyId);
-
-            setStoryData(prev => ({
-                ...prev,
-                username: storyDetail.userName,
-                userImage: storyDetail.userAvatar || '/static/img/default-avatar.jpg',
-                storyImage: storyDetail.storyImage
-            }))
-            // storyData.uploadedAt = Date.now() - storyDetail.created_at;
-
-            console.log("storyData: ", storyData);
-        } catch(err) {
-            alert("스토리를 불러올 수 없습니다.");
-            console.error(err);
-        }
-    }
 
     return (
         <div className="story-viewer-container">

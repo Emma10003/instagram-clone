@@ -22,11 +22,13 @@
     </select>
 
     <!-- 임의로 추가 -->
+    <!--
     <select id="selectStoriesByStoryId" resultType="Story" parameterType="int">
         SELECT story_id, user_id, story_image, created_at, user_name, user_avatar
         FROM active_stories_view
         WHERE story_id = #{storyId}
     </select>
+    -->
 
     <update id="updateStoryImage" parameterType="Story">
         UPDATE stories
