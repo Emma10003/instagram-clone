@@ -31,8 +31,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getPostsByUserId(int userId, int currentUserId) {
-        return postMapper.selectPostsByUserId(userId, currentUserId);
+    public List<Post> getPostsByUserId(int userId) {
+        return postMapper.selectPostsByUserId(userId);
     }
 
     @Override

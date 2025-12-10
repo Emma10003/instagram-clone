@@ -101,8 +101,8 @@ const apiService = {
 
     // TODO: 특정 게시물 조회
     // GET /posts/:postId
-    getPost: async (postId) => {
-        const res = await api.get('/posts/' + postId);
+    getPost: async (userId) => {
+        const res = await api.get('/posts/' + userId);
         return res.data;
     },
 
@@ -198,12 +198,6 @@ const apiService = {
     // GET /users/:userId/posts
     getUserPosts: async (userId) => {
         // TODO: API 호출을 완성하세요
-
-
-        // console.log("✅ apiService 접근 성공");
-        // console.log("💡 파라미터 확인 - userId: ", userId);
-        const res = await api.get('/posts/' + userId);
-        return res.data;
     }
 };
 

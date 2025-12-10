@@ -14,7 +14,7 @@ public interface PostMapper {
     Post selectPostById(int postId, int currentUserId);
 
     // 특정 게시물 사용자 조회
-    List<Post> selectPostsByUserId(int userId, int currentUserId);
+    List<Post> selectPostsByUserId(int userId);
 
     // 게시물 작성
     int insertPost(Post post);
