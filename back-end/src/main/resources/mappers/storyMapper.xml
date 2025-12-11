@@ -19,6 +19,7 @@
         SELECT story_id, user_id, story_image, created_at, user_name, user_avatar
         FROM active_stories_view
         WHERE user_id = #{userId}
+        ORDER BY created_at ASC
     </select>
 
     <!-- 임의로 추가 -->

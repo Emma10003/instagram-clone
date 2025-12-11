@@ -13,7 +13,7 @@ public interface StoryMapper {
 
     List<Story> selectAllStories();
 
-    Story selectStoriesByUserId(int userId);
+    List<Story> selectStoriesByUserId(int userId);
 
     /*임의로 추가*/
     // Story selectStoriesByStoryId(int id);

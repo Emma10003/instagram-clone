@@ -60,7 +60,7 @@ public class StoryController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<?> getStoryById(@PathVariable("userId") int userId) {
         try {
-            Story a = storyService.getStoriesByUserId(userId);
+            List<Story> a = storyService.getStoriesByUserId(userId);
             return ResponseEntity.ok(a);
         } catch (Exception e){
             e.printStackTrace();

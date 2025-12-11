@@ -12,7 +12,7 @@ public interface StoryService {
 
     List<Story> getAllStories();
 
-    Story getStoriesByUserId(int userId);
+    List<Story> getStoriesByUserId(int userId);
 
     void deleteExpiredStories();
 
