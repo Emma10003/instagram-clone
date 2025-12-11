@@ -173,8 +173,12 @@ const apiService = {
     },
 
     getStory: async(userId) => {
-        const res = await api.get(`/stories/user/${userId}`)
-        return res.data;
+        try {
+            const res = await api.get(`/stories/user/${userId}`)
+            return res.data;
+        } catch(err) {
+            console.error("스토리 조회 에러: ", err.response?.data || err.message());
+        }
     },
 
     createStory: async (storyImage) => {

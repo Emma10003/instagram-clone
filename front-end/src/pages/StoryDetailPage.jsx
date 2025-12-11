@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import { X, MoreHorizontal, Heart, Send } from 'lucide-react';
 import apiService, {API_BASE_URL} from "../service/apiService";
-import {getImageUrl} from "../service/commonService";
-// story의 경우, 상대방의 스토리를 다른 유저가 선택해서 보는 것이 아니라
-// 유저가 올린 스토리를 오래된 순서부터 하나씩 보는 것. 어떤 스토리와 스토리가 얼만큼 있는지
-// 유저 프로필을 클릭하지 않으면 알 수 없다.
+import {formatDate, getImageUrl} from "../service/commonService";
+
+/**
+ * commonService 에 현재 날짜를 몇 시간 전 업로드했는지 변환하는 기능 추가
+ * {storyData.createdAt}
+ *
+ * -> formatDate 형태로 1시간 전, 1분 전 등등의 형태로 수정
+ *    or yyyy-mm-dd 형태로 확인하도록 수정
+ */
+
 const StoryDetail = () => {
     const navigate = useNavigate();
     const [progress, setProgress] = useState(0);
@@ -26,7 +32,7 @@ const StoryDetail = () => {
 
         try{
             const data = await apiService.getStory(userId);
-            console.log("data: ", data);
+            // console.log("data: ", data);
             setStoryData(data);
         } catch(err) {
             alert("스토리를 불러오는 데 실패했습니다.");
@@ -83,7 +89,8 @@ const StoryDetail = () => {
                              alt="user"
                              className="story-user-avatar" />
                         <span className="story-username">{storyData.userName}</span>
-                        <span className="story-time">{storyData.createdAt}</span>
+                        {/*<span className="story-time">{storyData.createdAt}</span>*/}
+                        <span className="story-time">{formatDate(storyData.createdAt, "relative")}</span>
                     </div>
                     <div className="story-header-actions">
                         <MoreHorizontal color="white" className="story-icon"/>
