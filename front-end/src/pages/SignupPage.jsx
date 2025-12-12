@@ -9,18 +9,35 @@
 // - 입력값 검증 (이메일 형식, 사용자명 규칙, 비밀번호 길이)
 // ============================================
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 import apiService from '../service/apiService';
 
 const SignupPage = () => {
+    const location = useLocation();  // 현재 위치에 있는 정보 가져옴
+    console.log("💡 kakao email: ", location.state?.email);
+    console.log("💡 kakao email2: ", location.state);
+    const navigate = useNavigate();
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [fullName, setFullName] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isKakaoSignup, setIsKakaoSignup] = useState(false);
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        if(location.state?.email) {
+            // 카카오에서 넘어온 정보로 email, userName, fullName 작성하기
+            setEmail(location.state?.email);
+            setIsKakaoSignup(true);
+        }
+        if(location.state?.name) {
+            setUsername(location.state?.name);
+            setFullName(location.state?.name);
+            setIsKakaoSignup(true);
+        }
+    }, [location.state]);
 
     const handleSignup = async () => {
         try {
@@ -98,6 +115,7 @@ const SignupPage = () => {
                             onChange={e => setEmail(e.target.value)}
                             onKeyPress={handleKeyPress}
                             autoComplete="email"
+                            disabled={isKakaoSignup}
                         />
                         <input
                             className="login-input"
@@ -107,6 +125,7 @@ const SignupPage = () => {
                             onChange={e => setFullName(e.target.value)}
                             onKeyPress={handleKeyPress}
                             autoComplete="name"
+                            disabled={isKakaoSignup}
                         />
                         <input
                             className="login-input"
@@ -116,6 +135,7 @@ const SignupPage = () => {
                             onChange={e => setUsername(e.target.value)}
                             onKeyPress={handleKeyPress}
                             autoComplete="username"
+                            disabled={isKakaoSignup}
                         />
                         <input
                             className="login-input"

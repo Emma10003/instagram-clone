@@ -16,6 +16,6 @@ public interface StoryService {
 
     void deleteExpiredStories();
 
-    /*임의로 추가*/
-    // Story getStoriesByStoryId(int storyId);
+    // 스토리 삭제
+    void deleteStory(int storyId);
 }

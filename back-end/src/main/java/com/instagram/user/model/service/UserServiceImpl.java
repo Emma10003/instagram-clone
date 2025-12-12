@@ -6,12 +6,16 @@ import com.instagram.user.model.mapper.UserMapper;
 import io.jsonwebtoken.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -74,11 +78,11 @@ public class UserServiceImpl implements UserService {
     public User getUserByEmail(String userEmail) {
         return null;
     }
-
+/*
     @Override
     public User getUserByUsername(String userName) {
         return null;
-    }
+    }*/
 
     @Override
     public User getUserById(int userId) {
@@ -116,5 +120,48 @@ public class UserServiceImpl implements UserService {
 
         existingUser.setUserPassword(null);
         return existingUser;
+    }
+
+    // TODO 7: searchUsers 메서드 구현
+    @Override
+    public List<User> searchUsers(String query) {
+        // 요구사항:
+        // 1. query가 null이거나 빈 문자열이면 빈 ArrayList 반환
+        if(query == null || query.isEmpty()) {
+            return new ArrayList<>();
+        }
+        try {
+            // 2. userMapper.searchUsersByUserName(query) 호출
+            List<User> users = userMapper.searchUsersByUserName(query);
+            return users;
+        } catch (Exception e) {
+            // 3. 예외 발생 시 로그 출력 후 빈 ArrayList 반환
+            log.error("❌ 사용자 검색 중 오류 발생: {}", e.getMessage());
+            return new ArrayList<>();
+        }
+
+
+        // 여기에 코드 작성
+    }
+
+    // TODO 8: getUserByUsername 메서드 구현
+    @Override
+    public User getUserByUsername(String userName) {
+        // 요구사항:
+        // 1. userName이 null이거나 빈 문자열이면 null 반환
+        if(userName == null || userName.isEmpty()) {
+            return null;
+        }
+        try {
+            // 2. userMapper.selectUserByUserNameExact(userName) 호출
+            userMapper.selectUserByUserName(userName);
+            // 3. 예외 발생 시 로그 출력 후 null 반환
+
+        } catch (Exception e) {
+
+        }
+
+        // 여기에 코드 작성
+        return new User();
     }
 }

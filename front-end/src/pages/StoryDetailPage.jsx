@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import { X, MoreHorizontal, Heart, Send } from 'lucide-react';
+import {X, MoreHorizontal, Heart, Send, ChevronLeft, ChevronRight} from 'lucide-react';
 import apiService, {API_BASE_URL} from "../service/apiService";
 import {formatDate, getImageUrl} from "../service/commonService";
 
@@ -22,17 +22,18 @@ const StoryDetail = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState('');
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     // userId -> storyId 로 변경 예정
     useEffect(() => {
         loadStoryData();
     }, [userId]);
 
+    const currentUser = JSON.parse(localStorage.getItem('user'));
 
     const loadStoryData = async () => {
-        setLoading(true);
-
         try{
+            setLoading(true);
             const data = await apiService.getStory(userId);
             // console.log("data: ", data);
 
@@ -53,7 +54,7 @@ const StoryDetail = () => {
 
     // 다음 스토리로 이동
     const goToNextStory = () => {
-        if(currentIndex< stories.length-1) {  // 인덱스 숫자와 length 숫자 시작점이 다르므로 맞춰줌
+        if(currentIndex < stories.length-1) {  // 인덱스 숫자와 length 숫자 시작점이 다르므로 맞춰줌
             setCurrentIndex(prev => prev + 1);
             setProgress(0);
         } else {  // 마지막 스토리면 창 닫고 피드로 이동 -> 다음 유저 스토리 보기
@@ -115,6 +116,36 @@ const StoryDetail = () => {
 
     if(loading) return <div>로딩 중...</div>
 
+    // 현재 스토리에 따른 유저정보와 스토리 아이디
+    const currentStory = stories[currentIndex];
+
+    const handleDeleteStory = async () => {
+        try {
+            // deleteStory에 현재 스토리 storyId 전달하여 스토리 삭제, SQL 에서 delete 처리
+            // Controller: deleteStory
+            console.log("🎈 currentStory.storyImage: ", currentStory.storyImage);
+            console.log("🎈 currentStory.storyId: ", currentStory.storyId);
+            await apiService.deleteStory(currentStory.storyId);
+
+            // 삭제 후 스토리 목록에서 제거
+            const updateStories = stories.filter((_, index) => index !== currentIndex);
+
+            // 스토리 없을 경우
+            if(updateStories.length === 0) {
+                navigate('/feed');
+            } else {
+                if (currentIndex >= updateStories.length) {
+                    setCurrentIndex(updateStories.length - 1);
+                }
+                setStories(updateStories);
+                setProgress(0);
+            }
+            setShowDeleteModal(false);
+        } catch(err) {
+            alert("스토리 삭제에 실패했습니다.");
+            console.error(err.message);
+        }
+    }
 
     return (
         /* 스토리 전체 화면에서 클릭이 일어날 수 있다. -> handleScreenClick */
@@ -123,7 +154,7 @@ const StoryDetail = () => {
         >
             <div
                 className="story-bg-blur"
-                style={{backgroundImage: `url(${getImageUrl(stories.userAvatar)})`}}
+                style={{backgroundImage: `url(${getImageUrl(currentStory.userAvatar)})`}}
             />
 
             <div className="story-content-box">
@@ -146,24 +177,56 @@ const StoryDetail = () => {
 
                 <div className="story-header-info">
                     <div className="story-user">
-                        <img src={getImageUrl(stories.userAvatar)}
+                        <img src={getImageUrl(currentStory.userAvatar)}
                              alt="user"
                              className="story-user-avatar" />
-                        <span className="story-username">{stories.userName}</span>
-                        {/*<span className="story-time">{stories.createdAt}</span>*/}
-                        <span className="story-time">{formatDate(stories.createdAt, "relative")}</span>
+                        <span className="story-username">
+                            {currentStory.userName}
+                        </span>
+                        <span className="story-time">
+                            {formatDate(currentStory.createdAt, "relative")}
+                        </span>
                     </div>
                     <div className="story-header-actions">
-                        <MoreHorizontal color="white" className="story-icon"/>
+                        {/*{currentStory.userId === currentUser.userId && (*/}
+                            <MoreHorizontal color="white"
+                                            className="story-icon"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setShowDeleteModal(true);
+                                            }}
+                                            style={{
+                                                cursor: 'pointer',
+                                                display: currentStory.userId === currentUser.userId
+                                                    ? 'block' : 'none'
+                                            }}
+                            />
+                    {/*}*/}
+
                         <X
                             color="white"
                             className="story-icon"
-                            onClick={() => navigate(-1)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(-1);
+                            }}
                         />
                     </div>
                 </div>
 
-                <img src={getImageUrl(stories.storyImage)} alt="story" className="story-main-image" />
+                <img src={getImageUrl(currentStory.storyImage)}
+                     alt="story"
+                     className="story-main-image" />
+                {currentIndex > 0 && (
+                    <div className="story-nav-hint story-nav-left">
+                        <ChevronLeft color="white" size={32} />
+                    </div>
+                )}
+                {currentIndex > stories.length - 1 && (
+                    <div className="story-nav-hint story-nav-right">
+                        <ChevronRight color="white" size={32} />
+                    </div>
+                )}
 
                 <div className="story-footer">
                     <div className="story-input-container">
@@ -176,6 +239,40 @@ const StoryDetail = () => {
                     <Heart color="white" className="story-icon" />
                     <Send color="white" className="story-icon" />
                 </div>
+
+                {showDeleteModal && (
+                    <div
+                        className="story-delete-modal-overlay"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setShowDeleteModal(false);
+                        }}
+                    >
+                        <div
+                            className="story-delete-modal"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button
+                                className="story-delete-button story-delete-confirm"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDeleteStory();
+                                }}
+                            >
+                                스토리 삭제
+                            </button>
+                            <button
+                                className="story-delete-button story-delete-cancel"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setShowDeleteModal(false);
+                                }}
+                            >
+                                취소
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

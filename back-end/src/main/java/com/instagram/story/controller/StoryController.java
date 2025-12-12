@@ -1,5 +1,6 @@
 package com.instagram.story.controller;
 
+import com.instagram.common.util.FileUploadService;
 import com.instagram.common.util.JwtUtil;
 import com.instagram.story.model.dto.Story;
 import com.instagram.story.model.service.StoryService;
@@ -25,6 +26,7 @@ public class StoryController {
 
     private final StoryService storyService;
     private final JwtUtil jwtUtil;
+    private final FileUploadService fileUploadService;
 
     @PostMapping
     public ResponseEntity<?> createStory(@RequestHeader("Authorization") String token,
@@ -68,17 +70,15 @@ public class StoryController {
         }
     }
 
-    // 임의로 추가
-    /*
-    @GetMapping("detail/{storyId}")
-    public ResponseEntity<?> getStoryByStoryId(@PathVariable("storyId") int storyId) {
-        try {
-            Story a = storyService.getStoriesByStoryId(storyId);
-            return ResponseEntity.ok(a);
-        } catch (Exception e){
+    @DeleteMapping("/{storyId}")
+    public ResponseEntity<?> deleteStory(@PathVariable("storyId") int storyId) {
+        try{
+            log.info("💡 StoryController: deleteStory 메서드 시작");
+            storyService.deleteStory(storyId);
+            return ResponseEntity.ok("success");
+        } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().body("스토리 조회 실패: " + e.getMessage());
+            return ResponseEntity.badRequest().body("스토리 삭제 실패: " + e.getMessage());
         }
     }
-*/
 }

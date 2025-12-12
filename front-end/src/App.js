@@ -23,16 +23,23 @@ import StoryUploadPage from "./pages/StoryUploadPage";
 import MyFeedPage from "./pages/MyFeedPage";
 import StoryDetailPage from "./pages/StoryDetailPage";
 import EditProfilePage from "./pages/EditProfilePage";
+import KakaoCallback from "./pages/KakaoCallback";
 
 function App() {
     const [user, setUser] = useState(() => {
-        const savedUser = localStorage.getItem("user");
-        const token = localStorage.getItem("token");
+        try {
+            const savedUser = localStorage.getItem("user");
+            const token = localStorage.getItem("token");
 
-        if(savedUser && token) {
-            return JSON.parse(savedUser);
+            if (savedUser && token) {
+                return JSON.parse(savedUser);
+            }
+            return null;
+        } catch(err) {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            return null;
         }
-        return null;
     })
 
     return (
@@ -41,6 +48,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Navigate to="/login" replace />} />
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
+
                     <Route path="/signup" element={<SignupPage />} />
                     <Route path="/feed"
                            element={

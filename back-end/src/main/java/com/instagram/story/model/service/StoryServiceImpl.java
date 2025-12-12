@@ -65,6 +65,37 @@ public class StoryServiceImpl implements StoryService {
     public void deleteExpiredStories() {
 
     }
+
+    @Override
+    public void deleteStory(int storyId) {
+        log.info("💡 스토리 삭제 시작 - 스토리 ID: {}", storyId);
+        try {
+            // 1. 서버에서 이미지를 삭제할 수 있도록 storyId 에 해당하는 데이터 조회
+            Story story = storyMapper.selectStoryById(storyId);
+            if(story == null) {
+                log.warn("⚠️ 스토리를 찾을 수 없습니다. - 스토리 ID: {}", storyId);
+                return;
+            }
+
+            if(story.getStoryImage() != null || !story.getStoryImage().isEmpty()) {
+                boolean fileDeleted = fileUploadService.deleteFile(story.getStoryImage());
+                if(!fileDeleted) {
+                    log.warn("⚠️ 스토리 이미지 파일 삭제 실패: {}", story.getStoryImage());
+                } else {
+                    log.info("✅ 스토리 이미지 파일 삭제 완료: {}", story.getStoryImage());
+                }
+            }
+
+            storyMapper.deleteStory(storyId);
+            log.info("✅ 스토리DB 삭제 완료 - 스토리 ID: {}", storyId);
+
+            // 서버에서 이미지 파일 삭제
+
+        } catch(Exception e) {
+            log.error("❌ 스토리 삭제 중 오류 발생: {}", e.getMessage());
+            throw new RuntimeException("스토리 삭제 실패", e);
+        }
+    }
 /*
     @Override
     public Story getStoriesByStoryId(int storyId) {
