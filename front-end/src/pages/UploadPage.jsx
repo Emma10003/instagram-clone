@@ -116,9 +116,6 @@ const UploadPage = () => {
                                 <span className="upload-text">
                                     사진을 선택하세요.
                                 </span>
-                                <span className="upload-select-btn">
-                                    컴퓨터에서 선택
-                                </span>
                                 <input type="file"
                                        accept="image/*"
                                        onChange={handleImageChange}

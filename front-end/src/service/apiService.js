@@ -92,6 +92,9 @@ const apiService = {
     // localStorage에서 token과 user 제거하고 /login으로 이동
     logout: () => {
         // TODO: 로그아웃 로직을 완성하세요
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href='/login';
     },
 
     // ===== 게시물 API =====
@@ -249,11 +252,20 @@ const apiService = {
     searchUsers: async (query) => {
         // 요구사항:
         // 1. query가 없으면 빈 배열 반환
-        // 2. api.get()을 사용하여 `/users/search?q=${query}` 호출
-        // 3. 성공 시 res.data 반환
-        // 4. 에러 발생 시 콘솔에 로그 출력 후 빈 배열 반환
-
-        // 여기에 코드 작성
+        if(!query || query.isEmpty()) {
+            return [];
+        }
+        try {
+            // 2. api.get()을 사용하여 `/users/search?q=${query}` 호출
+            // 3. 성공 시 res.data 반환
+            const res = await api.get(`/users/search?q=${encodeURIComponent(query)}`)
+            return res.data;
+        } catch (err) {
+            // 4. 에러 발생 시 콘솔에 로그 출력 후 빈 배열 반환
+            // q=${encodeURIComponent(query)}
+            console.error("❌ 유저 리스트 검색 실패: ", err.response?.data || err.message());
+            return [];
+        }
 
     },
 
@@ -261,12 +273,16 @@ const apiService = {
     // GET /api/users/username/{username}
     getUserByUsername: async (username) => {
         // 요구사항:
-        // 1. api.get()을 사용하여 `/users/username/${username}` 호출
-        // 2. 성공 시 res.data 반환
-        // 3. 에러 발생 시 콘솔에 로그 출력 후 null 반환
-
-        // 여기에 코드 작성
-
+        try {
+            // 1. api.get()을 사용하여 `/users/username/${username}` 호출
+            const res = await api.get(`/users/username/${username}`);
+            // 2. 성공 시 res.data 반환
+            return res.data;
+        } catch(err) {
+            // 3. 에러 발생 시 콘솔에 로그 출력 후 null 반환
+            console.error("❌ 사용자명으로 사용자 검색 실패: ", err.response?.data || err.message());
+            return null;
+        }
     },
 };
 

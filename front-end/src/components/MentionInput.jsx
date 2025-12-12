@@ -9,19 +9,24 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
     const textareaRef = useRef(null);
     const suggestionsRef = useRef(null);
 
-    // TODO 3: 유저 검색 함수 구현
+    // 유저 검색 함수
     const searchUsers = async (query) => {
         // 요구사항:
         // 1. query가 없거나 길이가 1 미만이면 suggestions를 빈 배열로 설정하고 종료
-        // 2. apiService.searchUsers(query) 호출
-        // 3. 결과를 suggestions state에 저장
-        // 4. 에러 발생 시 콘솔에 로그 출력 후 suggestions를 빈 배열로 설정
-
-        // 여기에 코드 작성
-
+        if(!query || query.length < 1) {
+            setSuggestions([]);
+            return;
+        }
+        try {
+            const res = await apiService.searchUsers(query);
+            setSuggestions(res || []);  // 검색 시 유저가 없다면 빈 배열 -> 빈 배열 처리 없을 시 Exception 뜸
+        } catch (err){
+            console.error("❌ 사용자 검색 실패: ", err);
+            setSuggestions([]);
+        }
     };
 
-    // TODO 4: 텍스트 변경 처리 함수 구현
+    // 텍스트 변경 처리 함수
     const handleTextChange = (e) => {
         const newValue = e.target.value;
         const newCursorPosition = e.target.selectionStart;
@@ -30,58 +35,80 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
         onChange(newValue);
         setCursorPosition(newCursorPosition);
 
-        // TODO 4-1: @ 이후 텍스트 추출 로직 구현
-        // 요구사항:
-        // 1. 커서 이전의 텍스트 추출 (substring 사용)
-        // 2. 마지막 '@' 위치 찾기 (lastIndexOf 사용)
-        // 3. '@' 이후의 텍스트가 공백이나 줄바꿈을 포함하지 않으면:
-        //    - setShowSuggestions(true)
-        //    - searchUsers 호출
-        //    - setSelectedIndex(0)
-        // 4. 그렇지 않으면 setShowSuggestions(false)
+        const textBeforeCursor = newValue.substring(0, newCursorPosition);
+        const lastAtIndex = textBeforeCursor.lastIndexOf('@');  // @으로 시작하는 인덱스 반환
 
-        // 여기에 코드 작성
+        if(lastAtIndex !== -1) {
+            const textAfterAt = textBeforeCursor.substring(lastAtIndex + 1);
+            if(!textAfterAt.includes(' ') && !textAfterAt.includes('\n')) {
+                setShowSuggestions(true);
+                searchUsers(textAfterAt);
+                setSelectedIndex(0);
+            } else setShowSuggestions(false);
 
+        } else setShowSuggestions(false);
     };
 
-    // TODO 5: 유저 선택 함수 구현
+    // 유저 선택 함수
     const selectUser = (user) => {
-        // 요구사항:
         // 1. 커서 이전/이후 텍스트 추출
+        const textBeforeCursor = value.substring(0, cursorPosition);
+        const textAfterCursor = value.substring(cursorPosition);
         // 2. 마지막 '@' 위치 찾기
+        const lastAtIndex = textBeforeCursor.lastIndexOf('@');
+
         // 3. '@' 이전 텍스트 + '@유저네임 ' + 커서 이후 텍스트 합치기
-        // 4. onChange로 새로운 값 전달
-        // 5. setShowSuggestions(false), setSuggestions([])
-        // 6. setTimeout으로 textarea에 포커스하고 커서 위치 조정
+        if(lastAtIndex !== -1) {
+            const beforeAt = textBeforeCursor.substring(0, lastAtIndex);
+            const newValue = `${beforeAt}@${user.userName} ${textAfterCursor}`;
+            const newCursorPos = beforeAt.length + user.userName.length + 2;
 
-        // 여기에 코드 작성
-
+            // 4. onChange로 새로운 값 전달
+            onChange(newValue);
+            setShowSuggestions(false);
+            setSuggestions([]);
+            // 6. setTimeout으로 textarea에 포커스하고 커서 위치 조정
+            setTimeout(() => {
+                if(textareaRef.current) {
+                    textareaRef.current.focus();
+                    textareaRef.current.setSelectionRange(newCursorPos, newCursorPos);
+                }
+            })
+        }
     };
 
-    // TODO 6: 키보드 이벤트 처리 함수 구현
+    // 키보드 이벤트 처리 함수
     const handleKeyDown = (e) => {
         // 요구사항:
+
+
         // 1. showSuggestions가 false이거나 suggestions가 비어있으면 종료
+        if (!showSuggestions || suggestions.length === 0) return;
+
         // 2. ArrowDown: selectedIndex 증가 (마지막이면 0으로)
         // 3. ArrowUp: selectedIndex 감소 (0이면 마지막으로)
         // 4. Enter: 현재 선택된 유저로 selectUser 호출
         // 5. Escape: setShowSuggestions(false)
         // 6. 각 케이스에서 e.preventDefault() 호출
 
-        if (!showSuggestions || suggestions.length === 0) return;
-
         switch (e.key) {
             case 'ArrowDown':
-                // 여기에 코드 작성
+                e.preventDefault();
+                // setSuggestions((prev) => prev < suggestions.length - 1 ? prev + 1 : 0);
+                setSelectedIndex((prev) => prev < suggestions.length - 1 ? prev + 1 : 0);
                 break;
             case 'ArrowUp':
-                // 여기에 코드 작성
+                e.preventDefault();
+                setSelectedIndex((prev) => prev > 0 ? prev - 1 : suggestions.length -1);
                 break;
             case 'Enter':
-                // 여기에 코드 작성
+                if(showSuggestions && suggestions[selectedIndex]) {  // 해당 유저가 있는지 확인하는 조건 추가!
+                    e.preventDefault();
+                    selectUser(suggestions[selectedIndex]);
+                }
                 break;
             case 'Escape':
-                // 여기에 코드 작성
+                setShowSuggestions(false);
                 break;
             default:
                 break;
@@ -90,14 +117,13 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
 
     // TODO 7: 외부 클릭 감지 useEffect 구현
     useEffect(() => {
-        // 요구사항:
-        // 1. handleClickOutside 함수 생성
-        // 2. suggestionsRef.current 외부 클릭 시 setShowSuggestions(false)
-        // 3. document에 mousedown 이벤트 리스너 등록
-        // 4. cleanup 함수에서 이벤트 리스너 제거
-
-        // 여기에 코드 작성
-
+        const handleClickOutside = (e) => {
+            if(suggestionsRef.current && !suggestionsRef.current.contains(e.target)) {
+                setShowSuggestions(false);
+            }
+        }
+        document.addEventListener("mousedown",handleClickOutside);
+        return () => {document.removeEventListener('mousedown', handleClickOutside)};
     }, []);
 
     return (

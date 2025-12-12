@@ -137,15 +137,19 @@ const SignupPage = () => {
                             autoComplete="username"
                             disabled={isKakaoSignup}
                         />
-                        <input
-                            className="login-input"
-                            type="password"
-                            value={password}
-                            placeholder="비밀번호"
-                            onChange={e => setPassword(e.target.value)}
-                            onKeyPress={handleKeyPress}
-                            autoComplete="new-password"
-                        />
+                        {/* kakao 회원가입이 아닐 때는 비밀번호 입력창 표시 */}
+                        {!isKakaoSignup && (
+                            <input
+                                className="login-input"
+                                type="password"
+                                value={password}
+                                placeholder="비밀번호"
+                                onChange={e => setPassword(e.target.value)}
+                                onKeyPress={handleKeyPress}
+                                autoComplete="new-password"
+                            />
+                        )}
+
                         <button className="login-button"
                                 onClick={handleSignup}
                                 disabled={loading}

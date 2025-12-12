@@ -18,15 +18,8 @@ public interface UserService {
     // 유저 정보 수정
     User updateUser(User user, MultipartFile file);
 
-    // TODO 5: 유저 검색 메서드 선언
-    // 메서드명: searchUsers
-    // 파라미터: String query
-    // 리턴타입: List<User>
+    // 유저 검색 메서드
     List<User> searchUsers(String query);
-
-
-    // TODO 6: 유저네임으로 유저 조회 메서드 구현 확인
-    // 기존에 getUserByUsername 메서드가 있는지 확인
-    // 없다면 선언 필요
+    // 유저네임으로 유저 조회 메서드
     User getUserByUsername(String userName);
 }

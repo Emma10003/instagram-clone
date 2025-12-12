@@ -87,7 +87,13 @@
         5. 모든 컬럼 조회
     -->
     <select id="selectUserByUserNameExact" parameterType="String" resultType="User">
-        SELECT *
+        SELECT user_id,
+               user_name,
+               user_email,
+               user_fullname,
+               user_avatar,
+               created_at,
+               updated_at
         FROM users
         WHERE user_name = #{userName}
     </select>
