@@ -252,7 +252,7 @@ const apiService = {
     searchUsers: async (query) => {
         // 요구사항:
         // 1. query가 없으면 빈 배열 반환
-        if(!query || query.isEmpty()) {
+        if(!query) {
             return [];
         }
         try {

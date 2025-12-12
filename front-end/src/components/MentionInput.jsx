@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import apiService from '../service/apiService';
+import {getImageUrl} from "../service/commonService";
 
 const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
     const [showSuggestions, setShowSuggestions] = useState(false);
@@ -8,11 +9,10 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
     const [cursorPosition, setCursorPosition] = useState(0);
     const textareaRef = useRef(null);
     const suggestionsRef = useRef(null);
+    const highlightRef = useRef(null);
 
     // 유저 검색 함수
     const searchUsers = async (query) => {
-        // 요구사항:
-        // 1. query가 없거나 길이가 1 미만이면 suggestions를 빈 배열로 설정하고 종료
         if(!query || query.length < 1) {
             setSuggestions([]);
             return;
@@ -31,7 +31,6 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
         const newValue = e.target.value;
         const newCursorPosition = e.target.selectionStart;
 
-        // 부모 컴포넌트로 값 전달
         onChange(newValue);
         setCursorPosition(newCursorPosition);
 
@@ -51,23 +50,19 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
 
     // 유저 선택 함수
     const selectUser = (user) => {
-        // 1. 커서 이전/이후 텍스트 추출
         const textBeforeCursor = value.substring(0, cursorPosition);
         const textAfterCursor = value.substring(cursorPosition);
-        // 2. 마지막 '@' 위치 찾기
         const lastAtIndex = textBeforeCursor.lastIndexOf('@');
 
-        // 3. '@' 이전 텍스트 + '@유저네임 ' + 커서 이후 텍스트 합치기
         if(lastAtIndex !== -1) {
             const beforeAt = textBeforeCursor.substring(0, lastAtIndex);
             const newValue = `${beforeAt}@${user.userName} ${textAfterCursor}`;
             const newCursorPos = beforeAt.length + user.userName.length + 2;
 
-            // 4. onChange로 새로운 값 전달
             onChange(newValue);
             setShowSuggestions(false);
             setSuggestions([]);
-            // 6. setTimeout으로 textarea에 포커스하고 커서 위치 조정
+
             setTimeout(() => {
                 if(textareaRef.current) {
                     textareaRef.current.focus();
@@ -79,18 +74,7 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
 
     // 키보드 이벤트 처리 함수
     const handleKeyDown = (e) => {
-        // 요구사항:
-
-
-        // 1. showSuggestions가 false이거나 suggestions가 비어있으면 종료
         if (!showSuggestions || suggestions.length === 0) return;
-
-        // 2. ArrowDown: selectedIndex 증가 (마지막이면 0으로)
-        // 3. ArrowUp: selectedIndex 감소 (0이면 마지막으로)
-        // 4. Enter: 현재 선택된 유저로 selectUser 호출
-        // 5. Escape: setShowSuggestions(false)
-        // 6. 각 케이스에서 e.preventDefault() 호출
-
         switch (e.key) {
             case 'ArrowDown':
                 e.preventDefault();
@@ -115,7 +99,7 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
         }
     };
 
-    // TODO 7: 외부 클릭 감지 useEffect 구현
+    // 외부 클릭 감지
     useEffect(() => {
         const handleClickOutside = (e) => {
             if(suggestionsRef.current && !suggestionsRef.current.contains(e.target)) {
@@ -126,8 +110,53 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
         return () => {document.removeEventListener('mousedown', handleClickOutside)};
     }, []);
 
+    const highlightMentions = (text) => {
+        const mentionRegex = /@(\w+)/g;
+        const parts = [];
+        let lastIndex = 0;
+        let match;
+
+        while((match = mentionRegex.exec(text)) !== null) {
+            if(match.index > lastIndex) {
+                parts.push(text.substring(lastIndex, match.index));
+            }
+            parts.push(
+                <span key={match.index}
+                      style={{
+                          color:'#0095f6',
+                          fontWeight: '600'
+                      }}
+                >
+                    {match[0]}
+                </span>
+            )
+            lastIndex = match.index + match[0].length;
+        }
+        if(lastIndex < text.length) {
+            parts.push(text.substring(lastIndex));
+        }
+        return parts;
+    }
+
     return (
         <div style={{ position: 'relative', width: '100%' }}>
+            <div ref={highlightRef}
+                 className="upload-caption-input"
+                 style={{
+                     position: 'absolute',
+                     top: 0,
+                     left: 0,
+                     right: 0,
+                     bottom: 0,
+                     color: 'transparent',
+                     pointerEvents: 'none',
+                     whiteSpace: 'pre-wrap',
+                     overFlow: 'hidden',
+                     background: 'transparent',
+                     border: '1px solid transparent'
+                 }}>
+                <span style={{color:'#000'}}>{highlightMentions(value)}</span>
+            </div>
             <textarea
                 ref={textareaRef}
                 value={value}
@@ -136,6 +165,12 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
                 placeholder={placeholder}
                 rows={rows}
                 className="upload-caption-input"
+                style={{
+                    position: 'relative',
+                    background: 'transparent',
+                    color: 'transparent',
+                    caretColor: '#000'
+                }}
             />
 
             {showSuggestions && suggestions.length > 0 && (
@@ -151,7 +186,7 @@ const MentionInput = ({ value, onChange, placeholder, rows = 4 }) => {
                             onMouseEnter={() => setSelectedIndex(index)}
                         >
                             <img
-                                src={user.userAvatar || '/static/img/default-avatar.jpg'}
+                                src={getImageUrl(user.userAvatar) || '/static/img/default-avatar.jpg'}
                                 alt={user.userName}
                                 className="mention-avatar"
                             />
