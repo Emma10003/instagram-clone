@@ -155,19 +155,20 @@ const apiService = {
     // GET /posts/:postId/comments
     getComments: async (postId) => {
         // TODO: API 호출을 완성하세요
+        const res = await api.get(`/posts/${postId}/comments`);
+        return res.data;
     },
 
-    // TODO: 댓글 작성
-    // POST /posts/:postId/comments
-    // body: { commentContent }
     createComment: async (postId, commentContent) => {
-        // TODO: API 호출을 완성하세요
+        const res = await api.post(`/posts/${postId}/comments`, {
+            commentContent: commentContent
+        });
+        return res.data;
     },
 
-    // TODO: 댓글 삭제
-    // DELETE /comments/:commentId
     deleteComment: async (commentId) => {
-        // TODO: API 호출을 완성하세요
+        const res = await api.delete(`/comments/${commentId}`);
+        return res.data;
     },
 
     // ===== 스토리 API =====
