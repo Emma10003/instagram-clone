@@ -13,12 +13,12 @@ import PostOptionMenu from "../components/PostOptionMenu";
 
 const PostDetailPage = () => {
     const [post, setPost] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [selectedPost, setSelectedPost] = useState(null);
 
     const navigate = useNavigate();
     const currentUser = JSON.parse(localStorage.getItem('user') || []);
-    const parameter = useParams();
+    const {postId} = useParams();
 
     useEffect(() => {
         loadFeedData();
@@ -31,8 +31,8 @@ const PostDetailPage = () => {
 
         try {
             console.log("post.postId: ", post.postId);
-            console.log("파라미터로 가져온 postId: ", parameter.postId);
-            const postData = await apiService.getPost(parameter.postId);
+            console.log("파라미터로 가져온 postId: ", postId);
+            const postData = await apiService.getPost(postId);
             setPost(postData);
         } catch (err) {
             alert("포스트 피드를 불러오는데 실패했습니다.")
@@ -123,6 +123,7 @@ const PostDetailPage = () => {
                             <img src={getImageUrl(post.userAvatar)}
                                  className="post-user-avatar"
                                  style={{cursor: 'pointer'}}
+                                 onClick={() => navigate(`/myfeed?userId=${post.userId}`)}
                             />
                             <span className="post-username">{post.userName}</span>
                         </div>

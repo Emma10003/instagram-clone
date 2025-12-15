@@ -102,21 +102,19 @@ const apiService = {
 
     // my 추가
     getMyPost: async (userId) => {
-        const res = await api.get('/posts/user' + userId);
+        console.log("apiService - userId 자료형: ", typeof(userId));  // number
+        const res = await api.get(`/posts/user/${userId}`);
         return res.data;
     },
 
     // 단순 getPost 사용
     getPost: async (postId) => {
         try {
-            console.log("⭐ apiService 접근 성공");
-            const res = await api.get(`posts/${postId}`);
-            console.log("✅ 백엔드 연결 성공 - res.data: ", res.data);
+            const res = await api.get(`/posts/${postId}`);
             return res.data;
         } catch(err) {
             console.error(err);
         }
-
     },
 
     createPost: async (postImage, postCaption, postLocation) => {
