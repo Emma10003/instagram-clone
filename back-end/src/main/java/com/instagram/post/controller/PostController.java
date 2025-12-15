@@ -38,7 +38,7 @@ public class PostController {
         }
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<Post>> getAllPostsByUserId(@PathVariable int userId,
                                                           @RequestHeader("Authorization") String authHeader) {
         try {
@@ -50,6 +50,25 @@ public class PostController {
             return ResponseEntity.ok(posts);
         } catch (Exception e) {
             log.error("❌ PostController: 사용자 게시물 가져오기 실패 - 사용자 ID: {}", userId);
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    // 내가 추가
+    @GetMapping("/{postId}")
+    public ResponseEntity<Post> getPostById(@PathVariable int postId,
+                                            @RequestHeader("Authorization") String authHeader) {
+        try {
+            log.info("✅ Controller 도달 성공");
+            String token = authHeader.substring(7);
+            int currentUserId = jwtUtil.getUserIdFromToken(token);
+            Post post = postService.getPostById(postId, currentUserId);
+
+            log.info("✅ PostController: 특정 게시물 가져오기 성공 - 게시물 ID: {}", postId);
+            return ResponseEntity.ok(post);
+        } catch (Exception e) {
+            log.error("❌ PostController: 특정 게시물 가져오기 실패 - 게시물 ID: {}", postId);
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }

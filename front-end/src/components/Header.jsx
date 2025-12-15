@@ -30,9 +30,11 @@ const Header = ({
             <>
                 <header className="header">
                     <div className="header-container">
-                        <h1 className="header-title" onClick={() => navigate('/feed')}>
-
-                        </h1>
+                        <img className="header-title" onClick={() => navigate('/feed')}
+                            src="/static/img/logo.png"
+                             width="100px"
+                             style={{paddingTop: '3px', cursor:'pointer'}}
+                        />
                         <div className="header-nav">
                             <Home className="header-icon" onClick={openSearch}/>
 

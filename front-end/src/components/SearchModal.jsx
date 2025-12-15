@@ -153,8 +153,6 @@ const SearchModal = ({ isOpen, onClose }) => {
                             {isLoading ? (
                                 <div className="search-loading">검색 중...</div>
                             ) : searchResults.length > 0 ? (
-                                /* TODO 8: searchResults 배열을 map으로 순회하여 검색 결과 표시 */
-                                /* 힌트: 위의 최근 검색과 동일한 구조이지만 X 버튼은 필요 없음 */
                                     searchResults.map(user => (
                                         <div key={user.userId}
                                              className="search-result-item"

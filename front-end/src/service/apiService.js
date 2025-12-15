@@ -88,10 +88,7 @@ const apiService = {
         return res.data;
     },
 
-    // TODO: 로그아웃 함수
-    // localStorage에서 token과 user 제거하고 /login으로 이동
     logout: () => {
-        // TODO: 로그아웃 로직을 완성하세요
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         window.location.href='/login';
@@ -103,11 +100,23 @@ const apiService = {
         return res.data;
     },
 
-    // TODO: 특정 게시물 조회
-    // GET /posts/:postId
-    getPost: async (userId) => {
-        const res = await api.get('/posts/' + userId);
+    // my 추가
+    getMyPost: async (userId) => {
+        const res = await api.get('/posts/user' + userId);
         return res.data;
+    },
+
+    // 단순 getPost 사용
+    getPost: async (postId) => {
+        try {
+            console.log("⭐ apiService 접근 성공");
+            const res = await api.get(`posts/${postId}`);
+            console.log("✅ 백엔드 연결 성공 - res.data: ", res.data);
+            return res.data;
+        } catch(err) {
+            console.error(err);
+        }
+
     },
 
     createPost: async (postImage, postCaption, postLocation) => {
@@ -132,18 +141,12 @@ const apiService = {
 
     // ===== 좋아요 API =====
 
-    // TODO: 좋아요 추가
-    // POST /posts/:postId/like
     addLike: async (postId) => {
-        // TODO: API 호출을 완성하세요
         const res = await api.post(`/posts/${postId}/like`);
         return res.data;
     },
 
-    // TODO: 좋아요 취소
-    // DELETE /posts/:postId/like
     removeLike: async (postId) => {
-        // TODO: API 호출을 완성하세요
         const res = await api.delete(`/posts/${postId}/like`);
         return res.data;
     },
@@ -217,16 +220,7 @@ const apiService = {
         // TODO: API 호출을 완성하세요
     },
 
-    // TODO 2-2: updateProfile 함수 작성
-    // PUT /users/:userId
-    // 파라미터: userId, formData
-    // 헤더: 'Content-Type': 'multipart/form-data'
-    // 성공 시 localStorage의 'user' 업데이트
     updateProfile: async (userId, formData) => {
-        // TODO: API 호출을 완성하세요
-        // 1. api.put() 호출
-        // 2. res.data가 있으면 localStorage.setItem('user', JSON.stringify(res.data))
-        // 3. res.data 반환
         try {
             const res = await api.put(`/auth/profile/edit`, formData, {
                 headers: {
@@ -247,39 +241,25 @@ const apiService = {
         }
     },
 
-    // TODO 1: 유저 검색 API 호출 함수 구현
-    // GET /api/users/search?q={query}
     searchUsers: async (query) => {
-        // 요구사항:
-        // 1. query가 없으면 빈 배열 반환
         if(!query) {
             return [];
         }
         try {
-            // 2. api.get()을 사용하여 `/users/search?q=${query}` 호출
-            // 3. 성공 시 res.data 반환
             const res = await api.get(`/users/search?q=${encodeURIComponent(query)}`)
             return res.data;
         } catch (err) {
-            // 4. 에러 발생 시 콘솔에 로그 출력 후 빈 배열 반환
-            // q=${encodeURIComponent(query)}
             console.error("❌ 유저 리스트 검색 실패: ", err.response?.data || err.message());
             return [];
         }
 
     },
 
-    // TODO 2: 유저네임으로 유저 조회 API 호출 함수 구현
-    // GET /api/users/username/{username}
     getUserByUsername: async (username) => {
-        // 요구사항:
         try {
-            // 1. api.get()을 사용하여 `/users/username/${username}` 호출
             const res = await api.get(`/users/username/${username}`);
-            // 2. 성공 시 res.data 반환
             return res.data;
         } catch(err) {
-            // 3. 에러 발생 시 콘솔에 로그 출력 후 null 반환
             console.error("❌ 사용자명으로 사용자 검색 실패: ", err.response?.data || err.message());
             return null;
         }
