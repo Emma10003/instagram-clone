@@ -28,8 +28,7 @@ const SearchModal = ({ isOpen, onClose }) => {
 
     useEffect(() => {
         const searchUsers = async () => {
-            // 여기에 코드 작성
-            if(searchQuery.trim().length === 0) {
+            if(searchQuery.trim.isEmpty) {
                 setSearchQuery([]);
                 return;
             }
@@ -111,7 +110,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <div className="search-results-container">
-                    {searchQuery.trim() === '' ? (
+                    {searchQuery.trim === '' ? (
                         // 최근 검색 표시
                         <>
                             {recentSearches.length > 0 && (
@@ -156,7 +155,24 @@ const SearchModal = ({ isOpen, onClose }) => {
                             ) : searchResults.length > 0 ? (
                                 /* TODO 8: searchResults 배열을 map으로 순회하여 검색 결과 표시 */
                                 /* 힌트: 위의 최근 검색과 동일한 구조이지만 X 버튼은 필요 없음 */
-                                null
+                                    searchResults.map(user => (
+                                        <div key={user.userId}
+                                             className="search-result-item"
+                                             onClick={() => handleUserClick(user)}
+                                        >
+                                            <img src={getImageUrl(user.userAvatar)}
+                                                 className="search-result-avatar"
+                                             />
+                                            <div className="search-result-info">
+                                                <div className="search-result-username">
+                                                    {user.userName}
+                                                </div>
+                                                <div className="search-result-fullname">
+                                                    {user.userFullname}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
                             ) : (
                                 <div className="search-empty">
                                     <p>검색 결과가 없습니다.</p>
@@ -171,93 +187,3 @@ const SearchModal = ({ isOpen, onClose }) => {
 };
 
 export default SearchModal;
-
-
-/*
-=================================================================
-TODO 체크리스트 및 힌트
-=================================================================
-
-TODO 1: 상태 변수 선언
-- useState로 4개의 상태 변수 선언
-
-TODO 2: 최근 검색 기록 불러오기
-힌트 코드:
-if (isOpen) {
-    const saved = localStorage.getItem('recentSearches');
-    if (saved) {
-        setRecentSearches(JSON.parse(saved));
-    }
-    setTimeout(() => {
-        inputRef.current?.focus();
-    }, 100);
-}
-
-TODO 3: 검색 실행 로직
-힌트 코드:
-if (searchQuery.trim().length === 0) {
-    setSearchResults([]);
-    return;
-}
-setIsLoading(true);
-try {
-    const results = await apiService.searchUsers(searchQuery);
-    setSearchResults(results || []);
-} catch (err) {
-    console.error('검색 실패:', err);
-    setSearchResults([]);
-} finally {
-    setIsLoading(false);
-}
-
-TODO 4: 유저 클릭 핸들러
-힌트 코드:
-const newRecent = [
-    user,
-    ...recentSearches.filter(u => u.userId !== user.userId)
-].slice(0, 10);
-setRecentSearches(newRecent);
-localStorage.setItem('recentSearches', JSON.stringify(newRecent));
-navigate(`/myfeed?userId=${user.userId}`);
-onClose();
-
-TODO 5: 최근 검색 삭제 핸들러
-힌트 코드:
-e.stopPropagation();
-const filtered = recentSearches.filter(u => u.userId !== userId);
-setRecentSearches(filtered);
-localStorage.setItem('recentSearches', JSON.stringify(filtered));
-
-TODO 6: 조건부 렌더링 ( 완료)
-- 삼항 연산자로 분기 처리
-
-TODO 7: 최근 검색 목록 렌더링
-힌트 코드:
-{recentSearches.map((user) => (
-    <div
-        key={user.userId}
-        className="search-result-item"
-        onClick={() => handleUserClick(user)}
-    >
-        <img
-            src={getImageUrl(user.userAvatar)}
-            alt={user.userName}
-            className="search-result-avatar"
-        />
-        <div className="search-result-info">
-            <div className="search-result-username">{user.userName}</div>
-            <div className="search-result-fullname">{user.userFullname}</div>
-        </div>
-        <X
-            size={16}
-            className="search-remove-icon"
-            onClick={(e) => removeRecentSearch(user.userId, e)}
-        />
-    </div>
-))}
-
-TODO 8: 검색 결과 렌더링
-힌트: TODO 7과 거의 동일하지만 X 버튼만 제거
-
-=================================================================
-*/
