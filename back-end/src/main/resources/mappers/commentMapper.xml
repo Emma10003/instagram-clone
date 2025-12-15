@@ -6,6 +6,12 @@
 
 <mapper namespace="com.instagram.comment.model.mapper.CommentMapper">
     <!-- 특정 게시물 댓글 목록 조회 -->
+    <select id="selectCommentsByPostId" resultType="Comment">
+        SELECT *
+        FROM comment_detail_view
+        WHERE post_id = ${postId}
+        ORDER BY created_at
+    </select>
 
     <!-- 댓글 작성 -->
     <insert id="insertComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="commentId" keyColumn="comment_id">
