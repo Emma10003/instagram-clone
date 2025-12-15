@@ -18,7 +18,6 @@ public class UserSearchController {
 
     private final UserService userService;
 
-    // TODO 9: 유저 검색 API
     @GetMapping("/search")
     public ResponseEntity<List<User>> searchUsers(@RequestParam("q") String query) {
         // 여기에 코드 작성
@@ -31,14 +30,12 @@ public class UserSearchController {
         }
     }
 
-    // TODO 10: 유저네임으로 조회 API
     @GetMapping("/username/{userName}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String userName) {
-        // 여기에 코드 작성
         try {
             User u = userService.getUserByUsername(userName);
             if(u == null) {
-                return ResponseEntity.notFound().build();  // status 404
+                return ResponseEntity.notFound().build();
             }
             return ResponseEntity.ok(u);
         } catch (Exception e) {

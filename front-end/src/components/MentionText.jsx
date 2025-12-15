@@ -47,7 +47,7 @@ const MentionText = ({ text, className = '' }) => {
         e.preventDefault();
         e.stopPropagation();
         try {
-            const u = apiService.getUserByUsername(username);
+            const u = await apiService.getUserByUsername(username);
             if(u && u.userId) {
                 navigate(`/myfeed?userId=${u.userId}`);
             }
@@ -63,18 +63,22 @@ const MentionText = ({ text, className = '' }) => {
             {parts.map((part, index) => {
                 if (part.type === 'mention') {
                     return (
-                        <span
-                            key={index}
-                            className="mention-link"
-                            onClick={(e) => handleMentionClick(part.username, e)}
-                            style={{
-                                color: '#0095f6',
-                                cursor: 'pointer',
-                                fontWeight: 600
-                            }}
-                        >
-                            {part.content}
-                        </span>
+                        <>
+                            <span
+                                key={index}
+                                className="mention-link"
+                                onClick={
+                                    (e) => handleMentionClick(part.username, e)
+                                }
+                                style={{
+                                    color: '#0095f6',
+                                    cursor: 'pointer',
+                                    fontWeight: 600
+                                }}
+                            >
+                                {part.content}
+                            </span>
+                        </>
                     );
                 }
                 return <span key={index}>{part.content}</span>;

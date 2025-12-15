@@ -2474,3 +2474,530 @@ gmail, Seoul, Korea, 3]
 2025-12-12 16:48:45.139  INFO 15696 --- [http-nio-9000-exec-9] c.i.s.model.service.StoryServiceImpl     : 💡 조회된 스토리 개수: 1
 2025-12-12 16:48:45.139  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
 2025-12-12 16:48:45.139  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 16:53:26.908  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 16:53:26.909  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 16:53:26.910  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Parameter : [g]
+2025-12-12 16:53:26.920  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Running Time : 10ms
+2025-12-12 16:53:26.920  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 16:53:27.035  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 16:53:27.035  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 16:53:27.035  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : Parameter : [gi]
+2025-12-12 16:53:27.039  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : Running Time : 4ms
+2025-12-12 16:53:27.039  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 16:53:27.135  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 16:53:27.135  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 16:53:27.135  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Parameter : [gil]
+2025-12-12 16:53:27.140  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Running Time : 5ms
+2025-12-12 16:53:27.140  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 16:53:44.932  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : [PostController.createPost()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 16:53:44.934  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ========== PostServiceImpl.createPost() 서비스 호출 ==========
+2025-12-12 16:53:44.934  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Parameter : [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@7ab039ac, @gildong  프로필 사진, Seoul, Korea, 3]
+2025-12-12 16:53:44.979  INFO 15696 --- [http-nio-9000-exec-9] c.i.common.util.FileUploadService        : ✅ 게시물 이미지 업로드 성공: yusung 프로필.png -> 4187802d-7e1b-4d48-be2a-cde1ce940339.png
+2025-12-12 16:53:44.985  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Running Time : 51ms
+2025-12-12 16:53:44.985  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 16:53:45.969  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : [PostController.getAllPosts()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 16:53:45.969  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ========== PostServiceImpl.getAllPosts() 서비스 호출 ==========
+2025-12-12 16:53:45.969  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Parameter : [3]
+2025-12-12 16:53:45.969  INFO 15696 --- [http-nio-9000-exec-1] c.i.post.model.service.PostServiceImpl   : ✅ PostServiceImpl: 서비스 레이어 도달 성공
+2025-12-12 16:53:46.006  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Running Time : 37ms
+2025-12-12 16:53:46.006  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 16:53:46.006  INFO 15696 --- [http-nio-9000-exec-1] c.i.post.controller.PostController       : ✅ PostController: 모든 게시물 불러오기 성공
+2025-12-12 16:53:46.011  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : [PostController.getAllPosts()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 16:53:46.012  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ========== PostServiceImpl.getAllPosts() 서비스 호출 ==========
+2025-12-12 16:53:46.012  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Parameter : [3]
+2025-12-12 16:53:46.013  INFO 15696 --- [http-nio-9000-exec-4] c.i.post.model.service.PostServiceImpl   : ✅ PostServiceImpl: 서비스 레이어 도달 성공
+2025-12-12 16:53:46.060  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Running Time : 48ms
+2025-12-12 16:53:46.060  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 16:53:46.060  INFO 15696 --- [http-nio-9000-exec-4] c.i.post.controller.PostController       : ✅ PostController: 모든 게시물 불러오기 성공
+2025-12-12 16:53:46.077  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : [StoryController.getAllStories()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 16:53:46.077  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ========== StoryServiceImpl.getAllStories() 서비스 호출 ==========
+2025-12-12 16:53:46.077  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Parameter : []
+2025-12-12 16:53:46.078  INFO 15696 --- [http-nio-9000-exec-5] c.i.s.model.service.StoryServiceImpl     : 💡 모든 활성 스토리 조회
+2025-12-12 16:53:46.079  INFO 15696 --- [http-nio-9000-exec-5] c.i.s.model.service.StoryServiceImpl     : 💡 조회된 스토리 개수: 1
+2025-12-12 16:53:46.079  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 16:53:46.079  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 16:53:46.331  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : [StoryController.getAllStories()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 16:53:46.331  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : ========== StoryServiceImpl.getAllStories() 서비스 호출 ==========
+2025-12-12 16:53:46.332  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : Parameter : []
+2025-12-12 16:53:46.332  INFO 15696 --- [http-nio-9000-exec-3] c.i.s.model.service.StoryServiceImpl     : 💡 모든 활성 스토리 조회
+2025-12-12 16:53:46.332  INFO 15696 --- [http-nio-9000-exec-3] c.i.s.model.service.StoryServiceImpl     : 💡 조회된 스토리 개수: 1
+2025-12-12 16:53:46.333  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 16:53:46.333  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 16:54:24.877  INFO 15696 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-12-12 16:54:24.923  INFO 15696 --- [Thread-86] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-12 16:54:24.931  INFO 15696 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-12 16:54:24.935  INFO 15696 --- [Thread-86] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2025-12-12 16:54:24.936  INFO 15696 --- [Thread-86] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@4691ea86]]
+2025-12-12 16:54:24.936  INFO 15696 --- [Thread-86] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2025-12-12 16:54:24.956  INFO 15696 --- [Thread-86] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-12 16:54:24.975  INFO 15696 --- [Thread-86] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown initiated...
+2025-12-12 16:54:24.992  INFO 15696 --- [Thread-86] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown completed.
+2025-12-12 16:54:25.753  INFO 15696 --- [restartedMain] com.instagram.BackEndApplication         : Starting BackEndApplication using Java 21.0.8 with PID 15696 (E:\취업준비\더조은컴퓨터_KDT_강의내용\instagram-clone\back-end\build\classes\java\main started by emma1 in E:\취업준비\더조은컴퓨터_KDT_강의내용\instagram-clone\back-end)
+2025-12-12 16:54:25.753  INFO 15696 --- [restartedMain] com.instagram.BackEndApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-12-12 16:54:26.614  INFO 15696 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-12 16:54:26.626  INFO 15696 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 0 JPA repository interfaces.
+2025-12-12 16:54:27.092  INFO 15696 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
+2025-12-12 16:54:27.095  INFO 15696 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-12 16:54:27.095  INFO 15696 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-12 16:54:27.131  INFO 15696 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-12-12 16:54:27.132  INFO 15696 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1369 ms
+2025-12-12 16:54:27.402  INFO 15696 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-12 16:54:27.406  INFO 15696 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-12 16:54:27.422  INFO 15696 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-12 16:54:27.423  INFO 15696 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Starting...
+2025-12-12 16:54:27.499  INFO 15696 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : MyHikariCP - Added connection org.postgresql.jdbc.PgConnection@a596984
+2025-12-12 16:54:27.499  INFO 15696 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Start completed.
+2025-12-12 16:54:27.516  INFO 15696 --- [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (MyHikariCP)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-12 16:54:27.543  INFO 15696 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-12 16:54:27.543  INFO 15696 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-12 16:54:27.915  WARN 15696 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-12 16:54:28.008  WARN 15696 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: b7e8d5fb-2b41-469c-80ec-c1a1518cc185
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-12-12 16:54:28.016  INFO 15696 --- [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-12-12 16:54:28.663  WARN 15696 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-12-12 16:54:29.416  INFO 15696 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-12-12 16:54:29.505  INFO 15696 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-12 16:54:29.537  INFO 15696 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-12-12 16:54:29.537  INFO 15696 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2e418a00]]
+2025-12-12 16:54:29.538  INFO 15696 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-12-12 16:54:29.540  INFO 15696 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path '/'
+2025-12-12 16:54:29.549  INFO 15696 --- [restartedMain] com.instagram.BackEndApplication         : Started BackEndApplication in 4.096 seconds (process running for 26511.583)
+2025-12-12 16:54:29.551  INFO 15696 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-12-12 16:55:29.536  INFO 15696 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2025-12-12 16:55:35.558  INFO 15696 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-12-12 16:55:35.560  INFO 15696 --- [Thread-90] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-12 16:55:35.565  INFO 15696 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-12 16:55:35.567  INFO 15696 --- [Thread-90] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2025-12-12 16:55:35.568  INFO 15696 --- [Thread-90] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2e418a00]]
+2025-12-12 16:55:35.568  INFO 15696 --- [Thread-90] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2025-12-12 16:55:35.570  INFO 15696 --- [Thread-90] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-12 16:55:35.572  INFO 15696 --- [Thread-90] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown initiated...
+2025-12-12 16:55:35.575  INFO 15696 --- [Thread-90] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown completed.
+2025-12-12 16:55:35.657  INFO 15696 --- [restartedMain] com.instagram.BackEndApplication         : Starting BackEndApplication using Java 21.0.8 with PID 15696 (E:\취업준비\더조은컴퓨터_KDT_강의내용\instagram-clone\back-end\build\classes\java\main started by emma1 in E:\취업준비\더조은컴퓨터_KDT_강의내용\instagram-clone\back-end)
+2025-12-12 16:55:35.657  INFO 15696 --- [restartedMain] com.instagram.BackEndApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-12-12 16:55:36.029  INFO 15696 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-12 16:55:36.037  INFO 15696 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
+2025-12-12 16:55:36.301  INFO 15696 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
+2025-12-12 16:55:36.302  INFO 15696 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-12 16:55:36.302  INFO 15696 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-12 16:55:36.330  INFO 15696 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-12-12 16:55:36.330  INFO 15696 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 672 ms
+2025-12-12 16:55:36.521  INFO 15696 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-12 16:55:36.523  INFO 15696 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-12 16:55:36.538  INFO 15696 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-12 16:55:36.538  INFO 15696 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Starting...
+2025-12-12 16:55:36.624  INFO 15696 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : MyHikariCP - Added connection org.postgresql.jdbc.PgConnection@5c0e06a3
+2025-12-12 16:55:36.625  INFO 15696 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Start completed.
+2025-12-12 16:55:36.636  INFO 15696 --- [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (MyHikariCP)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-12 16:55:36.656  INFO 15696 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-12 16:55:36.656  INFO 15696 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-12 16:55:36.957  WARN 15696 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-12 16:55:37.035  WARN 15696 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: a7d96fc8-3a06-4b92-8698-703b627a3659
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-12-12 16:55:37.039  INFO 15696 --- [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-12-12 16:55:37.579  WARN 15696 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-12-12 16:55:38.273  INFO 15696 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-12-12 16:55:38.355  INFO 15696 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-12 16:55:38.381  INFO 15696 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-12-12 16:55:38.381  INFO 15696 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@3623dbf0]]
+2025-12-12 16:55:38.382  INFO 15696 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-12-12 16:55:38.384  INFO 15696 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path '/'
+2025-12-12 16:55:38.391  INFO 15696 --- [restartedMain] com.instagram.BackEndApplication         : Started BackEndApplication in 2.766 seconds (process running for 26580.426)
+2025-12-12 16:55:38.393  INFO 15696 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-12-12 16:55:47.898  INFO 15696 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-12-12 16:55:47.900  INFO 15696 --- [Thread-94] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-12 16:55:47.905  INFO 15696 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-12 16:55:47.906  INFO 15696 --- [Thread-94] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2025-12-12 16:55:47.906  INFO 15696 --- [Thread-94] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@3623dbf0]]
+2025-12-12 16:55:47.906  INFO 15696 --- [Thread-94] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2025-12-12 16:55:47.909  INFO 15696 --- [Thread-94] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-12 16:55:47.909  INFO 15696 --- [Thread-94] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown initiated...
+2025-12-12 16:55:47.911  INFO 15696 --- [Thread-94] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown completed.
+2025-12-12 16:55:47.990  INFO 15696 --- [restartedMain] com.instagram.BackEndApplication         : Starting BackEndApplication using Java 21.0.8 with PID 15696 (E:\취업준비\더조은컴퓨터_KDT_강의내용\instagram-clone\back-end\build\classes\java\main started by emma1 in E:\취업준비\더조은컴퓨터_KDT_강의내용\instagram-clone\back-end)
+2025-12-12 16:55:47.990  INFO 15696 --- [restartedMain] com.instagram.BackEndApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-12-12 16:55:48.372  INFO 15696 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-12 16:55:48.380  INFO 15696 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
+2025-12-12 16:55:48.702  INFO 15696 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
+2025-12-12 16:55:48.703  INFO 15696 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-12 16:55:48.703  INFO 15696 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-12 16:55:48.743  INFO 15696 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2025-12-12 16:55:48.743  INFO 15696 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 751 ms
+2025-12-12 16:55:48.937  INFO 15696 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-12 16:55:48.939  INFO 15696 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-12 16:55:48.948  INFO 15696 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-12 16:55:48.949  INFO 15696 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Starting...
+2025-12-12 16:55:49.029  INFO 15696 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : MyHikariCP - Added connection org.postgresql.jdbc.PgConnection@129bacec
+2025-12-12 16:55:49.029  INFO 15696 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Start completed.
+2025-12-12 16:55:49.039  INFO 15696 --- [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (MyHikariCP)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-12 16:55:49.057  INFO 15696 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-12 16:55:49.057  INFO 15696 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-12 16:55:49.339  WARN 15696 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-12 16:55:49.414  WARN 15696 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 5af80e52-f583-4d7f-a752-8eea4649e338
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-12-12 16:55:49.418  INFO 15696 --- [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-12-12 16:55:49.966  WARN 15696 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-12-12 16:55:50.597  INFO 15696 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-12-12 16:55:50.684  INFO 15696 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-12 16:55:50.710  INFO 15696 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-12-12 16:55:50.710  INFO 15696 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@51ac8b43]]
+2025-12-12 16:55:50.711  INFO 15696 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-12-12 16:55:50.713  INFO 15696 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path '/'
+2025-12-12 16:55:50.720  INFO 15696 --- [restartedMain] com.instagram.BackEndApplication         : Started BackEndApplication in 2.759 seconds (process running for 26592.754)
+2025-12-12 16:55:50.722  INFO 15696 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-12-12 16:56:50.711  INFO 15696 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2025-12-12 17:10:19.293  INFO 15696 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-12 17:10:19.293  INFO 15696 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-12 17:10:19.295  INFO 15696 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-12-12 17:10:19.316  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : [UserSearchController.getUserByUsername()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:10:19.317  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.getUserByUsername() 서비스 호출 ==========
+2025-12-12 17:10:19.317  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Parameter : [gildong]
+2025-12-12 17:10:19.327  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Running Time : 10ms
+2025-12-12 17:10:19.327  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:10:23.437  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : [UserSearchController.getUserByUsername()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:10:23.437  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.getUserByUsername() 서비스 호출 ==========
+2025-12-12 17:10:23.437  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Parameter : [gildong]
+2025-12-12 17:10:23.438  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:10:23.439  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:10:25.548  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : [UserSearchController.getUserByUsername()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:10:25.548  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.getUserByUsername() 서비스 호출 ==========
+2025-12-12 17:10:25.548  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : Parameter : [gildong]
+2025-12-12 17:10:25.549  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:10:25.549  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:10:25.741  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : [UserSearchController.getUserByUsername()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:10:25.741  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.getUserByUsername() 서비스 호출 ==========
+2025-12-12 17:10:25.741  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Parameter : [gildong]
+2025-12-12 17:10:25.742  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:10:25.742  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:10:27.246  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : [UserSearchController.getUserByUsername()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:10:27.246  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.getUserByUsername() 서비스 호출 ==========
+2025-12-12 17:10:27.246  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Parameter : [gildong]
+2025-12-12 17:10:27.248  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Running Time : 2ms
+2025-12-12 17:10:27.248  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:10:28.354  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : [UserSearchController.getUserByUsername()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:10:28.355  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.getUserByUsername() 서비스 호출 ==========
+2025-12-12 17:10:28.355  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Parameter : [gildong]
+2025-12-12 17:10:28.356  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:10:28.356  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:52.299  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:52.299  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:52.299  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Parameter : [r]
+2025-12-12 17:17:52.310  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Running Time : 11ms
+2025-12-12 17:17:52.310  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:52.401  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:52.401  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:52.401  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Parameter : [rl]
+2025-12-12 17:17:52.402  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:17:52.402  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:52.503  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:52.504  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:52.504  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Parameter : [rlf]
+2025-12-12 17:17:52.504  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Running Time : 0ms
+2025-12-12 17:17:52.505  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:52.846  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:52.846  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:52.846  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Parameter : [rl]
+2025-12-12 17:17:52.847  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:17:52.847  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:52.981  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:52.981  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:52.981  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Parameter : [r]
+2025-12-12 17:17:52.982  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:17:52.982  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:53.263  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:53.264  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:53.264  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Parameter : [ㄱ]
+2025-12-12 17:17:53.264  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Running Time : 0ms
+2025-12-12 17:17:53.264  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:53.388  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:53.389  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:53.389  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Parameter : [기]
+2025-12-12 17:17:53.390  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:17:53.390  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:53.465  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:53.465  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:53.465  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Parameter : [길]
+2025-12-12 17:17:53.466  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:17:53.466  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:53.628  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:53.628  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:53.628  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Parameter : [길ㄷ]
+2025-12-12 17:17:53.631  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Running Time : 3ms
+2025-12-12 17:17:53.631  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:53.756  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:53.756  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:53.756  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Parameter : [길도]
+2025-12-12 17:17:53.762  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Running Time : 6ms
+2025-12-12 17:17:53.762  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:17:53.822  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:17:53.822  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:17:53.822  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Parameter : [길동]
+2025-12-12 17:17:53.822  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Running Time : 0ms
+2025-12-12 17:17:53.824  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:20:20.254  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:20:20.254  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:20:20.254  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Parameter : [g]
+2025-12-12 17:20:20.255  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:20:20.255  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:20:21.490  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:20:21.490  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:20:21.490  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : Parameter : [d]
+2025-12-12 17:20:21.492  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : Running Time : 2ms
+2025-12-12 17:20:21.492  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:20:22.212  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:20:22.212  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:20:22.212  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Parameter : [e]
+2025-12-12 17:20:22.216  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : Running Time : 4ms
+2025-12-12 17:20:22.216  INFO 15696 --- [http-nio-9000-exec-7] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:20:23.097  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : [UserSearchController.searchUsers()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:20:23.097  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.searchUsers() 서비스 호출 ==========
+2025-12-12 17:20:23.097  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Parameter : [E]
+2025-12-12 17:20:23.098  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Running Time : 1ms
+2025-12-12 17:20:23.098  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:26:50.724  INFO 15696 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
+2025-12-12 17:55:32.611  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : [PostController.getAllPosts()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:55:32.623  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ========== PostServiceImpl.getAllPosts() 서비스 호출 ==========
+2025-12-12 17:55:32.623  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Parameter : [3]
+2025-12-12 17:55:32.627  INFO 15696 --- [http-nio-9000-exec-5] c.i.post.model.service.PostServiceImpl   : ✅ PostServiceImpl: 서비스 레이어 도달 성공
+2025-12-12 17:55:32.921  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Running Time : 298ms
+2025-12-12 17:55:32.921  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:55:32.922  INFO 15696 --- [http-nio-9000-exec-5] c.i.post.controller.PostController       : ✅ PostController: 모든 게시물 불러오기 성공
+2025-12-12 17:55:32.963  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : [PostController.getAllPosts()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:55:32.964  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ========== PostServiceImpl.getAllPosts() 서비스 호출 ==========
+2025-12-12 17:55:32.964  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Parameter : [3]
+2025-12-12 17:55:32.964  INFO 15696 --- [http-nio-9000-exec-2] c.i.post.model.service.PostServiceImpl   : ✅ PostServiceImpl: 서비스 레이어 도달 성공
+2025-12-12 17:55:33.062  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Running Time : 98ms
+2025-12-12 17:55:33.062  INFO 15696 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:55:33.062  INFO 15696 --- [http-nio-9000-exec-2] c.i.post.controller.PostController       : ✅ PostController: 모든 게시물 불러오기 성공
+2025-12-12 17:55:33.119  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : [StoryController.getAllStories()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:55:33.120  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : ========== StoryServiceImpl.getAllStories() 서비스 호출 ==========
+2025-12-12 17:55:33.120  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : Parameter : []
+2025-12-12 17:55:33.120  INFO 15696 --- [http-nio-9000-exec-8] c.i.s.model.service.StoryServiceImpl     : 💡 모든 활성 스토리 조회
+2025-12-12 17:55:33.131  INFO 15696 --- [http-nio-9000-exec-8] c.i.s.model.service.StoryServiceImpl     : 💡 조회된 스토리 개수: 1
+2025-12-12 17:55:33.131  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : Running Time : 11ms
+2025-12-12 17:55:33.131  INFO 15696 --- [http-nio-9000-exec-8] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:55:33.403  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : [StoryController.getAllStories()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:55:33.403  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ========== StoryServiceImpl.getAllStories() 서비스 호출 ==========
+2025-12-12 17:55:33.403  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Parameter : []
+2025-12-12 17:55:33.403  INFO 15696 --- [http-nio-9000-exec-6] c.i.s.model.service.StoryServiceImpl     : 💡 모든 활성 스토리 조회
+2025-12-12 17:55:33.408  INFO 15696 --- [http-nio-9000-exec-6] c.i.s.model.service.StoryServiceImpl     : 💡 조회된 스토리 개수: 1
+2025-12-12 17:55:33.408  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Running Time : 5ms
+2025-12-12 17:55:33.408  INFO 15696 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:55:52.307  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : [PostController.getAllPosts()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:55:52.308  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ========== PostServiceImpl.getAllPosts() 서비스 호출 ==========
+2025-12-12 17:55:52.308  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Parameter : [3]
+2025-12-12 17:55:52.308  INFO 15696 --- [http-nio-9000-exec-4] c.i.post.model.service.PostServiceImpl   : ✅ PostServiceImpl: 서비스 레이어 도달 성공
+2025-12-12 17:55:52.339  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Running Time : 31ms
+2025-12-12 17:55:52.339  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:55:52.339  INFO 15696 --- [http-nio-9000-exec-4] c.i.post.controller.PostController       : ✅ PostController: 모든 게시물 불러오기 성공
+2025-12-12 17:55:52.360  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : [PostController.getAllPosts()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:55:52.361  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : ========== PostServiceImpl.getAllPosts() 서비스 호출 ==========
+2025-12-12 17:55:52.361  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : Parameter : [3]
+2025-12-12 17:55:52.361  INFO 15696 --- [http-nio-9000-exec-10] c.i.post.model.service.PostServiceImpl   : ✅ PostServiceImpl: 서비스 레이어 도달 성공
+2025-12-12 17:55:52.395  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : Running Time : 34ms
+2025-12-12 17:55:52.395  INFO 15696 --- [http-nio-9000-exec-10] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:55:52.395  INFO 15696 --- [http-nio-9000-exec-10] c.i.post.controller.PostController       : ✅ PostController: 모든 게시물 불러오기 성공
+2025-12-12 17:55:52.430  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : [StoryController.getAllStories()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:55:52.430  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ========== StoryServiceImpl.getAllStories() 서비스 호출 ==========
+2025-12-12 17:55:52.430  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Parameter : []
+2025-12-12 17:55:52.430  INFO 15696 --- [http-nio-9000-exec-9] c.i.s.model.service.StoryServiceImpl     : 💡 모든 활성 스토리 조회
+2025-12-12 17:55:52.433  INFO 15696 --- [http-nio-9000-exec-9] c.i.s.model.service.StoryServiceImpl     : 💡 조회된 스토리 개수: 1
+2025-12-12 17:55:52.433  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Running Time : 3ms
+2025-12-12 17:55:52.433  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:55:52.733  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : [StoryController.getAllStories()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 17:55:52.733  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : ========== StoryServiceImpl.getAllStories() 서비스 호출 ==========
+2025-12-12 17:55:52.733  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : Parameter : []
+2025-12-12 17:55:52.733  INFO 15696 --- [http-nio-9000-exec-3] c.i.s.model.service.StoryServiceImpl     : 💡 모든 활성 스토리 조회
+2025-12-12 17:55:52.736  INFO 15696 --- [http-nio-9000-exec-3] c.i.s.model.service.StoryServiceImpl     : 💡 조회된 스토리 개수: 1
+2025-12-12 17:55:52.736  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : Running Time : 3ms
+2025-12-12 17:55:52.736  INFO 15696 --- [http-nio-9000-exec-3] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 17:56:50.731  INFO 15696 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 3, active threads = 1, queued tasks = 0, completed tasks = 2]
+2025-12-12 18:04:41.466  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : [PostController.getAllPosts()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 18:04:41.468  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ========== PostServiceImpl.getAllPosts() 서비스 호출 ==========
+2025-12-12 18:04:41.468  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Parameter : [3]
+2025-12-12 18:04:41.468  INFO 15696 --- [http-nio-9000-exec-1] c.i.post.model.service.PostServiceImpl   : ✅ PostServiceImpl: 서비스 레이어 도달 성공
+2025-12-12 18:04:41.495  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Running Time : 27ms
+2025-12-12 18:04:41.495  INFO 15696 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:04:41.495  INFO 15696 --- [http-nio-9000-exec-1] c.i.post.controller.PostController       : ✅ PostController: 모든 게시물 불러오기 성공
+2025-12-12 18:04:41.501  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : [PostController.getAllPosts()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 18:04:41.501  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ========== PostServiceImpl.getAllPosts() 서비스 호출 ==========
+2025-12-12 18:04:41.502  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Parameter : [3]
+2025-12-12 18:04:41.502  INFO 15696 --- [http-nio-9000-exec-9] c.i.post.model.service.PostServiceImpl   : ✅ PostServiceImpl: 서비스 레이어 도달 성공
+2025-12-12 18:04:41.536  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : Running Time : 34ms
+2025-12-12 18:04:41.536  INFO 15696 --- [http-nio-9000-exec-9] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:04:41.536  INFO 15696 --- [http-nio-9000-exec-9] c.i.post.controller.PostController       : ✅ PostController: 모든 게시물 불러오기 성공
+2025-12-12 18:04:41.580  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : [StoryController.getAllStories()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 18:04:41.581  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ========== StoryServiceImpl.getAllStories() 서비스 호출 ==========
+2025-12-12 18:04:41.581  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Parameter : []
+2025-12-12 18:04:41.581  INFO 15696 --- [http-nio-9000-exec-5] c.i.s.model.service.StoryServiceImpl     : 💡 모든 활성 스토리 조회
+2025-12-12 18:04:41.583  INFO 15696 --- [http-nio-9000-exec-5] c.i.s.model.service.StoryServiceImpl     : 💡 조회된 스토리 개수: 1
+2025-12-12 18:04:41.583  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Running Time : 2ms
+2025-12-12 18:04:41.583  INFO 15696 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:04:41.856  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : [StoryController.getAllStories()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 18:04:41.856  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ========== StoryServiceImpl.getAllStories() 서비스 호출 ==========
+2025-12-12 18:04:41.856  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Parameter : []
+2025-12-12 18:04:41.856  INFO 15696 --- [http-nio-9000-exec-4] c.i.s.model.service.StoryServiceImpl     : 💡 모든 활성 스토리 조회
+2025-12-12 18:04:41.858  INFO 15696 --- [http-nio-9000-exec-4] c.i.s.model.service.StoryServiceImpl     : 💡 조회된 스토리 개수: 1
+2025-12-12 18:04:41.858  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Running Time : 2ms
+2025-12-12 18:04:41.858  INFO 15696 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:06.099  INFO 15696 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-12 18:06:06.107  INFO 15696 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-12 18:06:06.108  INFO 15696 --- [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2025-12-12 18:06:06.108  INFO 15696 --- [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@51ac8b43]]
+2025-12-12 18:06:06.108  INFO 15696 --- [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2025-12-12 18:06:06.115  INFO 15696 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-12 18:06:06.118  INFO 15696 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown initiated...
+2025-12-12 18:06:06.123  INFO 15696 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown completed.
+2025-12-12 18:06:10.439  INFO 23580 --- [restartedMain] com.instagram.BackEndApplication         : Starting BackEndApplication using Java 21.0.8 with PID 23580 (E:\취업준비\더조은컴퓨터_KDT_강의내용\instagram-clone\back-end\build\classes\java\main started by emma1 in E:\취업준비\더조은컴퓨터_KDT_강의내용\instagram-clone\back-end)
+2025-12-12 18:06:10.442  INFO 23580 --- [restartedMain] com.instagram.BackEndApplication         : No active profile set, falling back to 1 default profile: "default"
+2025-12-12 18:06:10.493  INFO 23580 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-12-12 18:06:10.493  INFO 23580 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-12-12 18:06:12.224  INFO 23580 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-12 18:06:12.249  INFO 23580 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 JPA repository interfaces.
+2025-12-12 18:06:13.480  INFO 23580 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
+2025-12-12 18:06:13.496  INFO 23580 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-12 18:06:13.497  INFO 23580 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-12 18:06:13.573  INFO 23580 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-12 18:06:13.574  INFO 23580 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3079 ms
+2025-12-12 18:06:14.346  INFO 23580 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-12 18:06:14.425  INFO 23580 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-12-12 18:06:14.469  INFO 23580 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-12 18:06:14.859  INFO 23580 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-12 18:06:14.929  INFO 23580 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Starting...
+2025-12-12 18:06:15.196  INFO 23580 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : MyHikariCP - Added connection org.postgresql.jdbc.PgConnection@b2c1106
+2025-12-12 18:06:15.199  INFO 23580 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Start completed.
+2025-12-12 18:06:15.304  INFO 23580 --- [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (MyHikariCP)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-12 18:06:15.696  INFO 23580 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-12 18:06:15.704  INFO 23580 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-12 18:06:16.290  WARN 23580 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-12 18:06:16.396  WARN 23580 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 87ead43a-cf5f-4416-9943-ed3579ec916a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-12-12 18:06:16.406  INFO 23580 --- [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-12-12 18:06:17.663  WARN 23580 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-12-12 18:06:18.956  INFO 23580 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-12-12 18:06:19.122  INFO 23580 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-12 18:06:19.221  INFO 23580 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-12-12 18:06:19.222  INFO 23580 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@57cf4ed6]]
+2025-12-12 18:06:19.223  INFO 23580 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-12-12 18:06:19.250  INFO 23580 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path '/'
+2025-12-12 18:06:19.265  INFO 23580 --- [restartedMain] com.instagram.BackEndApplication         : Started BackEndApplication in 9.644 seconds (process running for 10.826)
+2025-12-12 18:06:19.614  INFO 23580 --- [RMI TCP Connection(6)-192.168.1.103] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-12 18:06:19.616  INFO 23580 --- [RMI TCP Connection(6)-192.168.1.103] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-12 18:06:19.623  INFO 23580 --- [RMI TCP Connection(6)-192.168.1.103] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2025-12-12 18:06:27.589  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : [UserController.kakaoLogin()] 요청 / ip : 127.0.0.1
+2025-12-12 18:06:27.589  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : [UserController.kakaoLogin()] 요청 / ip : 127.0.0.1
+2025-12-12 18:06:27.590  INFO 23580 --- [http-nio-9000-exec-2] c.i.user.controller.UserController       : 카카오 로그인 요청 - code: 19Az9kAlW4cmM2Tx-yxRrUnKwR5HuGKS7h0Ep_gRrFhWcudox1yOcQAAAAQKFxJVAAABmxHPzb-UJG13ldIf8A
+2025-12-12 18:06:27.590  INFO 23580 --- [http-nio-9000-exec-1] c.i.user.controller.UserController       : 카카오 로그인 요청 - code: 19Az9kAlW4cmM2Tx-yxRrUnKwR5HuGKS7h0Ep_gRrFhWcudox1yOcQAAAAQKFxJVAAABmxHPzb-UJG13ldIf8A
+2025-12-12 18:06:27.590  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ========== KakaoServiceImpl.getAccessToken() 서비스 호출 ==========
+2025-12-12 18:06:27.590  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ========== KakaoServiceImpl.getAccessToken() 서비스 호출 ==========
+2025-12-12 18:06:27.590  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Parameter : [19Az9kAlW4cmM2Tx-yxRrUnKwR5HuGKS7h0Ep_gRrFhWcudox1yOcQAAAAQKFxJVAAABmxHPzb-UJG13ldIf8A]
+2025-12-12 18:06:27.590  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Parameter : [19Az9kAlW4cmM2Tx-yxRrUnKwR5HuGKS7h0Ep_gRrFhWcudox1yOcQAAAAQKFxJVAAABmxHPzb-UJG13ldIf8A]
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Running Time : 461ms
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Running Time : 461ms
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-1] c.i.user.controller.UserController       : 카카오 액세스 토큰 발급 성공
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-2] c.i.user.controller.UserController       : 카카오 액세스 토큰 발급 성공
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ========== KakaoServiceImpl.getKakaoUserInfo() 서비스 호출 ==========
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ========== KakaoServiceImpl.getKakaoUserInfo() 서비스 호출 ==========
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Parameter : [16PlxZXhreDhAUnpukqsA5cY4YkK6NgNAAAAAQoXAQ8AAAGbEc_RakA9X5YOsAdz]
+2025-12-12 18:06:28.051  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Parameter : [cP9-yAlsnXKkMxbGQR4-KHhfDy5sdBgTAAAAAQoXAc8AAAGbEc_RdUA9X5YOsAdz]
+2025-12-12 18:06:29.793  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Running Time : 1742ms
+2025-12-12 18:06:29.793  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Running Time : 1742ms
+2025-12-12 18:06:29.793  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:29.793  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:29.793  INFO 23580 --- [http-nio-9000-exec-2] c.i.user.controller.UserController       : 카카오 사용자 정보 조회 성공 - email: 5meteor@naver.com
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-1] c.i.user.controller.UserController       : 카카오 사용자 정보 조회 성공 - email: 5meteor@naver.com
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.getUserByEmail() 서비스 호출 ==========
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.getUserByEmail() 서비스 호출 ==========
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Parameter : [5meteor@naver.com]
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Parameter : [5meteor@naver.com]
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : Running Time : 0ms
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : Running Time : 0ms
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-2] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-1] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-2] c.i.user.controller.UserController       : 카카오 로그인 - 미가입 회원: 5meteor@naver.com
+2025-12-12 18:06:29.809  INFO 23580 --- [http-nio-9000-exec-1] c.i.user.controller.UserController       : 카카오 로그인 - 미가입 회원: 5meteor@naver.com
+2025-12-12 18:06:33.821  INFO 23580 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : [UserController.signUp()] 요청 / ip : 0:0:0:0:0:0:0:1
+2025-12-12 18:06:33.822  INFO 23580 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.signUp() 서비스 호출 ==========
+2025-12-12 18:06:33.825  INFO 23580 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Parameter : [User(userId=0, userName=l, userEmail=5meteor@naver.com, userPassword=, userFullname=l, userAvatar=null, createdAt=null, updatedAt=null)]
+2025-12-12 18:06:33.943  INFO 23580 --- [http-nio-9000-exec-4] c.i.user.model.service.UserServiceImpl   : ✅ 회원가입 완료 - 이메일: 5meteor@naver.com, 사용자명: l
+2025-12-12 18:06:33.943  INFO 23580 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : Running Time : 118ms
+2025-12-12 18:06:33.943  INFO 23580 --- [http-nio-9000-exec-4] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:36.413  INFO 23580 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : [UserController.kakaoLogin()] 요청 / ip : 127.0.0.1
+2025-12-12 18:06:36.415  INFO 23580 --- [http-nio-9000-exec-5] c.i.user.controller.UserController       : 카카오 로그인 요청 - code: fqJiPjKg9Sb4iI2IQHiJULSF3AyCEiaTPFxyxgUC31eD2rFHTBwuwAAAAAQKFxJVAAABmxHP8Wi37mS5Kc-sjw
+2025-12-12 18:06:36.415  INFO 23580 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ========== KakaoServiceImpl.getAccessToken() 서비스 호출 ==========
+2025-12-12 18:06:36.415  INFO 23580 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Parameter : [fqJiPjKg9Sb4iI2IQHiJULSF3AyCEiaTPFxyxgUC31eD2rFHTBwuwAAAAAQKFxJVAAABmxHP8Wi37mS5Kc-sjw]
+2025-12-12 18:06:36.422  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : [UserController.kakaoLogin()] 요청 / ip : 127.0.0.1
+2025-12-12 18:06:36.422  INFO 23580 --- [http-nio-9000-exec-6] c.i.user.controller.UserController       : 카카오 로그인 요청 - code: fqJiPjKg9Sb4iI2IQHiJULSF3AyCEiaTPFxyxgUC31eD2rFHTBwuwAAAAAQKFxJVAAABmxHP8Wi37mS5Kc-sjw
+2025-12-12 18:06:36.424  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ========== KakaoServiceImpl.getAccessToken() 서비스 호출 ==========
+2025-12-12 18:06:36.424  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Parameter : [fqJiPjKg9Sb4iI2IQHiJULSF3AyCEiaTPFxyxgUC31eD2rFHTBwuwAAAAAQKFxJVAAABmxHP8Wi37mS5Kc-sjw]
+2025-12-12 18:06:36.612  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Running Time : 188ms
+2025-12-12 18:06:36.612  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:36.613  INFO 23580 --- [http-nio-9000-exec-6] c.i.user.controller.UserController       : 카카오 액세스 토큰 발급 성공
+2025-12-12 18:06:36.613  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ========== KakaoServiceImpl.getKakaoUserInfo() 서비스 호출 ==========
+2025-12-12 18:06:36.613  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Parameter : [zHKB8cOsrhRJYEwTTLacNRzdDIGSsjolAAAAAQoXEC8AAAGbEc_y5EA9X5YOsAdz]
+2025-12-12 18:06:36.712  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Running Time : 99ms
+2025-12-12 18:06:36.712  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:36.712  INFO 23580 --- [http-nio-9000-exec-6] c.i.user.controller.UserController       : 카카오 사용자 정보 조회 성공 - email: 5meteor@naver.com
+2025-12-12 18:06:36.712  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ========== UserServiceImpl.getUserByEmail() 서비스 호출 ==========
+2025-12-12 18:06:36.712  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Parameter : [5meteor@naver.com]
+2025-12-12 18:06:36.712  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : Running Time : 0ms
+2025-12-12 18:06:36.713  INFO 23580 --- [http-nio-9000-exec-6] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:36.713  INFO 23580 --- [http-nio-9000-exec-6] c.i.user.controller.UserController       : 카카오 로그인 - 미가입 회원: 5meteor@naver.com
+2025-12-12 18:06:36.719 ERROR 23580 --- [http-nio-9000-exec-5] c.i.user.model.service.KakaoServiceImpl  : 카카오 토큰 발급 실패: 400  on POST request for "https://kauth.kakao.com/oauth/token": "{"error":"invalid_grant","error_description":"authorization code not found for code=fqJiPjKg9Sb4iI2IQHiJULSF3AyCEiaTPFxyxgUC31eD2rFHTBwuwAAAAAQKFxJVAAABmxHP8Wi37mS5Kc-sjw","error_code":"KOE320"}"
+2025-12-12 18:06:36.719  INFO 23580 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : Running Time : 303ms
+2025-12-12 18:06:36.719  INFO 23580 --- [http-nio-9000-exec-5] com.instagram.common.aop.LoggingAspect   : ===================================================================================
+2025-12-12 18:06:36.719 ERROR 23580 --- [http-nio-9000-exec-5] c.i.user.controller.UserController       : 카카오 액세스 토큰 발급 실패
+2025-12-12 18:07:19.166  INFO 23580 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2025-12-12 18:11:05.733  INFO 23580 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-12 18:11:05.743  INFO 23580 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-12 18:11:05.745  INFO 23580 --- [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2025-12-12 18:11:05.745  INFO 23580 --- [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@57cf4ed6]]
+2025-12-12 18:11:05.745  INFO 23580 --- [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2025-12-12 18:11:05.752  INFO 23580 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-12 18:11:05.756  INFO 23580 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown initiated...
+2025-12-12 18:11:05.859  INFO 23580 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : MyHikariCP - Shutdown completed.
