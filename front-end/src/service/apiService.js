@@ -284,14 +284,6 @@ const apiService = {
             return null;
         }
     },
-
-    searchQuery: async () => {
-        try {
-
-        } catch(err) {
-
-        }
-    }
 };
 
 export default apiService;

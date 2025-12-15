@@ -37,7 +37,7 @@ const Header = ({
             <>
                 <header className="header">
                     <div className="header-container">
-                        <h1 className="header-title">Instagram</h1>
+                        <h1 className="header-title" onClick={() => navigate('/feed')}>Instagram</h1>
                         <div className="header-nav">
                             {/* TODO 3: Home 아이콘 클릭 시 검색 모달 열기 */}
                             {/* 요구사항: onClick에 openSearch 함수 연결 (기존 navigate('/') 제거) */}

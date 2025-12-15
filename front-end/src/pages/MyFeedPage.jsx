@@ -32,6 +32,7 @@ const MyFeedPage = () => {
 
         try {
             if(!currentUser) navigate('/login');
+            setUser(currentUser);
 
             const allPosts = await apiService.getPost(userId);
             setPosts(allPosts);
@@ -42,6 +43,8 @@ const MyFeedPage = () => {
             setLoading(false);
         }
     }
+
+    if(loading) return <div>로딩 중...</div>
 
     return (
         <div className="feed-container">
