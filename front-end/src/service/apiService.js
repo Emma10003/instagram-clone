@@ -10,8 +10,9 @@
 
 import axios from 'axios';
 import header from "../components/Header";
+import {API_BASE_URL} from "../config/api";  // vecel 배포 테스트 중 추가
 
-export const API_BASE_URL = 'http://localhost:9000/api';
+// export const API_BASE_URL = 'http://localhost:9000/api';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
