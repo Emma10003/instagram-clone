@@ -25,6 +25,7 @@ import StoryDetailPage from "./pages/StoryDetailPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import KakaoCallback from "./pages/KakaoCallback";
 import PostDetailPage from "./pages/PostDetailPage";
+import FeedRouter from "./components/FeedRouter";
 
 function App() {
     const [user, setUser] = useState(() => {
@@ -84,12 +85,13 @@ function App() {
                            }
                     />
                     <Route path="/myfeed"
+                           element={<FeedRouter />} />
+                           {/*
                            element={
                                 <PrivateRoute>
                                    <MyFeedPage />
                                 </PrivateRoute>
-                           }
-                    />
+                           }*/}
                     <Route path="/profile/edit"
                            element={
                                 <PrivateRoute>

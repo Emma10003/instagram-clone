@@ -4,6 +4,7 @@ import apiService from '../service/apiService';
 
 const MentionText = ({ text, className = '' }) => {
     const navigate = useNavigate();
+    const currentUser = JSON.parse(localStorage.getItem('user'));
 
     // 멘션 파싱 함수
     const parseMentions = (text) => {
@@ -49,7 +50,8 @@ const MentionText = ({ text, className = '' }) => {
         try {
             const u = await apiService.getUserByUsername(username);
             if(u && u.userId) {
-                navigate(`/myfeed?userId=${u.userId}`);
+                if(u.userId === currentUser.userId) navigate('/myfeed');
+                else navigate(`/myfeed?userId=${u.userId}`);
             }
         } catch (err) {
             console.error("❌ 유저 찾기 실패:", err);

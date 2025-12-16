@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react';
-import {X, Heart, MessageCircle, Send, Bookmark, Book} from 'lucide-react';
+import {X, Heart, MessageCircle, Send, Bookmark, Book, Trash2} from 'lucide-react';
 import { getImageUrl } from '../service/commonService';
 
 
@@ -15,6 +15,8 @@ const PostDetailPage = () => {
     const [post, setPost] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedPost, setSelectedPost] = useState(null);
+    const [comments, setComments] = useState([]);
+    const [commentText, setCommentText] = useState('');
 
     const navigate = useNavigate();
     const currentUser = JSON.parse(localStorage.getItem('user') || []);
@@ -22,6 +24,7 @@ const PostDetailPage = () => {
 
     useEffect(() => {
         loadFeedData();
+        loadComments();
     }, []);
 
     if(!post) return null;
@@ -30,8 +33,6 @@ const PostDetailPage = () => {
         setLoading(true);
 
         try {
-            console.log("post.postId: ", post.postId);
-            console.log("파라미터로 가져온 postId: ", postId);
             const postData = await apiService.getPost(postId);
             setPost(postData);
         } catch (err) {
@@ -40,6 +41,53 @@ const PostDetailPage = () => {
             setLoading(false);
         }
     };
+
+    const loadComments = async () => {
+        setLoading(true);
+
+        try {
+            const commentsData = await apiService.getComments(postId);
+            if(commentsData.length === 0) {
+                setComments([]);
+                return;
+            }
+            setComments(commentsData.comments);
+
+        } catch (err) {
+            alert("댓글을 불러오는데 실패했습니다.");
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const handleDeleteComment = async (commentId) => {
+        try {
+            console.log("클릭한 댓글 ID: ", commentId);
+            const r = await apiService.deleteComment(commentId);
+            setComments(prev => prev.filter(c => c.commentId !== commentId)); // 프론트 상태 즉시 갱신
+        } catch (err) {
+            alert("댓글을 삭제할 수 없습니다.");
+        }
+    }
+
+    const handleCommentSubmit = async () => {
+        try {
+            const r = await apiService.createComment(postId, commentText);
+            // 등록 후 수동 새로고침 없이 새로 등록된 댓글 표시
+            if(r) {
+                const latest = await apiService.getComments(postId);
+                setComments(latest.comments);
+            }
+            setCommentText("");
+        } catch (err) {
+            alert("댓글 등록에 실패했습니다.");
+        }
+    }
+
+    const handleTextInput = (e) => {
+        const value = e.target.value;
+        setCommentText(value);
+    }
 
     const handleShare = async () => {
         const shareUrl = `${window.location.origin}/post/${post.postId}`;
@@ -68,7 +116,6 @@ const PostDetailPage = () => {
             alert("링크 복사에 실패했습니다.");
         });
     };
-
 
     const toggleLike = async (postId, isLiked) => {
         const newPosts = [...post];
@@ -158,6 +205,39 @@ const PostDetailPage = () => {
                             <MentionText text={post.postCaption}/>
                         </div>
 
+                        <div className="comments-section">
+                            {comments.length === 0 ? (
+                                <div className="comments-empty">
+                                    첫 번째 댓글을 남겨보세요!
+                                </div>
+                            ): (
+                                comments.map((comment, i) => (
+                                    <div key={i} className="comment-item">
+                                        <img className="comment-avatar"
+                                             src={comment.userAvatar}
+                                        />
+                                        <div className="comment-content">
+                                            <div className="comment-text">
+                                                <span className="comment-username">
+                                                    {comment.userName}
+                                                </span>
+                                                <MentionText text={comment.commentContent} />
+                                            </div>
+                                            <div className="comment-time">
+                                                {comment.createdAt}
+                                            </div>
+                                        </div>
+                                        {currentUser.userId === comment.userId && (
+                                            <Trash2 size={24}
+                                                    className="comment-delete-btn"
+                                                    onClick={() => handleDeleteComment(comment.commentId)}
+                                            />
+                                        )}
+                                    </div>
+                                ))
+                            )}
+                        </div>
+
                         {post.commentCount > 0 && (
                             <button className="post-comments-btn">
                                 댓글{post.commentCount}개 모두 보기
@@ -167,6 +247,22 @@ const PostDetailPage = () => {
                             {post.createdAt || '방금 전'}
                         </div>
                     </div>
+
+                    <div className="comment-input-container">
+                        <input
+                            className="comment-input"
+                            placeholder="댓글을 작성하세요..."
+                            value={commentText}
+                            onChange={e => handleTextInput(e)}
+                        />
+                    </div>
+                    <button
+                        className="comment-post-btn"
+                        style={{opacity: commentText.trim() ? 1 : 0.3}}
+                        onClick={commentText.trim() ? handleCommentSubmit : () => alert("댓글을 입력해주세요.")}
+                    >
+                        게시
+                    </button>
                 </article>
             </div>
 

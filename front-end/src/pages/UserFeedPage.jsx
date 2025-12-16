@@ -5,16 +5,12 @@ import {useNavigate} from "react-router-dom";
 import apiService from "../service/apiService";
 import {getImageUrl} from "../service/commonService";
 
-const UserFeedPage = () => {
+const UserFeedPage = ({userId}) => {
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState([]);
     const [activeTab, setActiveTab] = useState('posts');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
-    const currentUser = JSON.parse(localStorage.getItem('user') || {});
-    const userId = currentUser.userId;
-
 
     useEffect(() => {
         loadUserFeedData();
@@ -22,11 +18,17 @@ const UserFeedPage = () => {
 
     const loadUserFeedData = async () => {
         setLoading(true);
+        try {
+            const u = await apiService.getUser(userId);
+            setUser(u);
+        } catch (err) {
+            console.log("❌ 특정 유저 조회 실패");
+            alert("유저 데이터를 불러올 수 없습니다.")
+        } finally {
+            setLoading(false);
+        }
 
         try {
-            if(!currentUser) navigate('/login');
-            setUser(currentUser);
-
             const allPosts = await apiService.getMyPost(userId);
             setPosts(allPosts);
         } catch (err) {
@@ -37,7 +39,7 @@ const UserFeedPage = () => {
         }
     }
 
-    if(loading) return <div>로딩 중...</div>
+    if(loading || !user) return <div>로딩 중...</div>
 
     return (
         <div className="feed-container">
@@ -48,7 +50,7 @@ const UserFeedPage = () => {
                     <div className="profile-image-container">
                         <div className="profile-image-border">
                             <img
-                                src={getImageUrl(currentUser.userAvatar)}
+                                src={getImageUrl(user.userAvatar)}
                                 alt="profile"
                                 className="profile-image-large"
                             />
@@ -57,13 +59,7 @@ const UserFeedPage = () => {
 
                     <div className="profile-info-section">
                         <div className="profile-title-row">
-                            <h2 className="profile-username">{currentUser.userName}</h2>
-                            <div className="profile-actions">
-                                <button className="profile-edit-btn"
-                                        onClick={() => navigate('/profile/edit')}
-                                >프로필 편집</button>
-                                <button className="profile-archive-btn">보관함 보기</button>
-                            </div>
+                            <h2 className="profile-username">{user.userName}</h2>
                         </div>
 
                         <ul className="profile-stats">
@@ -73,8 +69,8 @@ const UserFeedPage = () => {
                         </ul>
 
                         <div className="profile-bio-container">
-                            <div className="profile-fullname">{currentUser.name}</div>
-                            <div className="profile-bio">{currentUser.userAvatar}</div>
+                            <div className="profile-fullname">{user.name}</div>
+                            <div className="profile-bio">{user.userAvatar}</div>
                         </div>
                     </div>
                 </header>

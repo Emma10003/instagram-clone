@@ -50,11 +50,10 @@ public class CommentController {
                                            @RequestHeader("Authorization") String authHeader,
                                            @RequestBody Comment comment) {
         try {
-            String token = authHeader.substring(7);
+               String token = authHeader.substring(7);
             int currentUserId = jwtUtil.getUserIdFromToken(token);
             comment.setUserId(currentUserId);
             boolean r = commentService.createComment(postId, currentUserId, comment.getCommentContent());
-
             log.info("✅ 댓글 등록 성공 - postId: {} , userId: {}", postId, currentUserId);
             return ResponseEntity.ok(r);
 
@@ -69,7 +68,7 @@ public class CommentController {
      * DELETE /api/comments/{commentId}
      * deleteComment
      */
-    @DeleteMapping("/comments/{commentId")
+    @DeleteMapping("/comments/{commentId}")
     public ResponseEntity<Boolean> deleteComment(@PathVariable int commentId) {
         try {
             boolean r = commentService.deleteCommentById(commentId);
@@ -86,7 +85,7 @@ public class CommentController {
      * PUT /api/comments/{commentId}
      * updateComment
      */
-    @PutMapping("/comments/{commentId")
+    @PutMapping("/comments/{commentId}")
     public ResponseEntity<Boolean> updateComment(@PathVariable int commentId,
                                                  @RequestBody String commentContent) {
         try {

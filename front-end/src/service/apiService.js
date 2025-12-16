@@ -150,11 +150,7 @@ const apiService = {
     },
 
     // ===== 댓글 API =====
-
-    // TODO: 댓글 목록 조회
-    // GET /posts/:postId/comments
     getComments: async (postId) => {
-        // TODO: API 호출을 완성하세요
         const res = await api.get(`/posts/${postId}/comments`);
         return res.data;
     },
@@ -211,6 +207,14 @@ const apiService = {
     // GET /users/:userId
     getUser: async (userId) => {
         // TODO: API 호출을 완성하세요
+        try {
+            const res = await api.get(`/users/${userId}`);
+            console.log("res.data: ", res.data);
+            return res.data;
+        } catch (err) {
+            console.error("❌ 사용자 프로필 조회 실패");
+            return [];
+        }
     },
 
     // TODO: 사용자 게시물 조회
