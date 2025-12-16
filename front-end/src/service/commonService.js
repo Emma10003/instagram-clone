@@ -1,8 +1,8 @@
 // src/service/commonService.js
 
-// export const API_BASE_URL = '/api';
+export const API_BASE_URL = '/api';
 
-import {API_BASE_URL} from "../config/api";  // vecel 배포 테스트 중 추가
+// import {API_BASE_URL} from "../config/api";  // vecel 배포 테스트 중 추가
 
 /**
  * 이미지 경로를 받아서 완전한 URL을 반환하는 함수
