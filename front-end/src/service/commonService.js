@@ -1,6 +1,6 @@
 // src/service/commonService.js
 
-export const API_BASE_URL = '/api';
+export const API_BASE_URL = 'http://16.176.28.202:9000/api';
 
 /**
  * 이미지 경로를 받아서 완전한 URL을 반환하는 함수
