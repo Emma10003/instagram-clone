@@ -24,11 +24,29 @@ public class PostController {
     private final JwtUtil jwtUtil;
 
     @GetMapping
-    public ResponseEntity<List<Post>> getAllPosts(@RequestHeader("Authorization") String authHeader) {
-        String token = authHeader.substring(7);
-        int currentUserId = jwtUtil.getUserIdFromToken(token);
-        List<Post> posts = postService.getAllPosts(currentUserId);
+    public ResponseEntity<List<Post>> getAllPosts(
+            @RequestHeader(value = "Authorization", required = false) String authHeader) {
 
+        // 인증되지 않은 유저가 게시물을 보려고 하면 userId 에 null 추가.
+        // 현재 flutter에서 로그인기능 배우지 않았기 때문에 임의로 조치함.
+        Integer currentUserId = null;
+
+        if(authHeader != null && authHeader.startsWith("Bearer ")) {
+            try {
+                String token = authHeader.substring(7);
+                currentUserId = jwtUtil.getUserIdFromToken(token);
+            } catch (Exception e) {
+                log.warn("유저 아이디가 없지만 무시하고 진행");
+            }
+        }
+
+        // null 일 경우 0으로 반환 -> 추후 삭제하거나 코드 원상복구할 예정
+        // List<Post> posts = postService.getAllPosts(currentUserId);
+        int userId = (currentUserId != null) ? currentUserId : 0;
+        List<Post> posts = postService.getAllPosts(userId);
+        return ResponseEntity.ok(posts);
+
+        /*
         if(posts.size() > 0) {
             log.info("✅ PostController: 모든 게시물 불러오기 성공");
             return ResponseEntity.ok(posts);
@@ -36,6 +54,7 @@ public class PostController {
             log.error("❌ PostController: 모든 게시물 불러오기 실패");
             return ResponseEntity.badRequest().build();
         }
+        */
     }
 
     @GetMapping("/user/{userId}")

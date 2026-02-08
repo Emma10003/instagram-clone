@@ -25,14 +25,20 @@ public class WebConfig implements WebMvcConfigurer {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:57472", "http://localhost:3000", "https://insta-front-orcin.vercel.app/")
+                        .allowedOrigins("http://localhost:57472",
+                                "http://localhost:3000", // iOS 테스트에서는 8080 사용
+                                "https://insta-front-orcin.vercel.app/",
+                                "http://10.0.2.2:8080"   // 안드로이드 핸드폰 테스트
+                        )
                         .allowCredentials(true)
                         .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
                         .allowedHeaders("*");
 
                 // WebSocket CORS 설정 추가
                 registry.addMapping("/ws/**")
-                        .allowedOrigins("http://localhost:57472", "http://localhost:3000", "https://insta-front-orcin.vercel.app/")
+                        .allowedOrigins("http://localhost:57472",
+                                "http://localhost:3000",
+                                "https://insta-front-orcin.vercel.app/")
                         .allowCredentials(true)
                         .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
                         .allowedHeaders("*");
