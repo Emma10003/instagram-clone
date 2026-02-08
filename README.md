@@ -30,27 +30,28 @@
 ## 🧱 기술 스택
 
 ### Front-end
-- React 18 (Create React App)
-- React Router DOM
-- Axios
-- Tailwind CSS
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
 ### Back-end
-- Java 21
-- Spring Boot 3.4.x
-- Spring Web / Validation
-- Spring Security + JWT (jjwt)
-- MyBatis
-- PostgreSQL (JDBC)
+![Java](https://img.shields.io/badge/Java_21-007396?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot_3.4-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)
+![MyBatis](https://img.shields.io/badge/MyBatis-000000?style=for-the-badge&logo=mybatis&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
 
 ---
 
 ## 📁 프로젝트 구조
-
+```
 instagram-clone-master/
-├─ front-end/ # React 클라이언트
-└─ back-end/ # Spring Boot API 서버
-
+├─ front-end/          # React 클라이언트
+└─ back-end/           # Spring Boot API 서버
+```
 
 ---
 
@@ -94,100 +95,100 @@ file.post.upload.path=${user.home}/Desktop/instagram/post_images
 # Kakao (선택)
 kakao_client_id=<KAKAO_CLIENT_ID>
 kakao_redirect_uri=http://localhost:3000/auth/kakao/callback
-서버 포트
-back-end/src/main/resources/application.properties에 아래 설정이 포함되어 있습니다.
+```
 
-server.port=9000
+#### 서버 포트
+`back-end/src/main/resources/application.properties`에 아래 설정이 포함되어 있습니다.
+- `server.port=9000`
 
-실행
+#### 실행
+```bash
 cd back-end
 ./gradlew bootRun
-2) Front-end 실행 (React)
-Requirements
-Node.js (LTS 권장)
+```
 
-환경변수(.env)
-React는 환경변수 키에 반드시 REACT_APP_ prefix가 필요합니다.
+---
 
-front-end/.env
+### 2) Front-end 실행 (React)
+
+#### Requirements
+- Node.js (LTS 권장)
+
+#### 환경변수(.env)
+React는 환경변수 키에 반드시 `REACT_APP_` prefix가 필요합니다.
+
+- `front-end/.env`
 
 예시:
-
+```env
 REACT_APP_KAKAO_CLIENT_ID=<KAKAO_CLIENT_ID>
 REACT_APP_KAKAO_REDIRECT_URL=http://localhost:3000/auth/kakao/callback
-Proxy
-로컬 개발 시 /api 요청이 백엔드로 전달되도록 front-end/package.json에 프록시 설정이 포함되어 있습니다.
+```
 
-proxy: "http://localhost:9000"
+#### Proxy
+로컬 개발 시 `/api` 요청이 백엔드로 전달되도록 `front-end/package.json`에 프록시 설정이 포함되어 있습니다.
+- `proxy: "http://localhost:9000"`
 
-실행
+#### 실행
+```bash
 cd front-end
 npm install
 npm start
-Front: http://localhost:3000
+```
 
-Back: http://localhost:9000
+- Front: http://localhost:3000
+- Back: http://localhost:9000
 
-🔐 JWT 인증 흐름(요약)
-로그인 성공 시 /api/auth/login 응답으로 JWT(Access Token) 이 발급됩니다.
+---
 
-보호 API 호출 시 헤더에 아래 형식으로 토큰을 포함합니다.
+## 🔐 JWT 인증 흐름(요약)
 
+- 로그인 성공 시 `/api/auth/login` 응답으로 **JWT(Access Token)** 이 발급됩니다.
+- 보호 API 호출 시 헤더에 아래 형식으로 토큰을 포함합니다.
+```http
 Authorization: Bearer <JWT>
-🧩 API 개요 (대표 엔드포인트)
-컨트롤러 구성에 따라 일부 경로는 다를 수 있습니다. 레포 내 Controller 기준으로 주요 엔드포인트를 요약했습니다.
+```
 
-Auth (/api/auth)
-POST /api/auth/signup 회원가입
+---
 
-POST /api/auth/login 로그인(JWT 발급)
+## 🧩 API 개요 (대표 엔드포인트)
 
-POST /api/auth/kakao 카카오 로그인 처리(구현 방식에 따라 사용)
+> 컨트롤러 구성에 따라 일부 경로는 다를 수 있습니다. 레포 내 Controller 기준으로 주요 엔드포인트를 요약했습니다.
 
-GET /api/auth/profile/edit 내 프로필 조회(Authorization 필요)
+### Auth (`/api/auth`)
+- `POST /api/auth/signup` 회원가입
+- `POST /api/auth/login` 로그인(JWT 발급)
+- `POST /api/auth/kakao` 카카오 로그인 처리(구현 방식에 따라 사용)
+- `GET /api/auth/profile/edit` 내 프로필 조회(Authorization 필요)
+- `PUT /api/auth/profile/edit` 내 프로필 수정(Authorization 필요)
 
-PUT /api/auth/profile/edit 내 프로필 수정(Authorization 필요)
+### Posts (`/api/posts`)
+- `GET /api/posts` 피드 조회
+- `GET /api/posts/user/{userId}` 유저별 게시물
+- `GET /api/posts/{postId}` 게시물 상세
+- `POST /api/posts` 게시물 업로드
+- `POST /api/posts/{postId}/like` 좋아요
+- `DELETE /api/posts/{postId}/like` 좋아요 취소
 
-Posts (/api/posts)
-GET /api/posts 피드 조회
+### Comments
+- `GET /api/posts/{postId}/comments` 댓글 조회
+- `POST /api/posts/{postId}/comments` 댓글 작성
+- `PUT /api/comments/{commentId}` 댓글 수정
+- `DELETE /api/comments/{commentId}` 댓글 삭제
 
-GET /api/posts/user/{userId} 유저별 게시물
+### Stories (`/api/stories`)
+- `GET /api/stories` 스토리 목록
+- `GET /api/stories/user/{userId}` 유저별 스토리
+- `POST /api/stories` 스토리 업로드
+- `DELETE /api/stories/{storyId}` 스토리 삭제
 
-GET /api/posts/{postId} 게시물 상세
+### Users (`/api/users`)
+- `GET /api/users/{userId}` 특정 유저 조회
+- `GET /api/users/search` 유저 검색
+- `GET /api/users/username/{userName}` 유저네임으로 조회
 
-POST /api/posts 게시물 업로드
+---
 
-POST /api/posts/{postId}/like 좋아요
+## 📝 Note
 
-DELETE /api/posts/{postId}/like 좋아요 취소
-
-Comments
-GET /api/posts/{postId}/comments 댓글 조회
-
-POST /api/posts/{postId}/comments 댓글 작성
-
-PUT /api/comments/{commentId} 댓글 수정
-
-DELETE /api/comments/{commentId} 댓글 삭제
-
-Stories (/api/stories)
-GET /api/stories 스토리 목록
-
-GET /api/stories/user/{userId} 유저별 스토리
-
-POST /api/stories 스토리 업로드
-
-DELETE /api/stories/{storyId} 스토리 삭제
-
-Users (/api/users)
-GET /api/users/{userId} 특정 유저 조회
-
-GET /api/users/search 유저 검색
-
-GET /api/users/username/{userName} 유저네임으로 조회
-
-📌 참고
-백엔드 상세 설명: back-end/README.md
-
-📝 Note
 본 프로젝트는 학습 및 포트폴리오 목적의 클론 프로젝트입니다.
